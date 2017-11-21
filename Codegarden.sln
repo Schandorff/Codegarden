@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codegarden", "Codegarden\Codegarden.csproj", "{AE4B1E74-0388-4985-B6DF-EF40CC3FEDD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGarden", "CodeGarden\CodeGarden.csproj", "{D4AFA99D-04BC-405A-84C1-34C1B1B44890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE4B1E74-0388-4985-B6DF-EF40CC3FEDD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE4B1E74-0388-4985-B6DF-EF40CC3FEDD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE4B1E74-0388-4985-B6DF-EF40CC3FEDD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE4B1E74-0388-4985-B6DF-EF40CC3FEDD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4AFA99D-04BC-405A-84C1-34C1B1B44890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4AFA99D-04BC-405A-84C1-34C1B1B44890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4AFA99D-04BC-405A-84C1-34C1B1B44890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4AFA99D-04BC-405A-84C1-34C1B1B44890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AB157DBA-A97F-469D-B9D9-11851F1FAFC7}
+		SolutionGuid = {5621416E-8B4C-4E47-A661-C965FAB9A665}
 	EndGlobalSection
 EndGlobal
