@@ -46,12 +46,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// time
+		/// testmodel
 		///</summary>
-		[ImplementPropertyType("time")]
-		public DateTime Time
+		[ImplementPropertyType("testmodel")]
+		public string Testmodel
 		{
-			get { return this.GetPropertyValue<DateTime>("time"); }
+			get { return this.GetPropertyValue<string>("testmodel"); }
 		}
 	}
 }
