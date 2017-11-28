@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "SiteMaster.cshtml";
+	
+	
+}
+<h1>@Model.Content.EventDateHeadline</h1>
+<ul>
+    
+@foreach (var item in Model.Content.WhatYouGetList)
+{
+    <li>@item</li>
+}
+ </ul>
