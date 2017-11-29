@@ -19,8 +19,8 @@
         <div class="column">
             <div class="col-md-4">
                 <div class="information">
-                    <h1>@Model.Content.EventDateHeadline</h1>
-                    <p>@Model.Content.EventPresentation</p>
+                    <h1>@page.EventDateHeadline</h1>
+                    <p>@page.EventPresentation</p>
                     <em>Ticket price: €700 ex. DK VAT</em>
                     <a href="" class="btn-primary" title="Buy ticket for codegarden 2017">Buy ticket for codegarden 2017</a>
                 </div>
@@ -29,12 +29,12 @@
                 <div class="selling-points">
                     <h3>@page.WhatYouGetHeadline</h3>
                     <ul>
-                        @foreach (var item in Model.Content.WhatYouGetList)
+                        @foreach (var item in page.WhatYouGetList)
                         {
                             <li>@item</li>
                         }
                     </ul>
-                    <a href="" class="link-primary">Convince your boss!</a>
+                    <a href="@page.WhatYouGetLink" class="link-primary">@page.WhatYouGetLinkText</a>
                 </div>
             </div>
         </div>
@@ -44,13 +44,11 @@
     <div class="container">
         <div class="speakers-container">
             <div class="center">
-                <h1 class="yellow">
-                    Codegarden 2018 speakers</h2>
+                <h2 class="yellow">
+                    @page.SpeakersHeadline</h2>
 
-                    <p>
-                        This years line-up of speakers is bigger and broader than ever. Come and hear from industry leaders, tinkers and thinkers, covering strategy, case stories, great design and deep dives into the Umbraco core
-
-                        <span class="smaller">New speakers are added every week as we approach Codegarden 2017</span>
+                    <p>@page.SpeakersIntroText
+                        <span class="smaller">@page.SpeakersOneLine</span>
                     </p>
                     <div class="speakers">
                         <div class="speaker col-md-3">
