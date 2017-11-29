@@ -286,6 +286,11 @@
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Views\SiteMaster.cshtml" />
     <Content Include="Views\HomePage.cshtml" />
+    <Content Include="Views\Workshop.cshtml" />
+    <Content Include="Views\Workshops.cshtml" />
+    <Content Include="Views\Partials\Footer.cshtml" />
+    <Content Include="Views\Partials\Header.cshtml" />
+    <Content Include="Views\Partials\Nav.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
