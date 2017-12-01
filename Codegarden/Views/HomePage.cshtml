@@ -12,7 +12,15 @@
     <div id="test" class="fullscreenVid">
         <div class="vidOverlay"></div>
         <div class="vidContainer">
-            <video src="@page.HeroPicker.Url" autoplay loop></video>
+            @try
+            {
+                <video src="@page.HeroPicker.Url" autoplay loop></video>
+            }
+            catch
+            {
+                <video src="#" autoplay loop></video>
+            }
+            
         </div>
     </div>
 </div>
