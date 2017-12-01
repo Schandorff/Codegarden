@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Home page</summary>
 	[PublishedContentModel("homePage")]
-	public partial class HomePage : PublishedContentModel, IHeroMedia
+	public partial class HomePage : PublishedContentModel, IHeroMedia, IMetaBase
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "homePage";
@@ -268,6 +268,42 @@ namespace Umbraco.Web.PublishedContentModels
 		public bool IsVideo
 		{
 			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetIsVideo(this); }
+		}
+
+		///<summary>
+		/// Meta Description: This is the page description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords: This is the page keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// Meta Ttitle: This is the page title
+		///</summary>
+		[ImplementPropertyType("metaTtitle")]
+		public string MetaTtitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTtitle(this); }
+		}
+
+		///<summary>
+		/// Hide in navigation?: Should this page be hidden from the navigation?
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetUmbracoNaviHide(this); }
 		}
 	}
 }

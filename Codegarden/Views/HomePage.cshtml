@@ -5,12 +5,14 @@
 
     var page = Model.Content;
 
+    var speakerQuery = Model.Content.Site().Descendants<Speaker>();
+
 }
 <div class="row">
     <div id="test" class="fullscreenVid">
         <div class="vidOverlay"></div>
         <div class="vidContainer">
-            <video src="media/bg-vid.mp4" autoplay loop></video>
+            <video src="@page.HeroPicker.Url" autoplay loop></video>
         </div>
     </div>
 </div>
@@ -22,7 +24,7 @@
                     <h1>@page.EventDateHeadline</h1>
                     <p>@page.EventPresentation</p>
                     <em>Ticket price: €700 ex. DK VAT</em>
-                    <a href="" class="btn-primary" title="Buy ticket for codegarden 2017">Buy ticket for codegarden 2017</a>
+                    <a href="@page.BuyTicketLink" class="btn-primary" title="@page.BuyTicketLinkText">@page.BuyTicketLinkText</a>
                 </div>
             </div>
             <div class="col-md-6 overlap">
@@ -51,15 +53,29 @@
                         <span class="smaller">@page.SpeakersOneLine</span>
                     </p>
                     <div class="speakers">
-                        <div class="speaker col-md-3">
-                            <img src="media/kris.jpg" alt="">
-                            <a href="#">
-                                <div class="overlay">
-                                    <h3>Kris Deminick</h3>
-                                    <p>Mindfullness</p>
-                                </div>
-                            </a>
-                        </div>
+                        @foreach (var speaker in speakerQuery)
+                        {
+                            <div class="speaker col-md-3">
+                                @try
+                                {
+                                    <img src="@speaker.SpeakerPicture" alt="@speaker.SpeakerName">
+                                }
+                                catch
+                                {
+                                    <img src="#" alt="#">
+                                }
+                                
+                                <a href="@speaker.Url">
+                                    <div class="overlay">
+                                        <h3>@speaker.SpeakerName</h3>
+                                        <p>@speaker.SpeakerDescription</p>
+                                       
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                      
+                      
                         <div class="speaker col-md-3">
                             <img src="media/shannon.jpg" alt="">
                             <a href="#">

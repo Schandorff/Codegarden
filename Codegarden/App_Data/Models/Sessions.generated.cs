@@ -20,16 +20,16 @@ using Umbraco.ModelsBuilder.Umbraco;
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Workshop</summary>
-	[PublishedContentModel("workshop")]
-	public partial class Workshop : PublishedContentModel
+	/// <summary>Sessions</summary>
+	[PublishedContentModel("sessions")]
+	public partial class Sessions : PublishedContentModel
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "workshop";
+		public new const string ModelTypeAlias = "sessions";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public Workshop(IPublishedContent content)
+		public Sessions(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -40,27 +40,9 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Workshop, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Sessions, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Workshop description: Write a description of the workshop
-		///</summary>
-		[ImplementPropertyType("workshopDescription")]
-		public IHtmlString WorkshopDescription
-		{
-			get { return this.GetPropertyValue<IHtmlString>("workshopDescription"); }
-		}
-
-		///<summary>
-		/// Workshop headline: Enter a headline for the workshop
-		///</summary>
-		[ImplementPropertyType("workshopHeadline")]
-		public string WorkshopHeadline
-		{
-			get { return this.GetPropertyValue<string>("workshopHeadline"); }
 		}
 	}
 }
