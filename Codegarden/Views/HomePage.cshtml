@@ -6,6 +6,7 @@
     var page = Model.Content;
 
     var speakerQuery = Model.Content.Site().Descendants<Speaker>();
+    var workShopQuery = Model.Content.Site().Descendants<Workshop>();
 
 }
 <div class="row">
@@ -31,7 +32,7 @@
                 <div class="information">
                     <h1>@page.EventDateHeadline</h1>
                     <p>@page.EventPresentation</p>
-                    <em>Ticket price: €700 ex. DK VAT</em>
+                    
                     <a href="@page.BuyTicketLink" class="btn-primary" title="@page.BuyTicketLinkText">@page.BuyTicketLinkText</a>
                 </div>
             </div>
@@ -54,8 +55,8 @@
     <div class="container">
         <div class="speakers-container">
             <div class="center">
-                <h2 class="yellow">
-                    @page.SpeakersHeadline</h2>
+                <h1 class="yellow">
+                    @page.SpeakersHeadline</h1>
 
                     <p>@page.SpeakersIntroText
                         <span class="smaller">@page.SpeakersOneLine</span>
@@ -83,25 +84,6 @@
                             </div>
                         }
                       
-                      
-                        <div class="speaker col-md-3">
-                            <img src="media/shannon.jpg" alt="">
-                            <a href="#">
-                                <div class="overlay">
-                                    <h3>Shannon Deminick</h3>
-                                    <p>Microsoft MVP, Author of Examine and Articulate packages</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="speaker col-md-3">
-                            <img src="media/filip-bech-larsen.jpg" alt="">
-                            <a href="#">
-                                <div class="overlay">
-                                    <h3>Filip Bruun Bech-Larsen</h3>
-                                    <p>Frontend Manager & Tech Lead at IMPACT A/S</p>
-                                </div>
-                            </a>
-                        </div>
                     </div>
                     <a href="" class="btn-secondary">SEE SPEAKERS FOR CODEGARDEN 2018</a>
             </div>
@@ -125,50 +107,23 @@
         <div class="column">
             <div class="col-md-6 overlap">
                 <div class="themes">
-                    <h3>Themes</h3>
-                    <div class="item">
-                        <a href="#" class="collapse">Happiness and Community</a>
-                        <div class="collapsed">
-                            <p>How do you stay sharp, find inspiration and move forward professionally, mentally and as a human being? Explore the intersection of happiness at work, side-projects and package development on the edge, as we dive into what makes an Umbracian truly happy.</p>
+                    <h3>@page.ThemesHeadline</h3>
+                    @foreach (var theme in page.ThemesSelector)
+                    {
+                        <div class="item">
+                            <a href="#" class="collapse">@theme.GetPropertyValue("themeTitle")</a>
+                            <div class="collapsed">
+                                <p>@theme.GetPropertyValue("themeDescription")</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="collapse">Beyond web</a>
-                        <div class="collapsed">
-                            <p>Since its inception, Umbraco has been an "as headless as you need" cms. Delivering data to everything from mobile apps, internet of things, to concert screens and price tags. Learn how to leverage data from your Umbraco site in new and unexpected ways.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="collapse">Collaboration</a>
-                        <div class="collapsed">
-                            <p>Become a better team. Attend these sessions and discover the processes and tools that help high performing teams create great Umbraco projects.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="collapse">Security</a>
-                        <div class="collapsed">
-                            <p>Make security a priority in 2017. Get the tools and insights to properly secure your Umbraco projects, your customer data and your website visitors from unpleasant and possible lethal harm.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="collapse">E-Commerce</a>
-                        <div class="collapsed">
-                            <p>Being present online today is just as much about commerce as it is content. Get inspired from expert speakers and in-depth use cases, showcasing e-commerce best practices and Umbraco success stories.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#" class="collapse">Editor Experiences</a>
-                        <div class="collapsed">
-                            <p>You don't just build a website in Umbraco. You also build and design the application that your content editors will use everyday to maintain it. Learn how some of the best in the business has taken advantage of Umbraco's extensibility and delivered editorial workflows that improve content quality and empowers editors to deliver even greater value.</p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="themes-info">
-                    <h1 class="yellow">Codegarden 2018 themes</h1>
-                    <p>This year’s sessions will revolve around 6 central themes, presented by a mix of community leaders, the Umbraco core team and specially selected keynote speakers. The different sessions will consists of either case-stories from the real world, tech-talks for developers or strategy sessions. As always, there will be something for everyone, whether you’re a hard-core code enthusiast, a creative web designer, a project manager or a one-man army.</p>
-                    <a href="" class="btn-primary" title="See schedule for codegarden 2018">SEE SCHEDULE FOR CODEGARDEN 2018</a>
+                    <h1 class="yellow">@page.ThemesPresentHeadline</h1>
+                    @page.ThemesPresentationDescription
+                    <a href="@page.ScheduleLink" class="btn-primary" title="@page.ScheduleLinkText">@page.ScheduleLinkText</a>
                 </div>
             </div>
         </div>
@@ -178,27 +133,18 @@
     <div class="container">
         <div class="workshops-container">
             <div class="center">
-                <h1 class="yellow">Codegarden 2018 workshops</h1>
-                <p>As part of the Codegarden ticket, you get free access to 3 fantastic half-day workshops, giving you an opportunity to dive deep into a subject with an experienced instructor.</p>
+                <h1 class="yellow">@page.WorkshopHeadline</h1>
+                @page.WorkshopsMainDescription
                 <div class="workshops">
-                    <div class="col-md-4">
-                        <span>Workshop</span>
-                        <h3>Umbraco Cloud</h3>
-                        <p>With Umbraco Cloud you can focus on building amazing things and never again worry about installing, manual upgrades, deployments, hosting and any other infrastructural bits. Attend the workshop and see if freeing yourself from these time consuming tasks is something for you.</p>
-                        <a href="#" class="link-primary">More information and signup</a>
-                    </div>
-                    <div class="col-md-4 yellow">
-                        <span>Workshop</span>
-                        <h3>Unit Testing Umbraco</h3>
-                        <p>It’s important to test your code. Many will give up though. Unit testing can be hard to get good at in itself, and when tightly coupled code looms ahead it might be even easier to let it go. However, hope is not lost for us Umbracians. Learn how to optimise your unit testing on this workshop.</p>
-                        <a href="#" class="link-primary">More information and signup</a>
-                    </div>
-                    <div class="col-md-4">
-                        <span>Workshop</span>
-                        <h3>uCommerce</h3>
-                        <p>uCommerce is one of the most trusted packages around. Get your hands dirty with the big daddy of e-commerce platforms on Umbraco and discover how elegantly simple e-commerce can be.</p>
-                        <a href="#" class="link-primary">More information and signup</a>
-                    </div>
+                    @foreach (var workshop in workShopQuery)
+                    {
+                        <div class="col-md-4">
+                            <span>Workshop</span>
+                            <h3>@workshop.WorkshopHeadline</h3>
+                            @workshop.WorkshopDescription
+                            <a href="@workshop.Url" class="link-primary">More information and signup</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
