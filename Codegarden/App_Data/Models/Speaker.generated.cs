@@ -100,6 +100,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Speaker title: Enter the speakers title
+		///</summary>
+		[ImplementPropertyType("speakerTitle")]
+		public string SpeakerTitle
+		{
+			get { return this.GetPropertyValue<string>("speakerTitle"); }
+		}
+
+		///<summary>
 		/// Speaker twitter: Enter speakers twitter link
 		///</summary>
 		[ImplementPropertyType("speakerTwitter")]
