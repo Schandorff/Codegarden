@@ -48,7 +48,7 @@ $(document).ready(function(){
         
     }
     $('.getSpeaker').click(function( e ) {
-        //e.preventDefault();
+        e.preventDefault();
         showSpeaker($(this));
     });
     $('.modal .close').click(function( e ) {
