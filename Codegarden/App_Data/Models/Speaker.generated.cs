@@ -55,7 +55,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Speaker description headline: Enter the title or description of the speaker
+		/// Speaker description headline: Enter headline for speaker description
 		///</summary>
 		[ImplementPropertyType("speakerDescriptionHeadline")]
 		public string SpeakerDescriptionHeadline
