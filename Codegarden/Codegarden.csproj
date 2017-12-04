@@ -253,6 +253,8 @@
     <Content Include="config\imageprocessor\processing.config" />
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
+    <Content Include="css\style.css" />
+    <Content Include="js\script.js" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -291,6 +293,11 @@
     <Content Include="Views\Partials\Footer.cshtml" />
     <Content Include="Views\Partials\Header.cshtml" />
     <Content Include="Views\Partials\Nav.cshtml" />
+    <Content Include="Views\Info.cshtml" />
+    <Content Include="Views\Session.cshtml" />
+    <Content Include="Views\Sessions.cshtml" />
+    <Content Include="Views\Speaker.cshtml" />
+    <Content Include="Views\Speakers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

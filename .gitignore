@@ -307,6 +307,7 @@ __pycache__/
 **/App_Data/TEMP/
 **/App_Data/NuGetBackup/
 **/Web.Config
+**/obj/Debug
 
 # Ignore Umbraco content cache file
 **/App_Data/umbraco.config
