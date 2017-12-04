@@ -293,19 +293,16 @@
     <Content Include="Views\Partials\Footer.cshtml" />
     <Content Include="Views\Partials\Header.cshtml" />
     <Content Include="Views\Partials\Nav.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Speakers.cshtml" />
     <Content Include="Views\Speaker.cshtml" />
     <Content Include="Views\Info.cshtml" />
     <Content Include="Views\Session.cshtml" />
     <Content Include="Views\Sessions.cshtml" />
-=======
     <Content Include="Views\Info.cshtml" />
     <Content Include="Views\Session.cshtml" />
     <Content Include="Views\Sessions.cshtml" />
     <Content Include="Views\Speaker.cshtml" />
     <Content Include="Views\Speakers.cshtml" />
->>>>>>> 88535629e460c2e80cffd031dafe17f660bc1085
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
