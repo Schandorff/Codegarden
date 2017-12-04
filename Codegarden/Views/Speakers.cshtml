@@ -3,11 +3,18 @@
 @{
     Layout = "SiteMaster.cshtml";
 
-    var page = Model.Content;
-
     var speakerQuery = Model.Content.Site().Descendants<Speaker>();
-}
+    var speakerId = (Request["speakerId"] != null) ? Request["speakerId"] : string.Empty;
+    var singleSpeakerQuery = Model.Content.Site().Descendants<Speaker>();
+    var sessionQuery = Model.Content.Site().Descendants<Session>();
+    if (speakerId != string.Empty)
+    {
+        singleSpeakerQuery = Model.Content.Site().Descendants<Speaker>().Where(x => x.Id == int.Parse(speakerId));
+        sessionQuery = sessionQuery.Where(x => x.SessionSpeakers.Any(i => i.Id == int.Parse(speakerId)));
+    };
 
+
+}
 
 <div class="row page-banner">
     <div class="center">
@@ -28,69 +35,65 @@
             
             @foreach (var speaker in speakerQuery)
             {
-            <div class="speaker col-md-3">
-                <a class="getSpeaker" data-id="1" href="#">
-                    @try
-                    {
-                        <img src="@speaker.SpeakerPicture" alt="" />
-                    }
-                    catch
-                    {
-                        <img src="#" alt="" />
-                    }
+                <div class="speaker col-md-3">
+                    <a href="?speakerId=@speaker.Id" @*class="getSpeaker" data-id="1"*@ >
+                        @try
+                        {
+                            <img src="@speaker.SpeakerPicture" alt=""/>                    
+                        }
+                        finally                   
+                        {
+                            <img src = "media/1002/CG-placeholder.svg" alt = ""/>
+                        }
 
-                    <h3>@speaker.SpeakerName</h3>
-                    <p>@speaker.SpeakerTitle</p>
-         
-                    @*<img src="../media/kris.jpg" alt="">
-                    <h3>Kris Deminick</h3>
-                    <p>Mindfullness</p>*@
-                </a>
-            </div>
+                        <h3>@speaker.SpeakerName</h3>
+                        <p>@speaker.SpeakerTitle</p>
+                    </a>
+                </div>
             }
 
 
         </div>
     </div>
 </div>
-<div class="row coloured">
-    <div class="container">
-        <div class="venue-container">
-            <div class="center">
-                <h1 class="yellow">Codegarden 2018 venue</h1>
-                <h3>Dok5000</h3>
-                <p>Codegarden will, once again, be held at “Dok5000” in central Odense. Odense is just one hour by train from Copenhagen Airport, with plenty of cheap hotels and airbnbs, a great atmosphere and is the Umbraco HQ home turf!</p>
-                <p class="address">Venue street address: Dok5000, <a href="" class="link-primary">Havnegade 18, 5000 Odense</a></p>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="modal">
     <a class="close" href="#"><div></div><div></div></a>
     <div class="speaker-profile">
-        <img class="profile-picture" src="../media/kris.jpg" alt="">
-        <h2>Kris Deminick</h2>
-        <p class="title">Mindfullness</p>
-        <span class="social-links">
-            <a href=""><img src="../media/yellow-facebook.svg" alt=""></a>
-            <a href=""><img src="../media/yellow-linkedin.svg" alt=""></a>
-            <a href=""><img src="../media/yellow-twitter.svg" alt=""></a>
-        </span>
-        <div class="session">
-            <span>The session</span>
-            <p>For Roskilde Festival we needed a great CMS, but with rapid horizontal scaling. TO solve this problem we chose Umbraco for the backoffice and a slim, stateless Node.js API server. This is our story.</p>
-        </div>
-        <div class="info">
-            <span>The speaker</span>
-            <p>
-                Emil Bay is a 22 year old, Copehagen based full-stack developer at Umwelt. He has been coding since the age of 13, and freelancing since then.
-                <br>
-                His first job was building applications with WebForms in Asp.NET 2.0, but the experience was so traumatising that he has stuck to the open source world since then.
-                <br>
-                He is especially excited about vNext and the prospect of Windows and UNIX finding common ground.
-                Avid open source contributor, UNIX ascetic, Node.js hacker and former mathematician.
-            </p>
-        </div>
+        @foreach (var singleSpeaker in singleSpeakerQuery)
+        {
+            try
+            {
+                <img src="@singleSpeaker.SpeakerPicture" alt="" />
+            }
+            finally
+            {
+                <img src="media/1002/CG-placeholder.svg" alt="" />
+            }
+
+            <h2>@singleSpeaker.SpeakerName</h2>
+       
+            <p class="title">@singleSpeaker.SpeakerTitle</p>
+            <span class="social-links">
+                <a href="@singleSpeaker.SpeakerFacebook"><img src="../media/yellow-facebook.svg" alt=""></a>
+                <a href="@singleSpeaker.SpeakerLinkedin"><img src="../media/yellow-linkedin.svg" alt=""></a>
+                <a href="@singleSpeaker.SpeakerTwitter"><img src="../media/yellow-twitter.svg" alt=""></a>
+            </span>
+
+            foreach (var session in sessionQuery)
+            {
+                <div class="session">
+                    <span>@session.SessionDescriptionHeadline</span>
+                    <p>@session.SessionDescription</p>
+                </div>
+            }
+
+            <div class="info">
+                <span>@singleSpeaker.SpeakerDescriptionHeadline</span>
+                <p>@singleSpeaker.SpeakerDescription</p>
+            </div>
+         }
     </div>
+
 </div>
 <div class="modal-bg"></div>

@@ -91,6 +91,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Session speakers: Pick one or more speakers for this session
+		///</summary>
+		[ImplementPropertyType("sessionSpeakers")]
+		public IEnumerable<IPublishedContent> SessionSpeakers
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("sessionSpeakers"); }
+		}
+
+		///<summary>
 		/// Session start time: Pick session start time
 		///</summary>
 		[ImplementPropertyType("sessionStartTime")]

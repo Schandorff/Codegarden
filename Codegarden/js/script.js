@@ -45,9 +45,10 @@ $(document).ready(function(){
     function showSpeaker(thisObj) {
         $('.modal').toggleClass("show");
         $('.modal-bg').toggleClass("show");
+        
     }
     $('.getSpeaker').click(function( e ) {
-        e.preventDefault();
+        //e.preventDefault();
         showSpeaker($(this));
     });
     $('.modal .close').click(function( e ) {
