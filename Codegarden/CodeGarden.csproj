@@ -255,10 +255,6 @@
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="css\style.css" />
     <Content Include="js\script.js" />
-<<<<<<< HEAD
-    <Content Include="Media\1002\cg-placeholder.svg" />
-=======
->>>>>>> 88535629e460c2e80cffd031dafe17f660bc1085
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
