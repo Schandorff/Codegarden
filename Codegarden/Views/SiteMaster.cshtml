@@ -1,6 +1,10 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ClientDependency.Core.Mvc
 @{
-	Layout = null;
+    Layout = null;
+
+    Html.RequiresCss("~/css/style.css");
+    Html.RequiresJs("~/js/script.js");
 }
     @Html.Partial("Header")
 
