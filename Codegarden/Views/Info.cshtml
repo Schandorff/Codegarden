@@ -34,7 +34,9 @@
             </div>
             <div class="col-md-7">
                 <div class="map-container">
-                  @*@page.MapHolder*@  
+
+                    @Html.Raw(Model.Content.GetPropertyValue("MapHolder"))
+
                 </div>
             </div>
         </div>
@@ -79,7 +81,9 @@
 </div>
 <div class="row">
     <div class="container">
-        @page.ContactFormHolder
+
+        @Html.Raw(Model.Content.GetPropertyValue("ContactFormHolder"))
+
     </div>
 </div>
 
