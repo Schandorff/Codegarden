@@ -148,7 +148,7 @@
                             <span>Workshop</span>
                             <h3>@workshop.WorkshopHeadline</h3>
                             @workshop.WorkshopDescription
-                            <a href="@workshop.Url" class="link-primary">More information and signup</a>
+                            <a href="/workshops/#@workshop.WorkshopHeadline.Replace(" ", string.Empty)" class="link-primary">More information and signup</a>
                         </div>
                         i++;
                     }
