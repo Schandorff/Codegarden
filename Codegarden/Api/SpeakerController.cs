@@ -47,7 +47,7 @@ namespace CodeGarden.Api
 
             var img = ms.GetById(imgGuid);
 
-            return img.GetValue("umbracoFile").ToString();
+            return Umbraco.Media(img.Id).Url;
         }
 
         //The speaker object
