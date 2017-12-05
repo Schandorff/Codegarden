@@ -46,6 +46,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// What you learn: Describe what the attendees will learn from the workshop
+		///</summary>
+		[ImplementPropertyType("whatYouLearn")]
+		public IEnumerable<string> WhatYouLearn
+		{
+			get { return this.GetPropertyValue<IEnumerable<string>>("whatYouLearn"); }
+		}
+
+		///<summary>
 		/// Workshop description: Write a description of the workshop
 		///</summary>
 		[ImplementPropertyType("workshopDescription")]
