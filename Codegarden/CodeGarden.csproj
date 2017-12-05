@@ -340,6 +340,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\SessionController.cs" />
+    <Compile Include="Api\SpeakerController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

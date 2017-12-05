@@ -1,0 +1,229 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+<a class="showFilter" href="#"><span class="text">Filter</span><span class="close"><i class="fa fa-times" aria-hidden="true"></i></a>
+<div class="filter-container">
+
+    <p class="title">Filter by:</p>
+
+    <div class="filter-card">
+        <span>Umbraco</span>
+        <span>
+            <label class="active" for="umbraco"></label>
+            <input type="checkbox" class="onoffswitch-checkbox checkbox-on" name="umbraco" id="umbraco" data-string="umbraco" value="../json/umbraco.json">
+        </span>
+    </div>
+    <div class="filter-card">
+        <span>Bars and restaurants</span>
+        <span>
+            <label class="active" for="barsAndRestaurants"></label>
+            <input type="checkbox" class="onoffswitch-checkbox checkbox-on" name="barsAndRestaurants" id="barsAndRestaurants" data-string="barsAndRestaurants" value="../json/barsAndRestaurants.json">
+        </span>
+    </div>
+    <div class="filter-card">
+        <span>Natural Areas</span>
+        <span>
+            <label for="naturalAreas"></label>
+            <input type="checkbox" class="onoffswitch-checkbox" name="naturalAreas" id="naturalAreas" data-string="nature" value="https://portal.opendata.dk/dataset/3a9c40ce-844b-490c-80ff-ccdcaea3fed0/resource/c88884f7-95cf-4655-b71e-b2e2911c574e/download/naturomraaderudvalgte.json">
+        </span>
+    </div>
+    <div class="filter-card">
+        <span>Parks</span>
+        <span>
+            <label for="parks"></label>
+            <input type="checkbox" class="onoffswitch-checkbox" name="parks" id="parks" data-string="nature" value="https://portal.opendata.dk/dataset/c9db197c-d225-4f45-b14d-27deb2ae2b3d/resource/6864610d-c2e9-4668-8fef-e40dcb74dcd5/download/parker.json">
+        </span>
+    </div>
+    <div class="filter-card">
+        <span>Parking</span>
+        <span>
+            <label for="parking"></label>
+            <input type="checkbox" class="onoffswitch-checkbox" name="parking" id="parking" data-string="parking" value="https://portal.opendata.dk/dataset/e5e26cac-e3d0-4a8b-95f4-830f3bab8cef/resource/ab561693-0d07-4ef5-a753-1ce4b3d430d8/download/parkering_odense.json">
+        </span>
+    </div>
+    <div class="filter-card">
+        <span>Boat rentals</span>
+        <span>
+            <label for="boatRentals"></label>
+            <input type="checkbox" class="onoffswitch-checkbox" name="boatRentals" id="boatRentals" data-string="boat" value="https://portal.opendata.dk/dataset/98149b01-3a8b-4c5e-89c7-7ca5235738f8/resource/750b5b8e-669b-4407-8633-ce4cfe58dd99/download/baadudlejning.json">
+        </span>
+    </div>
+    <div class="filter-card">
+        <span>Fireplace and barbecue areas</span>
+        <span>
+            <label for="fireplace"></label>
+            <input type="checkbox" class="onoffswitch-checkbox" name="fireplace" id="fireplace" data-string="grill" value="https://portal.opendata.dk/dataset/5391185d-36fe-47e5-b27d-c6bfc6c2e949/resource/e094ef59-5650-41b6-b7c0-6eb1c7cbfbcc/download/baaloggrillpladser.json">
+        </span>
+    </div>
+
+</div>
+<div id="map"></div>
+
+<script>
+
+      function initMap() {
+        var odense = {lat: 55.4018872, lng: 10.3846622};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: odense,
+          zoom: 14,
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+        var markers = [];
+
+        var maps = [
+          "/json/umbraco.json",
+          "/json/barsAndRestaurants.json"
+        ];
+
+        maps.forEach(function( singleMap ){
+          $.getJSON( singleMap, function( data ) {
+            data.features.forEach(function( item ){
+                var lat = item.properties.lat;
+                var lng = item.properties.lon;
+
+                gposition = new google.maps.LatLng(lat, lng);
+
+                var iconBase = "/Media/MapIcons/";
+
+                if (item.properties.type == "umbraco") {
+                    var icon = {
+                        url: iconBase + "umbraco-icon.svg"
+                    }
+                }else if (item.properties.type == "restaurant") {
+                    var icon = {
+                        url: iconBase + "restaurant-icon.svg"
+                    }
+                }else if(item.properties.type == "hotel"){
+                    var icon = {
+                        url: iconBase + "hotel-icon.svg",
+                    }
+                }else {
+                    var icon = {
+                        url: iconBase + "bar-icon.svg",
+                    }
+                }
+
+                marker = new google.maps.Marker({
+                    position: gposition,
+                    map: map,
+                    icon: icon
+                });
+
+                markers.push(marker);
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                  return function() {
+                    infowindow.setContent(item.properties.name);
+                    infowindow.open(map, marker);
+                  }
+                })(marker, i));
+            });
+          });
+        });
+
+        google.maps.event.addDomListener($(".onoffswitch-checkbox").click(function(evt) {
+
+        getUrl = $(this).val();
+        getId = $(this).data("string");
+
+        if ($(this).hasClass("checkbox-on")) {
+          $.getJSON( getUrl, function( data ) {
+              data.features.forEach(function( item, i ){
+
+                  var lat;
+                  var lng;
+
+                  if (item.properties.lat == null) {
+                      lat = item.properties.Lat;
+                      lng = item.properties.Long;
+                  }else{
+                      lat = item.properties.lat;
+                      lng = item.properties.lon;
+                  }
+
+                  gposition = new google.maps.LatLng(lat, lng);
+
+                  var removeMarker = new google.maps.Marker({
+                    position: gposition
+                  });
+
+                  lat = removeMarker.getPosition().lat();
+                  lng = removeMarker.getPosition().lng();
+
+
+                  markers.map(function (marker) {
+
+                    if (marker.getPosition().lat() == lat && marker.getPosition().lng() == lng) {
+                        marker.setMap(null);
+                        removeMarker.setMap(null);
+                        markers.splice($.inArray(marker, markers),1);
+                    }
+                  });
+              });
+          });
+        }else{
+          $.getJSON( getUrl, function( data ) {
+            data.features.forEach(function( item ){
+
+              var lat;
+              var lng;
+
+              if (item.properties.lat == null) {
+                  lat = item.properties.Lat;
+                  lng = item.properties.Long;
+              }else{
+                  lat = item.properties.lat;
+                  lng = item.properties.lon;
+              }
+
+              gposition = new google.maps.LatLng(lat, lng);
+
+
+              if (item.properties.type != null) {
+
+                if (item.properties.type == "umbraco") {
+                    var icon = "/Media/MapIcons/umbraco-icon.svg";
+                }else if (item.properties.type == "restaurant") {
+                    var icon = "/Media/MapIcons/restaurant-icon.svg";
+                }else if(item.properties.type == "hotel"){
+                    var icon = "/Media/MapIcons/hotel-icon.svg";
+                }else {
+                    var icon = "/Media/MapIcons/bar-icon.svg";
+                }
+              }else{
+                icon = "/Media/MapIcons" + getId + "-icon.svg";
+              }
+
+              marker = new google.maps.Marker({
+                  position: gposition,
+                  map: map,
+                  icon: icon
+              });
+
+              markers.push(marker);
+
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                  infowindow.setContent("test");
+                  infowindow.open(map, marker);
+                }
+              })(marker, i));
+            });
+          });
+        }
+
+        $(this).toggleClass("checkbox-on");
+
+        }));
+
+      }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByV3M4g0RhZsBNkT0thElXstagsDAZD8k&callback=initMap">
+</script>
