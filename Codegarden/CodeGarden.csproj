@@ -303,6 +303,7 @@
     <Content Include="Views\Sessions.cshtml" />
     <Content Include="Views\Speaker.cshtml" />
     <Content Include="Views\Speakers.cshtml" />
+    <Content Include="Views\Awards.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
