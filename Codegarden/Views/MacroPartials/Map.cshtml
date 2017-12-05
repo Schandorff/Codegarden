@@ -187,18 +187,16 @@
               if (item.properties.type != null) {
 
                 if (item.properties.type == "umbraco") {
-                    var icon = "../media/umbraco-icon.svg";
+                    var icon = "/Media/MapIcons/umbraco-icon.svg";
                 }else if (item.properties.type == "restaurant") {
-                    var icon = "../media/restaurant-icon.svg";
+                    var icon = "/Media/MapIcons/restaurant-icon.svg";
                 }else if(item.properties.type == "hotel"){
-                    var icon = "../media/hotel-icon.svg";
+                    var icon = "/Media/MapIcons/hotel-icon.svg";
                 }else {
-                    var icon = "../media/bar-icon.svg";
+                    var icon = "/Media/MapIcons/bar-icon.svg";
                 }
-
-
               }else{
-                icon = "../media/" + getId + "-icon.svg";
+                icon = "/Media/MapIcons" + getId + "-icon.svg";
               }
 
               marker = new google.maps.Marker({
