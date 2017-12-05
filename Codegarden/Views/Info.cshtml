@@ -1,8 +1,85 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Info>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = null;
+    Layout = "SiteMaster.cshtml";
+    var page = Model.Content;
+    var aboutPictureQuery = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("aboutPictures");
 }
 
-@* the fun starts here *@
+<div class="row page-banner">
+    <div class="center">
+        <img src="../media/page-banner.jpg" alt="">
+        <div class="overlay">
+            <h1>Codegarden 2019 @page.Name</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row breadcrumbs">
+    <div class="container">
+        <a href="">HOME</a> // <span class="yellow">INFORMATION</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container noPadding">
+        <div class="map">
+            <div class="col-md-4">
+                <h1>
+                    @page.MapHeadline
+                </h1>
+                <p>
+                    @page.MapDescription
+                </p>
+            </div>
+            <div class="col-md-7">
+                <div class="map-container">
+                  @*@page.MapHolder*@  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row coloured">
+    <div class="container">
+        <div class="center">
+            <div class="headquarters">
+                <div class="col-md-6">
+                    <h1>@page.AboutHeadline</h1>
+                    <p>
+                        @page.AboutDescription
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    @try
+                    {
+                        foreach (var item in aboutPictureQuery)
+                        {
+                        
+                                <img src="@item.Url" alt="">
+                        }
+                    }
+                    catch
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            <img src="media/1002/CG-placeholder.svg" alt="" />
+                        }
+
+                    }
+                    @*<img src="../media/billed4.png" alt="">
+                    <img src="../media/billed1.png" alt="">
+                    <img src="../media/billed2.png" alt="">
+                    <img src="../media/billed3.png" alt="">*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        @page.ContactFormHolder
+    </div>
+</div>
 
