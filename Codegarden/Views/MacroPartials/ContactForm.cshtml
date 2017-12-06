@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    var contactQuery = Model.Content.Site().Descendant<Info>();
+}
+
+Haloooooo
+
+<div class="contact">
+    <div class="center">
+        <h1 class="yellow">@contactQuery.ContactHeadline</h1>
+        <p>@contactQuery.ContactDescription</p>
+        <form class="contactForm" action="" method="post">
+            <div>
+                <input type="text" name="" placeholder="NAME" value="">
+                <input type="text" name="" placeholder="EMAIL" value="">
+            </div>
+            <textarea name="" placeholder="MESSAGE"></textarea>
+            <input type="submit" name="" value="Contact us">
+        </form>
+    </div>
+</div>
