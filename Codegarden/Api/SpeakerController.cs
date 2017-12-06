@@ -26,10 +26,18 @@ namespace CodeGarden.Api
                 s.Facebook = (speaker.Properties["speakerFacebook"].Value != null) ? speaker.Properties["speakerFacebook"].Value.ToString() : "Facebook";
                 s.LinkedIn = (speaker.Properties["speakerLinkedin"].Value != null) ? speaker.Properties["speakerLinkedin"].Value.ToString() : "LinkedIn";
                 s.Twitter = (speaker.Properties["speakerTwitter"].Value != null) ? speaker.Properties["speakerTwitter"].Value.ToString() : "Twitter";
+                s.DescriptionHeadline = (speaker.Properties["speakerDescriptionHeadline"].Value != null) ? speaker.Properties["speakerDescriptionHeadline"].Value.ToString() : "DescriptionHeadline";
                 s.Description = (speaker.Properties["speakerDescription"].Value != null) ? speaker.Properties["speakerDescription"].Value.ToString() : "Description";
                 //Get the image by calling the private method
-                s.Picture = this.getImg(speaker.Properties["speakerPicture"].Value.ToString());
-
+                try
+                {
+                    s.Picture = this.getImg(speaker.Properties["speakerPicture"].Value.ToString());
+                }
+                catch
+                {
+                    s.Picture = "/media/1002/cg-placeholder.svg";
+                };
+                
                 return s;
             }
             else
@@ -66,6 +74,8 @@ namespace CodeGarden.Api
             public string LinkedIn { get; set; }
 
             public string Twitter { get; set; }
+
+            public string DescriptionHeadline { get; set; }
 
             public string Description { get; set; }
         }

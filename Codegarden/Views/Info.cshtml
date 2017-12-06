@@ -53,27 +53,22 @@
                         @page.AboutDescription
                     </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6">                                        
                     @try
                     {
-                        foreach (var item in aboutPictureQuery)
-                        {
-                        
-                                <img src="@item.Url" alt="">
-                        }
-                    }
+                        <img src="@page.AboutPicture4.Url" alt="">
+                        <img src="@page.AboutPicture1.Url" alt="">
+                        <img src="@page.AboutPicture2.Url" alt="">
+                        <img src="@page.AboutPicture3.Url" alt="">
+                     }
                     catch
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            <img src="media/1002/CG-placeholder.svg" alt="" />
+                            <img src="/media/1002/CG-placeholder.svg" alt="" />
                         }
 
                     }
-                    @*<img src="../media/billed4.png" alt="">
-                    <img src="../media/billed1.png" alt="">
-                    <img src="../media/billed2.png" alt="">
-                    <img src="../media/billed3.png" alt="">*@
                 </div>
             </div>
         </div>

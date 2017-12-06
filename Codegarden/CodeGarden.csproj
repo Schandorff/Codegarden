@@ -255,6 +255,25 @@
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="css\style.css" />
     <Content Include="js\script.js" />
+    <Content Include="Media\1002\cg-placeholder.svg" />
+    <Content Include="Media\1003\billed1.png" />
+    <Content Include="Media\1004\billed2.png" />
+    <Content Include="Media\1005\billed3.png" />
+    <Content Include="Media\1006\billed4.png" />
+    <Content Include="Media\1007\shannon.jpg" />
+    <Content Include="Media\General\cta-ticket.svg" />
+    <Content Include="Media\General\logo.svg" />
+    <Content Include="Media\MapIcons\bar-icon.svg" />
+    <Content Include="Media\MapIcons\boat-icon.svg" />
+    <Content Include="Media\MapIcons\grill-icon.svg" />
+    <Content Include="Media\MapIcons\hotel-icon.svg" />
+    <Content Include="Media\MapIcons\nature-icon.svg" />
+    <Content Include="Media\MapIcons\parking-icon.svg" />
+    <Content Include="Media\MapIcons\restaurant-icon.svg" />
+    <Content Include="Media\MapIcons\umbraco-icon.svg" />
+    <Content Include="Media\SocialMediaIcons\yellow-facebook.svg" />
+    <Content Include="Media\SocialMediaIcons\yellow-linkedin.svg" />
+    <Content Include="Media\SocialMediaIcons\yellow-twitter.svg" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -274,6 +293,7 @@
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
     <Content Include="App_Data\umbraco.config" />
+    <Content Include="Media\1001\convince-your-boss-17-2.pdf" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -303,6 +323,9 @@
     <Content Include="Views\Sessions.cshtml" />
     <Content Include="Views\Speaker.cshtml" />
     <Content Include="Views\Speakers.cshtml" />
+    <Content Include="Views\MacroPartials\ContactForm.cshtml" />
+    <Content Include="Views\MacroPartials\ContactForm2.cshtml" />
+    <Content Include="Views\MacroPartials\Map.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

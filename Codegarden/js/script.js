@@ -44,21 +44,43 @@ $(document).ready(function(){
 
     function showSpeaker(thisObj) {
         $('.modal').toggleClass("show");
-        $('.modal-bg').toggleClass("show");
-        
+        $('.modal-bg').toggleClass("show");  
     }
-    $('.getSpeaker').click(function( e ) {
+
+    $('.getSpeaker').click(function (e) {
         e.preventDefault();
-        showSpeaker($(this));
+        var speakerID = $(this).data('id');
+        $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerID, function (result) {
+            console.log(result.Picture)
+                $("#speakerName").html(result.Name);
+                $("#speakerTitle").html(result.Title);
+                $("#speakerFacebook").attr("href", result.Facebook);
+                $("#speakerLinkedin").attr("href", result.Twitter);
+                $("#speakerTwitter").attr("href", result.LinkedIn);
+                $("#speakerDescriptionHeadline").html(result.DescriptionHeadline);
+                $("#speakerDescription").html(result.Description);
+                $("#speakerPicture").attr("src", result.Picture);
+        });
+        showSpeaker($(this));        
     });
+
     $('.modal .close').click(function( e ) {
         e.preventDefault();
         showSpeaker($(this));
+        $("#speakerPicture").attr("src", "");
+        $("#speakerName").html("");
+        $("#speakerTitle").html("");
+        $("#speakerFacebook").attr("href", "");
+        $("#speakerLinkedin").attr("href", "");
+        $("#speakerTwitter").attr("href", "");
+        $("#speakerDescriptionHeadline").html("");
+        $("#speakerDescription").html("");
     });
-    $('.modal-bg').click(function( e ) {
-        e.preventDefault();
-        showSpeaker($(this));
-    });
+
+    //$('.modal-bg').click(function( e ) {
+    //    e.preventDefault();
+    //    showSpeaker($(this));
+    //});
 
     function createPersonal() {
         if(!$(".actions span").hasClass("check")){
