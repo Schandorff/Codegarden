@@ -36,7 +36,7 @@
             @foreach (var speaker in speakerQuery)
             {
                 <div class="speaker col-md-3">
-                    <a href="?speakerId=@speaker.Id" @*class="getSpeaker" data-id="1"*@ >
+                    <a href="?sID=@speaker.Id" @*class="getSpeaker" data-id="1"*@ >
                         @try
                         {
                             <img src="@speaker.SpeakerPicture" alt=""/>                    
