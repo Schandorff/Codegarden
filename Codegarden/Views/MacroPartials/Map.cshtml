@@ -88,7 +88,7 @@
 
                 gposition = new google.maps.LatLng(lat, lng);
 
-                var iconBase = "/media/MapIcons/";
+                var iconBase = "/Media/MapIcons/";
 
                 if (item.properties.type == "umbraco") {
                     var icon = {
@@ -187,16 +187,16 @@
               if (item.properties.type != null) {
 
                 if (item.properties.type == "umbraco") {
-                    var icon = "/media/MapIcons/umbraco-icon.svg";
+                    var icon = "/Media/MapIcons/umbraco-icon.svg";
                 }else if (item.properties.type == "restaurant") {
-                    var icon = "/media/MapIcons/restaurant-icon.svg";
+                    var icon = "/Media/MapIcons/restaurant-icon.svg";
                 }else if(item.properties.type == "hotel"){
-                    var icon = "/media/MapIcons/hotel-icon.svg";
+                    var icon = "/Media/MapIcons/hotel-icon.svg";
                 }else {
-                    var icon = "/media/MapIcons/bar-icon.svg";
+                    var icon = "/Media/MapIcons/bar-icon.svg";
                 }
               }else{
-                icon = "/media/MapIcons" + getId + "-icon.svg";
+                icon = "/Media/MapIcons/" + getId + "-icon.svg";
               }
 
               marker = new google.maps.Marker({
