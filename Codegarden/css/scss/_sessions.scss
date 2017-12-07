@@ -1,0 +1,205 @@
+
+.row {
+    .container {
+        .schedule {
+            .link-primary {
+                font-size: $f-l;
+                float: right;
+                margin-bottom: 20px;
+            }
+
+            .day {
+                float: left;
+                width: 100%;
+                margin-bottom: 20px;
+
+                h3 {
+                    margin-bottom: 10px;
+                }
+
+                .schedule-row {
+                    display: flex;
+                    margin-bottom: 15px;
+                    .schedule-time {
+                        @extend .col-md-1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: bolder;
+                        color: $white;
+                        background-color: $charcoal;
+                    }
+                    .schedule-card {
+                        @extend .col-md-3;
+                        height: 85px;
+                        box-shadow: $shadow;
+                        margin-left: 10px;
+                        display: flex;
+                        justify-content: space-between;
+
+                        .desc {
+                            font-size: $f-s;
+                            color: $charcoal;
+                            width: calc(100% - 40px);
+                            padding: 20px;
+                            text-decoration: none;
+
+                            .speaker {
+                                color: $font-c;
+                                opacity: 0.6;
+                                display: block;
+                                font-size: $f-s;
+                            }
+                        }
+
+                        .actions {
+                            width: 40px;
+                            height: 85px;
+                            background-color: $lightgray;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+
+                            span {
+
+                                height: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                a {
+                                    padding: 0px;
+
+                                    img {
+                                        height: 20px;
+                                        display: block;
+                                    }
+                                }
+
+                                &.check {
+                                    position: relative;
+                                    height: 43%;
+
+                                    a {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        width: 100%;
+                                        height: 100%;
+
+                                        img {
+                                            height: 12px;
+
+                                            &:nth-last-of-type(1) {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+
+                                    &.checked {
+                                        background-color: $yellow;
+
+                                        a {
+                                            img {
+                                                display: none;
+                                                &:nth-last-of-type(1) {
+                                                    display: block;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                &.tooltiptext {
+                                  display: none;
+                                  width: 150px;
+                                  position: absolute;
+                                  right: -215px;
+                                  background-color: $yellow;
+                                  height: auto;
+                                  padding: 20px;
+                                  z-index: 100;
+                                  color: $white;
+
+                                  &:before {
+                                      content: "";
+                                      position: absolute;
+                                      top: 50%;
+                                      left: -20px;
+                                      z-index: 1;
+                                      height: 30px;
+                                      width: 30px;
+                                      transform: translateY(-50%);
+                                      background: linear-gradient(-45deg, $yellow 17px, rgba(0,0,0,0.0) 17px, rgba(0,0,0,0.0) 21px, transparent 21px), linear-gradient(225deg, $yellow 17px, rgba(0,0,0,0.0) 17px, rgba(0,0,0,0.0) 21px, transparent 21px);
+                                      background-position: left 0px, right bottom;
+                                      background-size: 100% 50%;
+                                      background-repeat: no-repeat;
+                                  }
+
+                                }
+                            }
+
+                            .spacer {
+                                width: 100%;
+                                height: 1px;
+                                background-color: darken($lightgray, 10%);
+                            }
+                        }
+
+                        &.inactive {
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    .schedule-row {
+                        &:nth-of-type(1) {
+                            .schedule-card {
+                                &:nth-of-type(2) {
+                                    .actions {
+                                        .tooltiptext {
+                                            display: block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &:nth-last-of-type(1) {
+                    margin-bottom: 0px;
+                }
+            }
+
+            .schedule-desc {
+                display: flex;
+                margin-bottom: 40px;
+                width: 100%;
+                .schedule-time {
+                    @extend .col-md-1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bolder;
+
+                    p {
+                        font-weight: 600;
+                    }
+
+                }
+                .schedule-card {
+                    @extend .col-md-3;
+                    margin-left: 10px;
+                    display: flex;
+                    justify-content: center;
+
+                    p {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -305,6 +305,9 @@
     <Content Include="Views\Speakers.cshtml" />
     <Content Include="Views\Partials\Banner.cshtml" />
     <Content Include="Views\Partials\Breadcrumbs.cshtml" />
+    <Content Include="Views\MacroPartials\ContactForm.cshtml" />
+    <Content Include="Views\MacroPartials\ContactForm2.cshtml" />
+    <Content Include="Views\MacroPartials\Map.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -361,7 +364,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61192</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
