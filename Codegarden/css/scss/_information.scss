@@ -1,0 +1,163 @@
+.row {
+    .container {
+        .map {
+            padding-bottom: 75px;
+            display: flex;
+            justify-content: space-between;
+
+            .col-md-4 {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .map-container {
+
+                position: relative;
+                overflow: hidden;
+
+                .showFilter {
+                    position: absolute;
+                    top: 20px;
+                    left: 0px;
+                    margin-left: 20px;
+                    z-index: 1;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    height: 40px;
+                    line-height: 40px;
+                    font-weight: bold;
+                    background-color: $yellow;
+                    color: $white;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    letter-spacing: 1px;
+                    font-size: $f-s;
+                    transition: all 0.3s ease-in-out;
+
+                    &.clicked {
+                        margin-left: 210px;
+
+                        .text {
+                            display: none;
+                        }
+                        .close {
+                            display: block;
+                        }
+
+                    }
+
+                    .close {
+
+                        display: none;
+
+                        div {
+                            width: 15px;
+                            height: 1px;
+                            background-color: $charcoal;
+
+                            &:nth-of-type(1) {
+                                transform: rotate(45deg);
+                                margin-top: 13px;
+                            }
+                            &:nth-of-type(2) {
+                                transform: rotate(-45deg);
+                            }
+                        }
+                    }
+                }
+
+                .filter-container {
+                    width: 150px;
+                    height: 100%;
+                    position: absolute;
+                    left: -190px;
+                    top: 0;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    z-index: 1;
+                    transition: all 0.3s ease-in-out;
+                    overflow: hidden;
+                    padding: 20px;
+
+                    .title {
+                        font-weight: bold;
+                        font-size: $f-l;
+                        margin-bottom: 10px;
+                    }
+
+                    .filter-card {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+
+
+
+                        span {
+
+                            width: 30px;
+                            position: relative;
+
+                            label {
+
+                                display: block;
+                                overflow: hidden;
+                                cursor: pointer;
+                                height: 12px;
+                                padding: 0;
+                                line-height: 12px;
+                                border: 2px solid #CCCCCC;
+                                border-radius: 12px;
+                                background-color: #FCFCFC;
+                                transition: background-color 0.2s ease-in;
+
+                                &:before {
+                                  content: "";
+                                  display: block;
+                                  width: 12px;
+                                  height: 12px;
+                                  margin: 0px;
+                                  background: #FFFFFF;
+                                  position: absolute;
+                                  top: 0;
+                                  bottom: 0;
+                                  right: 14px;
+                                  border: 2px solid #CCCCCC;
+                                  border-radius: 12px;
+                                  transition: all 0.2s ease-in 0s;
+                                }
+
+                                &.active {
+                                    background-color: $yellow;
+                                    border-color: $yellow;
+                                    &:before {
+                                        right: 0;
+                                        border-color: $yellow;
+                                    }
+                                }
+                            }
+                            input[type=checkbox] {
+                                display: none;
+                            }
+
+                            &:nth-of-type(1) {
+                                width: calc(100% - 40px);
+                            }
+                        }
+                    }
+
+                    &.active {
+                        left: 0px;
+                    }
+                }
+
+                #map {
+                  width: 100%;
+                  height: 450px;
+                }
+            }
+
+        }
+    }
+}
