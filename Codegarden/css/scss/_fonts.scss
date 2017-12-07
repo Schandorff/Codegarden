@@ -1,0 +1,34 @@
+/* FONTS */
+
+$f-xs: 0.625rem;
+$f-s: 0.875rem;
+$f-n: 1rem;
+$f-l: 1.125rem;
+$f-xl: 1.25rem;
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: $font-clight;
+
+    p {
+        font-weight: 300;
+    }
+}
+
+h1,
+h2,
+h3 {
+    color: $font-clight;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+h4,
+h5,
+h6 {
+    color: $font-c;
+}
+
+.smaller {
+    font-size: $f-s;
+}

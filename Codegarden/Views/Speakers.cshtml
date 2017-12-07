@@ -4,14 +4,14 @@
     Layout = "SiteMaster.cshtml";
 
     var speakerQuery = Model.Content.Site().Descendants<Speaker>();
-    var speakerId = (Request["speakerId"] != null) ? Request["speakerId"] : string.Empty;
-    var singleSpeakerQuery = Model.Content.Site().Descendants<Speaker>();
-    var sessionQuery = Model.Content.Site().Descendants<Session>();
-    if (speakerId != string.Empty)
-    {
-        singleSpeakerQuery = Model.Content.Site().Descendants<Speaker>().Where(x => x.Id == int.Parse(speakerId));
-        sessionQuery = sessionQuery.Where(x => x.SessionSpeakers.Any(i => i.Id == int.Parse(speakerId)));
-    };
+    //var sID = (Request["sID"] != null) ? Request["sID"] : string.Empty;
+    //var singleSpeakerQuery = Model.Content.Site().Descendants<Speaker>();
+    //var sessionQuery = Model.Content.Site().Descendants<Session>();
+    //if (sID != string.Empty)
+    //{
+    //    singleSpeakerQuery = Model.Content.Site().Descendants<Speaker>().Where(x => x.Id == int.Parse(sID));
+    //    sessionQuery = sessionQuery.Where(x => x.SessionSpeakers.Any(i => i.Id == int.Parse(sID)));
+    //};
 
 
 }
@@ -36,14 +36,14 @@
             @foreach (var speaker in speakerQuery)
             {
                 <div class="speaker col-md-3">
-                    <a href="?speakerId=@speaker.Id" @*class="getSpeaker" data-id="1"*@ >
+                    <a href="#" class="getSpeaker" data-id="@speaker.Id">
                         @try
                         {
-                            <img src="@speaker.SpeakerPicture" alt=""/>                    
+                            <img src="@speaker.SpeakerPicture.Url" alt=""/>                    
                         }
-                        finally                   
+                        catch                  
                         {
-                            <img src = "media/1002/CG-placeholder.svg" alt = ""/>
+                            <img src="~/media/1002/cg-placeholder.svg" alt = ""/>
                         }
 
                         <h3>@speaker.SpeakerName</h3>
@@ -56,46 +56,42 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> f596319c4dfa8d0dbbcfbf7d280b9613a2ec7a1d
 <div class="modal">
     <a class="close" href="#"><div></div><div></div></a>
     <div class="speaker-profile">
-        @foreach (var singleSpeaker in singleSpeakerQuery)
-        {
-            try
-            {
-                <img src="@singleSpeaker.SpeakerPicture" alt="" />
-            }
-            finally
-            {
-                <img src="media/1002/CG-placeholder.svg" alt="" />
-            }
+        
+                @try
+                {
+                    <img id="speakerPicture" class="profile-picture" src="" alt=""/>
+                }
+                catch
+                {
+                    <img id="speakerPicture" class="profile-picture" src="~/media/1002/cg-placeholder.svg" alt="" />
+                }
 
-            <h2>@singleSpeaker.SpeakerName</h2>
+            <h2 id="speakerName"></h2>
        
-            <p class="title">@singleSpeaker.SpeakerTitle</p>
+            <p id="speakerTitle" class="title"></p>
             <span class="social-links">
-                <a href="@singleSpeaker.SpeakerFacebook"><img src="../media/yellow-facebook.svg" alt=""></a>
-                <a href="@singleSpeaker.SpeakerLinkedin"><img src="../media/yellow-linkedin.svg" alt=""></a>
-                <a href="@singleSpeaker.SpeakerTwitter"><img src="../media/yellow-twitter.svg" alt=""></a>
+                <a id="speakerFacebook" href="" target="_blank"><img src="~/media/SocialMediaIcons/yellow-facebook.svg" alt=""></a>
+                <a id="speakerLinkedin" href="" target="_blank"><img src="~/media/SocialMediaIcons/yellow-linkedin.svg" alt=""></a>
+                <a id="speakerTwitter" href="" target="_blank"><img src="~/media/SocialMediaIcons/yellow-twitter.svg" alt=""></a>
             </span>
 
-            foreach (var session in sessionQuery)
+            @*foreach (var session in sessionQuery)
             {
                 <div class="session">
                     <span>@session.SessionDescriptionHeadline</span>
                     <p>@session.SessionDescription</p>
                 </div>
-            }
+            }*@
 
             <div class="info">
-                <span>@singleSpeaker.SpeakerDescriptionHeadline</span>
-                <p>@singleSpeaker.SpeakerDescription</p>
+                <span id="speakerDescriptionHeadline"></span>
+                <p id="speakerDescription"></p>
             </div>
-         }
+         @*}*@
     </div>
 
 </div>

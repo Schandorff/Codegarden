@@ -1,5 +1,58 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Workshops>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = null;
+    Layout = "SiteMaster.cshtml";
+
+    var workShopQuery = Model.Content.Site().Descendants<Workshop>();
 }
+
+@Html.Partial("Banner")
+@Html.Partial("Breadcrumbs")
+<div class="row">
+    
+    <div class="container noPadding">
+        @{
+            int i = 1;
+            string colClass = "workshop";
+        }
+            @foreach (var workshop in workShopQuery)
+            {
+                colClass = (i == 2) ? colClass = "workshop gray" : colClass = "workshop";
+                <div id="@workshop.Name.Replace(" ",string.Empty)" class="@colClass">
+                    <div class="col-md-2">
+                        @foreach (var speaker in workshop.Speaker)
+                        {
+                            @speaker.GetPropertyValue("speakerName");
+                            try
+                            {
+                                var SPictureID = speaker.GetPropertyValue<IPublishedContent>("speakerPicture").Url;
+
+                                <img src="@SPictureID" alt="speakerPicture" />
+                            }
+                            catch
+                            {
+
+                                <img src="#" alt="speakerPicture" />
+                            }
+
+
+                        }
+
+                    </div>
+                    <div class="col-md-7">
+                        <h2>@workshop.WorkshopHeadline</h2>
+                        <p>@workshop.WorkshopDescription</p>
+                        <ul>
+
+                            @foreach (var wyl in workshop.WhatYouLearn)
+                            {
+                                <li>@wyl</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                i++;
+            }
+
+    </div>
+</div>

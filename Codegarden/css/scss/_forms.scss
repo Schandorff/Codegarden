@@ -1,0 +1,70 @@
+/* FORM ELEMENTS */
+
+fieldset {
+    border: none;
+}
+
+input[type="email"],
+input[type="text"] {
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: rgba(246, 246, 246, 0.35);
+    border: 1px solid rgba(149, 152, 154, 0.30);
+    border-radius: 2px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    color: $font-clight;
+    font-weight: bold;
+}
+
+select {
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: rgba(246, 246, 246, 0.35);
+    border: 1px solid rgba(149, 152, 154, 0.30);
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: $font-clight;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+input::placeholder {
+    color: $font-clight;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+textarea {
+    background-color: rgba(246, 246, 246, 0.35);
+    border: 1px solid rgba(149, 152, 154, 0.30);
+    resize: none;
+    outline: none;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    height: 200px;
+    color: $font-clight;
+    font-weight: bold;
+}
+
+textarea::placeholder {
+    color: $font-clight;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+input[type=submit] {
+    width: auto;
+    height: 35px;
+    border: none;
+    color: $white;
+    background-color: $green;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}

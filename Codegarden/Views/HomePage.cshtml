@@ -136,14 +136,21 @@
                 <h1 class="yellow">@page.WorkshopHeadline</h1>
                 @page.WorkshopsMainDescription
                 <div class="workshops">
+                    @{ 
+                        int i = 1;
+                        string colClass = "col-md-4";
+                    }
                     @foreach (var workshop in workShopQuery)
                     {
-                        <div class="col-md-4">
+                        colClass = (i == 2) ? colClass = "col-md-4 yellow" : colClass = "col-md-4";
+
+                        <div class="@colClass">
                             <span>Workshop</span>
                             <h3>@workshop.WorkshopHeadline</h3>
                             @workshop.WorkshopDescription
-                            <a href="@workshop.Url" class="link-primary">More information and signup</a>
+                            <a href="/workshops/#@workshop.WorkshopHeadline.Replace(" ", string.Empty)" class="link-primary">More information and signup</a>
                         </div>
+                        i++;
                     }
                 </div>
             </div>

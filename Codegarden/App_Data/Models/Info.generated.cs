@@ -64,12 +64,39 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// About pictures: Insert 4 images that belongs to about
+		/// About picture 1: Pick an image
 		///</summary>
-		[ImplementPropertyType("aboutPictures")]
-		public IEnumerable<IPublishedContent> AboutPictures
+		[ImplementPropertyType("aboutPicture1")]
+		public IPublishedContent AboutPicture1
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("aboutPictures"); }
+			get { return this.GetPropertyValue<IPublishedContent>("aboutPicture1"); }
+		}
+
+		///<summary>
+		/// About picture 2: Pick an image
+		///</summary>
+		[ImplementPropertyType("aboutPicture2")]
+		public IPublishedContent AboutPicture2
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("aboutPicture2"); }
+		}
+
+		///<summary>
+		/// About picture 3: Pick an image
+		///</summary>
+		[ImplementPropertyType("aboutPicture3")]
+		public IPublishedContent AboutPicture3
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("aboutPicture3"); }
+		}
+
+		///<summary>
+		/// About picture 4: Pick an image
+		///</summary>
+		[ImplementPropertyType("aboutPicture4")]
+		public IPublishedContent AboutPicture4
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("aboutPicture4"); }
 		}
 
 		///<summary>
