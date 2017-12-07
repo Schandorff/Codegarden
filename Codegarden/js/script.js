@@ -55,8 +55,8 @@ $(document).ready(function(){
                 $("#speakerName").html(result.Name);
                 $("#speakerTitle").html(result.Title);
                 $("#speakerFacebook").attr("href", result.Facebook);
-                $("#speakerLinkedin").attr("href", result.Twitter);
-                $("#speakerTwitter").attr("href", result.LinkedIn);
+                $("#speakerLinkedin").attr("href", result.LinkedIn);
+                $("#speakerTwitter").attr("href", result.Twitter);
                 $("#speakerDescriptionHeadline").html(result.DescriptionHeadline);
                 $("#speakerDescription").html(result.Description);
                 $("#speakerPicture").attr("src", result.Picture);
