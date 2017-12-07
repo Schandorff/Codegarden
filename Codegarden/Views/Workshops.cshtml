@@ -16,22 +16,54 @@
 </div>
 <div class="row breadcrumbs">
     <div class="container">
-        <a href="">HOME</a> // <span class="yellow">SPEAKERS</span>
+        <a href="">HOME</a> // <span class="yellow">WORKSHOPS</span>
     </div>
 </div>
 <div class="row">
+    
     <div class="container noPadding">
-        @foreach (var workshop in workShopQuery)
-        {
-            <div class="workshop">
-                <div class="col-md-2">
-                    @workshop.Id
-                </div>
-                <div class="col-md-7">
-
-                </div>
-            </div>
+        @{
+            int i = 1;
+            string colClass = "workshop";
         }
-        
+            @foreach (var workshop in workShopQuery)
+            {
+                colClass = (i == 2) ? colClass = "workshop gray" : colClass = "workshop";
+                <div id="@workshop.Name.Replace(" ",string.Empty)" class="@colClass">
+                    <div class="col-md-2">
+                        @foreach (var speaker in workshop.Speaker)
+                        {
+                            @speaker.GetPropertyValue("speakerName");
+                            try
+                            {
+                                var SPictureID = speaker.GetPropertyValue<IPublishedContent>("speakerPicture").Url;
+
+                                <img src="@SPictureID" alt="speakerPicture" />
+                            }
+                            catch
+                            {
+
+                                <img src="#" alt="speakerPicture" />
+                            }
+
+
+                        }
+
+                    </div>
+                    <div class="col-md-7">
+                        <h2>@workshop.WorkshopHeadline</h2>
+                        <p>@workshop.WorkshopDescription</p>
+                        <ul>
+
+                            @foreach (var wyl in workshop.WhatYouLearn)
+                            {
+                                <li>@wyl</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                i++;
+            }
+
     </div>
 </div>
