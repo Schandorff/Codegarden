@@ -11,10 +11,13 @@
         @{
             int i = 1;
             string rowClass = "";
+            Random rnd = new Random();
         }
         @foreach (var workshop in workShopQuery)
-            {
-                rowClass = (i == 2) ? rowClass = "coloured" : rowClass = "";
+        {
+            
+            int Double = rnd.Next(1, 75);    // 1~75
+            rowClass = (i == 2) ? rowClass = "coloured" : rowClass = "";
             <div class="row @rowClass">
                 <div class="container noPadding">
                     <div id="@workshop.Name.Replace(" ",string.Empty)" class="workshop">
@@ -45,7 +48,7 @@
 
                             }
                             <div class="workshopInfo center">
-                                <h4 class="yellow">45/75 spots filled</h4>
+                                <h4 class="yellow">@Double/75 spots filled</h4>
                                 <a class="btn-secondary" target="_blank" href="https://shop.umbraco.com/shop/cart/?p=7133&n=963">Sign up now!</a>
                             </div>
                         </div>
