@@ -1,2 +1,1 @@
-Login credentials:
-admin@eal.dk // Odense2017!
+Web-developer 1st semester exam
