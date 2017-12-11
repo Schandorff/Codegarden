@@ -77,20 +77,46 @@ $(document).ready(function(){
         $("#speakerDescription").html("");
     });
 
-    //$('.modal-bg').click(function( e ) {
-    //    e.preventDefault();
-    //    showSpeaker($(this));
-    //});
+    $('.modal-bg').click(function( e ) {
+        e.preventDefault();
+        showSpeaker($(this));
+    });
 
     function createPersonal() {
-        if(!$(".actions span").hasClass("check")){
+        if (!$(".actions span").hasClass("check")) {
+
+            $(".btn-secondary").addClass("active");
+
             $(".schedule-card").each(function() {
                 if(!$(this).hasClass("inactive")) {
                     var actionsDiv = $(this).find(".actions");
 
-                    actionsDiv.append("<div class='spacer'></div><span class='check'><a href=''><img src='../media/check.svg'><img src='../media/checked.svg'></a><span class='tooltiptext'>Click the checkmark to mark what you'd like on your personal schedule</span></span>");
+                    actionsDiv.append("<div class='spacer'></div><span class='check'><a href=''><img src='/Media/ScheduleIcons/check.svg'><img src='/Media/ScheduleIcons/checked.svg'></a><span class='tooltiptext'>Click the checkmark to mark what you'd like on your personal schedule</span></span>");
 
                 }
+            });
+
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                return true;
+                }
+            };
+
+            $('.download').click(function (e) {
+
+                e.preventDefault();
+
+                var element;
+
+                html2canvas(document.body).then(function (canvas) {
+                    var img = new Image();
+                    img = canvas.toDataURL('image/jpeg');
+
+                    doc.text(35, 25, 'Emirates Card Application');
+                    doc.addImage(img, 'JPEG', 35, 30, 150, 150);
+                    doc.save('sample-file.pdf');
+                });
             });
         }
     }

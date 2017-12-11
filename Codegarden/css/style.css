@@ -381,7 +381,9 @@ h6 {
       height: 450px; }
 
 .row .container .schedule {
-  padding-bottom: 75px; }
+  padding-bottom: 75px;
+  float: left;
+  width: 100%; }
   .row .container .schedule .link-primary {
     font-size: 1.125rem;
     float: right;
@@ -416,12 +418,14 @@ h6 {
             color: #3B3B3B;
             text-decoration: none;
             display: block; }
-          .row .container .schedule .day .schedule-row .schedule-card .desc .speaker a {
-            color: #737476;
-            opacity: 0.6;
-            display: inline-block;
-            font-size: 0.875rem;
-            text-decoration: none; }
+          .row .container .schedule .day .schedule-row .schedule-card .desc .speaker {
+            margin-left: 5px; }
+            .row .container .schedule .day .schedule-row .schedule-card .desc .speaker a {
+              color: #737476;
+              opacity: 0.6;
+              display: inline-block;
+              font-size: 0.875rem;
+              text-decoration: none; }
         .row .container .schedule .day .schedule-row .schedule-card .actions {
           width: 40px;
           height: 85px;
@@ -490,7 +494,7 @@ h6 {
     .row .container .schedule .day:nth-of-type(2) .schedule-row:nth-of-type(1) .schedule-card:nth-of-type(2) .actions .tooltiptext {
       display: block; }
     .row .container .schedule .day:nth-last-of-type(1) {
-      margin-bottom: 0px; }
+      margin-bottom: 50px; }
   .row .container .schedule .schedule-desc {
     display: flex;
     margin-bottom: 40px;
@@ -508,6 +512,13 @@ h6 {
       justify-content: center; }
       .row .container .schedule .schedule-desc .schedule-card p {
         font-weight: 600; }
+  .row .container .schedule .btn-secondary {
+    margin: 0 auto;
+    visibility: hidden;
+    opacity: 0; }
+    .row .container .schedule .btn-secondary.active {
+      visibility: visible;
+      opacity: 1; }
 
 .row .container .speakers {
   width: 100%;
@@ -937,7 +948,8 @@ header {
 
 .row.breadcrumbs .container {
   padding: 25px 0 25px 0;
-  font-weight: bold; }
+  font-weight: bold;
+  text-transform: uppercase; }
   .row.breadcrumbs .container a {
     text-decoration: none;
     color: #3B3B3B; }

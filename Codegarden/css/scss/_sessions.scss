@@ -4,6 +4,8 @@
         .schedule {
 
             padding-bottom: 75px;
+            float: left;
+            width: 100%;
 
             .link-primary {
                 font-size: $f-l;
@@ -52,6 +54,9 @@
                             }
 
                             .speaker {
+
+                                margin-left: 5px;
+
                                 a {
                                     color: $font-c;
                                     opacity: 0.6;
@@ -179,7 +184,7 @@
                 }
 
                 &:nth-last-of-type(1) {
-                    margin-bottom: 0px;
+                    margin-bottom: 50px;
                 }
             }
 
@@ -208,6 +213,17 @@
                     p {
                         font-weight: 600;
                     }
+                }
+            }
+
+            .btn-secondary {
+                margin: 0 auto;
+                visibility: hidden;
+                opacity: 0;
+
+                &.active {
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
         }
