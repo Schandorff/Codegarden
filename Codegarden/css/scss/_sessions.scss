@@ -2,6 +2,9 @@
 .row {
     .container {
         .schedule {
+
+            padding-bottom: 75px;
+
             .link-primary {
                 font-size: $f-l;
                 float: right;
@@ -38,17 +41,24 @@
                         justify-content: space-between;
 
                         .desc {
-                            font-size: $f-s;
-                            color: $charcoal;
                             width: calc(100% - 40px);
                             padding: 20px;
-                            text-decoration: none;
+
+                            .session {
+                                font-size: $f-s;
+                                color: $charcoal;
+                                text-decoration: none;
+                                display: block;
+                            }
 
                             .speaker {
-                                color: $font-c;
-                                opacity: 0.6;
-                                display: block;
-                                font-size: $f-s;
+                                a {
+                                    color: $font-c;
+                                    opacity: 0.6;
+                                    display: inline-block;
+                                    font-size: $f-s;
+                                    text-decoration: none;
+                                }
                             }
                         }
 

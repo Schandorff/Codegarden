@@ -1,7 +1,367 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-	Layout = null;
+	Layout = "SiteMaster.cshtml";
+
+    var AllSessions = Model.Content.Site().Descendants<Session>()
+        .OrderBy(x => x.SessionDate);
+    
+
+
 }
 
-@* the fun starts here *@
+@Html.Partial("Banner")
+@Html.Partial("Breadcrumbs")
 
+<div class="row">
+    <div class="container noPadding">
+        <div class="schedule">
+            <a class="link-primary" id="personalSchedule" href="">Create your own schedule</a>
+            <div class="schedule-desc">
+
+                <div class="schedule-time">
+                    <p>TIME</p>
+                </div>
+                <div class="schedule-card">
+                    <p>MAIN ROOM</p>
+                </div>
+                <div class="schedule-card">
+                    <p>BACK ROOM</p>
+                </div>
+                <div class="schedule-card">
+                    <p>ENTRANCE ROOM</p>
+                </div>
+                <div class="schedule-card">
+                    <p>THE STARSHIP</p>
+                </div>
+
+            </div>
+            
+            @{
+
+                List<string> dates = new List<string>();
+
+                foreach (var session in AllSessions)
+                {
+                    dates.Add(session.SessionDate);
+                }
+
+                dates = new HashSet<string>(dates).ToList();
+
+                foreach (var date in dates)
+                {
+
+                    var filterSessions = Model.Content.Site().Descendants<Session>()
+                                            .Where(x => x.SessionDate == date);
+
+                    List<string> times = new List<string>();
+
+                    foreach (var singleTime in filterSessions)
+                    {
+                        times.Add(singleTime.SessionStartTime);
+                    }
+
+                    times = new HashSet<string>(times).ToList();
+
+                    <div class="day">
+
+
+                        <h3>@date</h3>
+
+                        @{
+                            foreach (var time in times)
+                            {
+
+                                <div class="schedule-row">
+
+                                    <div class="schedule-time">@time</div>
+
+                                    @{
+
+                                        var sessions = Model.Content.Site().Descendants<Session>()
+                                            .Where(x => x.SessionStartTime == time)
+                                            .OrderBy(x => x.SessionVenue)
+                                            .ToArray();
+
+
+
+                                        if (sessions.Any(x => x.SessionVenue[0] == '1'))
+                                        {
+                                            foreach (var session in sessions)
+                                            {
+                                                if (session.SessionVenue[0] == '1')
+                                                {
+                                                    <div class="schedule-card">
+                                                        <span class="desc">
+                                                            
+                                                            <a href="" class="session">@session.SessionTitle</a>
+
+                                                            @foreach (var speaker in session.SessionSpeakers)
+                                                            {
+                                                                
+                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                            }
+
+                                                        </span>
+                                                        <div class="actions">
+                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                            <span class="spacer"></span>
+                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="schedule-card inactive"></div>
+                                        }
+
+                                        if (sessions.Any(x => x.SessionVenue[0] == '2'))
+                                        {
+                                            foreach (var session in sessions)
+                                            {
+                                                if (session.SessionVenue[0] == '2')
+                                                {
+                                                    <div class="schedule-card">
+                                                        <span class="desc">
+
+                                                            <a href="" class="session">@session.SessionTitle</a>
+
+                                                            @foreach (var speaker in session.SessionSpeakers)
+                                                            {
+
+                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                            }
+
+                                                        </span>
+                                                        <div class="actions">
+                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                            <span class="spacer"></span>
+                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="schedule-card inactive"></div>
+                                        }
+
+                                        if (sessions.Any(x => x.SessionVenue[0] == '3'))
+                                        {
+                                            foreach (var session in sessions)
+                                            {
+                                                if (session.SessionVenue[0] == '3')
+                                                {
+                                                    <div class="schedule-card">
+                                                        <span class="desc">
+
+                                                            <a href="" class="session">@session.SessionTitle</a>
+
+                                                            @foreach (var speaker in session.SessionSpeakers)
+                                                            {
+
+                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                            }
+
+                                                        </span>
+                                                        <div class="actions">
+                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                            <span class="spacer"></span>
+                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="schedule-card inactive"></div>
+                                        }
+
+                                        if (sessions.Any(x => x.SessionVenue[0] == '4'))
+                                        {
+                                            foreach (var session in sessions)
+                                            {
+                                                if (session.SessionVenue[0] == '4')
+                                                {
+                                                    <div class="schedule-card">
+                                                        <span class="desc">
+
+                                                            <a href="" class="session">@session.SessionTitle</a>
+
+                                                            @foreach (var speaker in session.SessionSpeakers)
+                                                            {
+
+                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                            }
+
+                                                        </span>
+                                                        <div class="actions">
+                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                            <span class="spacer"></span>
+                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="schedule-card inactive"></div>
+                                        }
+
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="day">
+    <h3>Thursday, June 8th</h3>
+    <div class="schedule-row">
+        <div class="schedule-time">13:30</div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                #CgRunners
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+    </div>
+    <div class="schedule-row">
+        <div class="schedule-time">15:30</div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                Keynote: Niels Hartvig
+                <span class="speaker">Niels Hartvig</span>
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                Authentication and sign-on
+                scenarios with Umbraco
+                <span class="speaker">Frederik Raabye</span>
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                DOT: Complex e-commerce
+                in less than 12 weeks
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+    </div>
+    <div class="schedule-row">
+        <div class="schedule-time">16:30</div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                Why Content Projects Fail
+                <span class="speaker">Deane Barker</span>
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+    </div>
+</div>
+<div class="day">
+    <h3>Friday, June 9th</h3>
+    <div class="schedule-row">
+        <div class="schedule-time">8:30</div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                Round up
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+    </div>
+    <div class="schedule-row">
+        <div class="schedule-time">19:30</div>
+        <div class="schedule-card">
+            <a class="desc" href="">
+                Snacks, bread and wine
+            </a>
+            <div class="actions">
+                <span class="presentation"><a href=""><img src="../media/presentation.svg" alt=""></a></span>
+                <span class="spacer"></span>
+                <span class="video"><a href=""><img src="../media/video.svg" alt=""></a></span>
+            </div>
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+        <div class="schedule-card inactive">
+        </div>
+    </div>
+</div>-->
