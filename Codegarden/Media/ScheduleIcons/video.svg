@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="841 7873.175 13.156 17.824">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #95989a;
+      }
+    </style>
+  </defs>
+  <path id="_001-play-button" data-name="001-play-button" class="cls-1" d="M18.473,8.562,6.165.075A.424.424,0,0,0,5.5.424V17.4a.424.424,0,0,0,.665.349L18.473,9.261a.424.424,0,0,0,0-.7ZM6.349,16.591V1.232l11.135,7.68Z" transform="translate(835.5 7873.175)"/>
+</svg>

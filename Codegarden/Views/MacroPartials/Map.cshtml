@@ -160,7 +160,6 @@
 
                     if (marker.getPosition().lat() == lat && marker.getPosition().lng() == lng) {
                         marker.setMap(null);
-                        removeMarker.setMap(null);
                         markers.splice($.inArray(marker, markers),1);
                     }
                   });
