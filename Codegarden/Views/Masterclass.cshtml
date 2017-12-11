@@ -2,8 +2,30 @@
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "SiteMaster.cshtml";
+    var page = Model.Content;
 }
 
 @Html.Partial("Banner")
 @Html.Partial("Breadcrumbs")
 
+<div class="row">
+    <div class="container noPadding">
+        <div class="masterclassDescription">
+            <div class="col-md-3">
+                @try
+            {
+                    <img class="masterclassSpeakerImg" src="@page.MasterClassSpeakerPicture.Url" alt="masterclass speaker picture" />
+                }
+                catch
+                {
+                    <img class="masterclassSpeakerImg" src="~/media/1002/cg-placeholder.svg" alt="" />
+                }
+            </div>
+
+            <div class="col-md-6">
+                <h2>@page.MasterClassDescriptionHeadline</h2>
+                <div class="masterclassDescription">@page.MasterClassDescription</div>
+            </div>
+        </div>
+    </div>
+</div>

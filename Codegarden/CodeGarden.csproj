@@ -281,7 +281,6 @@
     <Content Include="css\scss\_forms.scss" />
     <Content Include="css\scss\_information.scss" />
     <Content Include="css\scss\style.scss" />
-    <None Include="css\scss\_masterclass.scss" />
     <Content Include="css\scss\_sessions.scss" />
     <Content Include="css\scss\_speakers.scss" />
     <Content Include="css\scss\_workshops.scss" />
