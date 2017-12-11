@@ -274,20 +274,13 @@
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
     <Content Include="App_Data\umbraco.config" />
-<<<<<<< HEAD
-=======
     <Content Include="css\scss\style.scss" />
->>>>>>> d8e55ddcfa4ff5c882d368f88a2900b12e667255
     <Content Include="css\scss\_awards.scss" />
     <Content Include="css\scss\_classes.scss" />
     <Content Include="css\scss\_colors.scss" />
     <Content Include="css\scss\_fonts.scss" />
     <Content Include="css\scss\_forms.scss" />
     <Content Include="css\scss\_information.scss" />
-<<<<<<< HEAD
-    <Content Include="css\scss\style.scss" />
-=======
->>>>>>> d8e55ddcfa4ff5c882d368f88a2900b12e667255
     <Content Include="css\scss\_sessions.scss" />
     <Content Include="css\scss\_speakers.scss" />
     <Content Include="css\scss\_workshops.scss" />
