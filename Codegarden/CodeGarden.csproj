@@ -274,6 +274,17 @@
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
     <Content Include="App_Data\umbraco.config" />
+    <Content Include="css\scss\_awards.scss" />
+    <Content Include="css\scss\_classes.scss" />
+    <Content Include="css\scss\_colors.scss" />
+    <Content Include="css\scss\_fonts.scss" />
+    <Content Include="css\scss\_forms.scss" />
+    <Content Include="css\scss\_information.scss" />
+    <Content Include="css\scss\style.scss" />
+    <None Include="css\scss\_masterclass.scss" />
+    <Content Include="css\scss\_sessions.scss" />
+    <Content Include="css\scss\_speakers.scss" />
+    <Content Include="css\scss\_workshops.scss" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -308,6 +319,7 @@
     <Content Include="Views\MacroPartials\ContactForm.cshtml" />
     <Content Include="Views\MacroPartials\ContactForm2.cshtml" />
     <Content Include="Views\MacroPartials\Map.cshtml" />
+    <Content Include="Views\Masterclass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -100,6 +100,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// RenderJoin: Should Join Competition be shown?
+		///</summary>
+		[ImplementPropertyType("renderJoin")]
+		public bool RenderJoin
+		{
+			get { return this.GetPropertyValue<bool>("renderJoin"); }
+		}
+
+		///<summary>
 		/// Rules Headline: This is the headline for the rules section
 		///</summary>
 		[ImplementPropertyType("rulesHeadline")]
