@@ -8,51 +8,113 @@
 
 @Html.Partial("Banner")
 @Html.Partial("Breadcrumbs")
-<div class="row">
-    
-    <div class="container noPadding">
         @{
             int i = 1;
-            string colClass = "workshop";
+            string rowClass = "";
+            Random rnd = new Random();
         }
-            @foreach (var workshop in workShopQuery)
-            {
-                colClass = (i == 2) ? colClass = "workshop gray" : colClass = "workshop";
-                <div id="@workshop.Name.Replace(" ",string.Empty)" class="@colClass">
-                    <div class="col-md-2">
-                        @foreach (var speaker in workshop.Speaker)
+        @foreach (var workshop in workShopQuery)
+        {
+            
+            int Double = rnd.Next(1, 75);    // 1~75
+            rowClass = (i == 2) ? rowClass = "coloured" : rowClass = "";
+            <div class="row @rowClass">
+                <div class="container noPadding">
+                    <div id="@workshop.Name.Replace(" ",string.Empty)" class="workshop">
+                        @if (i % 2 == 0)
                         {
-                            @speaker.GetPropertyValue("speakerName");
-                            try
-                            {
-                                var SPictureID = speaker.GetPropertyValue<IPublishedContent>("speakerPicture").Url;
+                            <div class="col-md-6">
+                                <h2 class="yellow">@workshop.WorkshopHeadline</h2>
+                                <p>@workshop.WorkshopDescription</p>
+                                <h4 class="yellow">What will you learn from this workshop?</h4>
+                                <ul>
+                                    @foreach (var wyl in workshop.WhatYouLearn)
+                                    {
+                                        <li>@wyl</li>
+                                    }
+                                </ul>
+                             </div>   
+                                <div class="col-md-3">
+                                    @foreach (var speaker in workshop.Speaker)
+                                    {
 
-                                <img src="@SPictureID" alt="speakerPicture" />
-                            }
-                            catch
-                            {
+                                        <div class="speakerInfo">
+                                            <div class="speakerImg">
+                                                @try
 
-                                <img src="#" alt="speakerPicture" />
-                            }
+                                                {
+                                                    var SPictureID = speaker.GetPropertyValue<IPublishedContent>
+                                                        ("speakerPicture").Url;
+
+                                                    <img src="@SPictureID" alt="speakerPicture" />
+                                                }
+                                                catch
+                                                {
+
+                                                    <img src="#" alt="speakerPicture" />
+                                                }
+                                            </div>
+                                            <h4 class="yellow">@speaker.GetPropertyValue("speakerName")</h4>
+
+                                        </div>
 
 
+                                    }
+                                    <div class="workshopInfo center">
+                                        <h4 class="yellow">@Double/75 spots filled</h4>
+                                        <a class="btn-secondary" target="_blank" href="https://shop.umbraco.com/shop/cart/?p=7133&n=963">Sign up now!</a>
+                                    </div>
+                                </div>
+                          
+                        }
+                        else
+                        {
+                            <div class="col-md-3">
+                                @foreach (var speaker in workshop.Speaker)
+                                {
+
+                                    <div class="speakerInfo">
+                                        <div class="speakerImg">
+                                            @try
+
+                                            {
+                                                var SPictureID = speaker.GetPropertyValue<IPublishedContent>
+                                                    ("speakerPicture").Url;
+
+                                                <img src="@SPictureID" alt="speakerPicture" />
+                                            }
+                                            catch
+                                            {
+
+                                                <img src="#" alt="speakerPicture" />
+                                            }
+                                        </div>
+                                        <h4 class="yellow">@speaker.GetPropertyValue("speakerName")</h4>
+
+                                    </div>
+
+
+                                }
+                                <div class="workshopInfo center">
+                                    <h4 class="yellow">@Double/75 spots filled</h4>
+                                    <a class="btn-secondary" target="_blank" href="https://shop.umbraco.com/shop/cart/?p=7133&n=963">Sign up now!</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="yellow">@workshop.WorkshopHeadline</h2>
+                                <p>@workshop.WorkshopDescription</p>
+                                <h4 class="yellow">What will you learn from this workshop?</h4>
+                                <ul>
+                                    @foreach (var wyl in workshop.WhatYouLearn)
+                                    {
+                                        <li>@wyl</li>
+                                    }
+                                </ul>
+                            </div>
                         }
 
                     </div>
-                    <div class="col-md-7">
-                        <h2>@workshop.WorkshopHeadline</h2>
-                        <p>@workshop.WorkshopDescription</p>
-                        <ul>
-
-                            @foreach (var wyl in workshop.WhatYouLearn)
-                            {
-                                <li>@wyl</li>
-                            }
-                        </ul>
-                    </div>
                 </div>
-                i++;
-            }
-
-    </div>
-</div>
+            </div>
+            i++;
+        }

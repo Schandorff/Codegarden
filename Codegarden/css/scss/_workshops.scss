@@ -1,0 +1,55 @@
+
+  .container{
+      .workshop{
+          padding-top: 40px;
+          padding-bottom: 40px;
+          .col-md-2{
+              text-align: center;
+          }
+          h2{
+              margin-bottom: 10px;
+          }
+          p{
+              padding-bottom: 20px;
+          }
+          li{
+              list-style: none;
+              padding-bottom: 5px;
+              font-weight: 500;
+          }
+          h4{
+              padding-bottom: 10px;
+          }
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: row wrap;
+        .speakerInfo{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            .speakerImg{
+                img{
+                    width: 100px;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .workshopInfo{
+            margin-top: 30px;
+            text-transform: uppercase;
+            .btn-secondary{
+                width: 130px;
+                height: 40px;
+            }
+        }
+        
+      }
+  } 
+  .coloured{
+      .workshop{
+          justify-content: flex-end;
+      }
+  } 
