@@ -20,16 +20,16 @@ using Umbraco.ModelsBuilder.Umbraco;
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Speakers</summary>
-	[PublishedContentModel("speakers")]
-	public partial class Speakers : PublishedContentModel, IHeroMedia, IMetaBase
+	/// <summary>Masterclass</summary>
+	[PublishedContentModel("masterclass")]
+	public partial class Masterclass : PublishedContentModel, IMetaBase
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "speakers";
+		public new const string ModelTypeAlias = "masterclass";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public Speakers(IPublishedContent content)
+		public Masterclass(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -40,36 +40,63 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Speakers, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Masterclass, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 
 		///<summary>
-		/// Hero picker: Choose video or image for header
+		/// MasterClassBuyText: Text for the masterclass buy ticket button
 		///</summary>
-		[ImplementPropertyType("heroPicker")]
-		public IPublishedContent HeroPicker
+		[ImplementPropertyType("masterClassBuyText")]
+		public string MasterClassBuyText
 		{
-			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetHeroPicker(this); }
+			get { return this.GetPropertyValue<string>("masterClassBuyText"); }
 		}
 
 		///<summary>
-		/// Is video: Click this if a video was chosen
+		/// Masterclass description: Write a masterclass content description
 		///</summary>
-		[ImplementPropertyType("isVideo")]
-		public bool IsVideo
+		[ImplementPropertyType("masterClassDescription")]
+		public IHtmlString MasterClassDescription
 		{
-			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetIsVideo(this); }
+			get { return this.GetPropertyValue<IHtmlString>("masterClassDescription"); }
 		}
 
 		///<summary>
-		/// Page title: Page title for banner heading
+		/// Masterclass description headline: Write a headline for the masterclass description
 		///</summary>
-		[ImplementPropertyType("pageTitle")]
-		public string PageTitle
+		[ImplementPropertyType("masterClassDescriptionHeadline")]
+		public string MasterClassDescriptionHeadline
 		{
-			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetPageTitle(this); }
+			get { return this.GetPropertyValue<string>("masterClassDescriptionHeadline"); }
+		}
+
+		///<summary>
+		/// Masterclass information: Enter information about venue, date, time etc.
+		///</summary>
+		[ImplementPropertyType("masterClassInformation")]
+		public IHtmlString MasterClassInformation
+		{
+			get { return this.GetPropertyValue<IHtmlString>("masterClassInformation"); }
+		}
+
+		///<summary>
+		/// Masterclass speaker name: Name of the masterclass speaker
+		///</summary>
+		[ImplementPropertyType("masterClassSpeakerName")]
+		public string MasterClassSpeakerName
+		{
+			get { return this.GetPropertyValue<string>("masterClassSpeakerName"); }
+		}
+
+		///<summary>
+		/// Masterclass speaker picture: Insert a picture of the masterclass speaker
+		///</summary>
+		[ImplementPropertyType("masterClassSpeakerPicture")]
+		public IPublishedContent MasterClassSpeakerPicture
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("masterClassSpeakerPicture"); }
 		}
 
 		///<summary>

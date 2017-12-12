@@ -1,6 +1,6 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    var allPages = Model.Content.Site().Children;
+    var allPages = Model.Content.Site().Children.Where(x => x.IsVisible());
 }
 <header>
     <div class="container">
