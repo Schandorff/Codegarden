@@ -1,10 +1,10 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-	Layout = "SiteMaster.cshtml";
+    Layout = "SiteMaster.cshtml";
 
     var AllSessions = Model.Content.Site().Descendants<Session>()
         .OrderBy(x => x.SessionDate);
-    
+
 
 
 }
@@ -35,7 +35,7 @@
                 </div>
 
             </div>
-            
+
             @{
 
                 List<string> dates = new List<string>();
@@ -65,7 +65,13 @@
                     <div class="day">
 
 
-                        <h3>@date</h3>
+                        @{
+
+                            DateTime formattedDate = DateTime.ParseExact(date, "dd.MM.yyyy", null);
+
+                        }
+
+                        <h3>@formattedDate.ToString("dddd d. MMM yyyy")</h3>
 
                         @{
                             foreach (var time in times)
@@ -92,12 +98,12 @@
                                                 {
                                                     <div class="schedule-card">
                                                         <span class="desc">
-                                                            
+
                                                             <a href="" class="session">@session.SessionTitle</a>
 
                                                             @foreach (var speaker in session.SessionSpeakers)
                                                             {
-                                                                
+
                                                                 <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
                                                             }
 
@@ -211,18 +217,46 @@
                                         {
                                             <div class="schedule-card inactive"></div>
                                         }
-
                                     }
                                 </div>
-                            }
+                                        }
                         }
                     </div>
-                }
+                                        }
 
             }
 
-            <a class="btn-secondary download" href="">DOWNLOAD SCHEDULE AS PDF</a>
-
         </div>
     </div>
+</div>
+
+<div class="personal-container">
+
+    <div class="personal-topbar">
+
+        <div class="container noPadding">
+
+            <p>Your own personal schedule</p>
+
+            <a id="open" href="#">Open</a>
+            <a id="close" href="#">close</a>
+
+        </div>
+
+    </div>
+
+    <div class="personal-schedule">
+
+        <img id="pdfBackground" src="~/Media/ScheduleIcons/confetti.png" />
+
+        <a class="btn-secondary download" href="">DOWNLOAD SCHEDULE AS PDF</a>
+
+        <div class="sessionCenter" id="schedulePrint" style="margin: 0 auto;">
+
+
+
+        </div>
+
+    </div>
+
 </div>

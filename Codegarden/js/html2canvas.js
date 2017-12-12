@@ -1,5 +1,5 @@
 /*!
- * html2canvas 1.0.0-alpha.3 <https://html2canvas.hertzen.com>
+ * html2canvas 1.0.0-alpha.4 <https://html2canvas.hertzen.com>
  * Copyright (c) 2017 Niklas von Hertzen <https://hertzen.com>
  * Released under MIT License
  */
@@ -345,7 +345,7 @@ exports.parseBoundCurves = exports.calculatePaddingBoxPath = exports.calculateBo
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Vector = __webpack_require__(6);
+var _Vector = __webpack_require__(7);
 
 var _Vector2 = _interopRequireDefault(_Vector);
 
@@ -534,10 +534,19 @@ var getCurvePoints = function getCurvePoints(x, y, r1, r2, position) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.calculateLengthFromValueWithUnit = exports.LENGTH_TYPE = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _NodeContainer = __webpack_require__(5);
+
+var _NodeContainer2 = _interopRequireDefault(_NodeContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var LENGTH_WITH_UNIT = /([\d.]+)(px|r?em|%)/i;
 
 var LENGTH_TYPE = exports.LENGTH_TYPE = {
     PX: 0,
@@ -578,6 +587,28 @@ var Length = function () {
 
 exports.default = Length;
 
+
+var getRootFontSize = function getRootFontSize(container) {
+    var parent = container.parent;
+    return parent ? getRootFontSize(parent) : parseFloat(container.style.font.fontSize);
+};
+
+var calculateLengthFromValueWithUnit = exports.calculateLengthFromValueWithUnit = function calculateLengthFromValueWithUnit(container, value, unit) {
+    switch (unit) {
+        case 'px':
+        case '%':
+            return new Length(value + unit);
+        case 'em':
+        case 'rem':
+            var length = new Length(value);
+            length.value *= unit === 'em' ? parseFloat(container.style.font.fontSize) : getRootFontSize(container);
+            return length;
+        default:
+            // TODO: handle correctly if unknown unit is used
+            return new Length('0');
+    }
+};
+
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -588,24 +619,12 @@ exports.default = Length;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var PATH = exports.PATH = {
-    VECTOR: 0,
-    BEZIER_CURVE: 1,
-    CIRCLE: 2
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 var contains = exports.contains = function contains(bit, value) {
     return (bit & value) !== 0;
+};
+
+var distance = exports.distance = function distance(a, b) {
+    return Math.sqrt(a * a + b * b);
 };
 
 var copyCSSStyles = exports.copyCSSStyles = function copyCSSStyles(style, target) {
@@ -623,6 +642,22 @@ var copyCSSStyles = exports.copyCSSStyles = function copyCSSStyles(style, target
 var SMALL_IMAGE = exports.SMALL_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var PATH = exports.PATH = {
+    VECTOR: 0,
+    BEZIER_CURVE: 1,
+    CIRCLE: 2
+};
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -632,7 +667,222 @@ var SMALL_IMAGE = exports.SMALL_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAA
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.parseBackgroundImage = exports.parseBackground = exports.calculateBackgroundRepeatPath = exports.calculateBackgroundPosition = exports.calculateBackgroungPositioningArea = exports.calculateBackgroungPaintingArea = exports.calculateBackgroundSize = exports.BACKGROUND_ORIGIN = exports.BACKGROUND_CLIP = exports.BACKGROUND_SIZE = exports.BACKGROUND_REPEAT = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Color = __webpack_require__(0);
+
+var _Color2 = _interopRequireDefault(_Color);
+
+var _Util = __webpack_require__(3);
+
+var _background = __webpack_require__(6);
+
+var _border = __webpack_require__(10);
+
+var _borderRadius = __webpack_require__(28);
+
+var _display = __webpack_require__(29);
+
+var _float = __webpack_require__(30);
+
+var _font = __webpack_require__(31);
+
+var _letterSpacing = __webpack_require__(32);
+
+var _overflow = __webpack_require__(33);
+
+var _padding = __webpack_require__(14);
+
+var _position = __webpack_require__(15);
+
+var _textDecoration = __webpack_require__(9);
+
+var _textShadow = __webpack_require__(34);
+
+var _textTransform = __webpack_require__(16);
+
+var _transform = __webpack_require__(35);
+
+var _visibility = __webpack_require__(36);
+
+var _zIndex = __webpack_require__(37);
+
+var _Bounds = __webpack_require__(1);
+
+var _Input = __webpack_require__(17);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var INPUT_TAGS = ['INPUT', 'TEXTAREA', 'SELECT'];
+
+var NodeContainer = function () {
+    function NodeContainer(node, parent, resourceLoader, index) {
+        var _this = this;
+
+        _classCallCheck(this, NodeContainer);
+
+        this.parent = parent;
+        this.index = index;
+        this.childNodes = [];
+        var defaultView = node.ownerDocument.defaultView;
+        var scrollX = defaultView.pageXOffset;
+        var scrollY = defaultView.pageYOffset;
+        var style = defaultView.getComputedStyle(node, null);
+        var display = (0, _display.parseDisplay)(style.display);
+
+        var IS_INPUT = node.type === 'radio' || node.type === 'checkbox';
+
+        var position = (0, _position.parsePosition)(style.position);
+
+        this.style = {
+            background: IS_INPUT ? _Input.INPUT_BACKGROUND : (0, _background.parseBackground)(style, resourceLoader),
+            border: IS_INPUT ? _Input.INPUT_BORDERS : (0, _border.parseBorder)(style),
+            borderRadius: (node instanceof defaultView.HTMLInputElement || node instanceof HTMLInputElement) && IS_INPUT ? (0, _Input.getInputBorderRadius)(node) : (0, _borderRadius.parseBorderRadius)(style),
+            color: IS_INPUT ? _Input.INPUT_COLOR : new _Color2.default(style.color),
+            display: display,
+            float: (0, _float.parseCSSFloat)(style.float),
+            font: (0, _font.parseFont)(style),
+            letterSpacing: (0, _letterSpacing.parseLetterSpacing)(style.letterSpacing),
+            opacity: parseFloat(style.opacity),
+            overflow: INPUT_TAGS.indexOf(node.tagName) === -1 ? (0, _overflow.parseOverflow)(style.overflow) : _overflow.OVERFLOW.HIDDEN,
+            padding: (0, _padding.parsePadding)(style),
+            position: position,
+            textDecoration: (0, _textDecoration.parseTextDecoration)(style),
+            textShadow: (0, _textShadow.parseTextShadow)(style.textShadow),
+            textTransform: (0, _textTransform.parseTextTransform)(style.textTransform),
+            transform: (0, _transform.parseTransform)(style),
+            visibility: (0, _visibility.parseVisibility)(style.visibility),
+            zIndex: (0, _zIndex.parseZIndex)(position !== _position.POSITION.STATIC ? style.zIndex : 'auto')
+        };
+
+        if (this.isTransformed()) {
+            // getBoundingClientRect provides values post-transform, we want them without the transformation
+            node.style.transform = 'matrix(1,0,0,1,0,0)';
+        }
+
+        // TODO move bound retrieval for all nodes to a later stage?
+        if (node.tagName === 'IMG') {
+            node.addEventListener('load', function () {
+                _this.bounds = (0, _Bounds.parseBounds)(node, scrollX, scrollY);
+                _this.curvedBounds = (0, _Bounds.parseBoundCurves)(_this.bounds, _this.style.border, _this.style.borderRadius);
+            });
+        }
+        this.image = getImage(node, resourceLoader);
+        this.bounds = IS_INPUT ? (0, _Input.reformatInputBounds)((0, _Bounds.parseBounds)(node, scrollX, scrollY)) : (0, _Bounds.parseBounds)(node, scrollX, scrollY);
+        this.curvedBounds = (0, _Bounds.parseBoundCurves)(this.bounds, this.style.border, this.style.borderRadius);
+
+        if (true) {
+            this.name = '' + node.tagName.toLowerCase() + (node.id ? '#' + node.id : '') + node.className.toString().split(' ').map(function (s) {
+                return s.length ? '.' + s : '';
+            }).join('');
+        }
+    }
+
+    _createClass(NodeContainer, [{
+        key: 'getClipPaths',
+        value: function getClipPaths() {
+            var parentClips = this.parent ? this.parent.getClipPaths() : [];
+            var isClipped = this.style.overflow === _overflow.OVERFLOW.HIDDEN || this.style.overflow === _overflow.OVERFLOW.SCROLL;
+
+            return isClipped ? parentClips.concat([(0, _Bounds.calculatePaddingBoxPath)(this.curvedBounds)]) : parentClips;
+        }
+    }, {
+        key: 'isInFlow',
+        value: function isInFlow() {
+            return this.isRootElement() && !this.isFloating() && !this.isAbsolutelyPositioned();
+        }
+    }, {
+        key: 'isVisible',
+        value: function isVisible() {
+            return !(0, _Util.contains)(this.style.display, _display.DISPLAY.NONE) && this.style.opacity > 0 && this.style.visibility === _visibility.VISIBILITY.VISIBLE;
+        }
+    }, {
+        key: 'isAbsolutelyPositioned',
+        value: function isAbsolutelyPositioned() {
+            return this.style.position !== _position.POSITION.STATIC && this.style.position !== _position.POSITION.RELATIVE;
+        }
+    }, {
+        key: 'isPositioned',
+        value: function isPositioned() {
+            return this.style.position !== _position.POSITION.STATIC;
+        }
+    }, {
+        key: 'isFloating',
+        value: function isFloating() {
+            return this.style.float !== _float.FLOAT.NONE;
+        }
+    }, {
+        key: 'isRootElement',
+        value: function isRootElement() {
+            return this.parent === null;
+        }
+    }, {
+        key: 'isTransformed',
+        value: function isTransformed() {
+            return this.style.transform !== null;
+        }
+    }, {
+        key: 'isPositionedWithZIndex',
+        value: function isPositionedWithZIndex() {
+            return this.isPositioned() && !this.style.zIndex.auto;
+        }
+    }, {
+        key: 'isInlineLevel',
+        value: function isInlineLevel() {
+            return (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_BLOCK) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_FLEX) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_GRID) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_LIST_ITEM) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_TABLE);
+        }
+    }, {
+        key: 'isInlineBlockOrInlineTable',
+        value: function isInlineBlockOrInlineTable() {
+            return (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_BLOCK) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_TABLE);
+        }
+    }]);
+
+    return NodeContainer;
+}();
+
+exports.default = NodeContainer;
+
+
+var getImage = function getImage(node, resourceLoader) {
+    if (node instanceof node.ownerDocument.defaultView.SVGSVGElement || node instanceof SVGSVGElement) {
+        var s = new XMLSerializer();
+        return resourceLoader.loadImage('data:image/svg+xml,' + encodeURIComponent(s.serializeToString(node)));
+    }
+    switch (node.tagName) {
+        case 'IMG':
+            // $FlowFixMe
+            var img = node;
+            return resourceLoader.loadImage(img.currentSrc || img.src);
+        case 'CANVAS':
+            // $FlowFixMe
+            var canvas = node;
+            return resourceLoader.loadCanvas(canvas);
+        case 'IFRAME':
+            var iframeKey = node.getAttribute('data-html2canvas-internal-iframe-key');
+            if (iframeKey) {
+                return iframeKey;
+            }
+            break;
+    }
+
+    return null;
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.parseBackgroundImage = exports.parseBackground = exports.calculateBackgroundRepeatPath = exports.calculateBackgroundPosition = exports.calculateBackgroungPositioningArea = exports.calculateBackgroungPaintingArea = exports.calculateGradientBackgroundSize = exports.calculateBackgroundSize = exports.BACKGROUND_ORIGIN = exports.BACKGROUND_CLIP = exports.BACKGROUND_SIZE = exports.BACKGROUND_REPEAT = undefined;
 
 var _Color = __webpack_require__(0);
 
@@ -646,7 +896,7 @@ var _Size = __webpack_require__(26);
 
 var _Size2 = _interopRequireDefault(_Size);
 
-var _Vector = __webpack_require__(6);
+var _Vector = __webpack_require__(7);
 
 var _Vector2 = _interopRequireDefault(_Vector);
 
@@ -725,6 +975,14 @@ var calculateBackgroundSize = exports.calculateBackgroundSize = function calcula
     if (size[0].size === BACKGROUND_SIZE.AUTO) {
         width = height / image.height * image.width;
     }
+
+    return new _Size2.default(width, height);
+};
+
+var calculateGradientBackgroundSize = exports.calculateGradientBackgroundSize = function calculateGradientBackgroundSize(backgroundImage, bounds) {
+    var size = backgroundImage.size;
+    var width = size[0].value ? size[0].value.getAbsoluteValue(bounds.width) : bounds.width;
+    var height = size[1].value ? size[1].value.getAbsoluteValue(bounds.height) : size[0].value ? width : bounds.height;
 
     return new _Size2.default(width, height);
 };
@@ -974,7 +1232,7 @@ var parseBackgroundImage = exports.parseBackgroundImage = function parseBackgrou
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -984,7 +1242,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _Path = __webpack_require__(3);
+var _Path = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1007,7 +1265,7 @@ var Vector = function Vector(x, y) {
 exports.default = Vector;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1206,7 +1464,7 @@ var FEATURES = {
 exports.default = FEATURES;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1293,7 +1551,7 @@ var parseTextDecoration = exports.parseTextDecoration = function parseTextDecora
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1348,7 +1606,7 @@ var parseBorder = exports.parseBorder = function parseBorder(style) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1413,7 +1671,7 @@ function capitalize(m, p1, p2) {
 }
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1425,11 +1683,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Path = __webpack_require__(3);
+var _Path = __webpack_require__(4);
 
-var _textDecoration = __webpack_require__(8);
+var _textDecoration = __webpack_require__(9);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var addColorStops = function addColorStops(gradient, canvasGradient) {
+    var maxStop = Math.max.apply(null, gradient.colorStops.map(function (colorStop) {
+        return colorStop.stop;
+    }));
+    var f = 1 / Math.max(1, maxStop);
+    gradient.colorStops.forEach(function (colorStop) {
+        canvasGradient.addColorStop(f * colorStop.stop, colorStop.color.toString());
+    });
+};
 
 var CanvasRenderer = function () {
     function CanvasRenderer(canvas) {
@@ -1531,12 +1799,39 @@ var CanvasRenderer = function () {
         value: function renderLinearGradient(bounds, gradient) {
             var linearGradient = this.ctx.createLinearGradient(bounds.left + gradient.direction.x1, bounds.top + gradient.direction.y1, bounds.left + gradient.direction.x0, bounds.top + gradient.direction.y0);
 
-            gradient.colorStops.forEach(function (colorStop) {
-                linearGradient.addColorStop(colorStop.stop, colorStop.color.toString());
-            });
-
+            addColorStops(gradient, linearGradient);
             this.ctx.fillStyle = linearGradient;
             this.ctx.fillRect(bounds.left, bounds.top, bounds.width, bounds.height);
+        }
+    }, {
+        key: 'renderRadialGradient',
+        value: function renderRadialGradient(bounds, gradient) {
+            var _this3 = this;
+
+            var x = bounds.left + gradient.center.x;
+            var y = bounds.top + gradient.center.y;
+
+            var radialGradient = this.ctx.createRadialGradient(x, y, 0, x, y, gradient.radius.x);
+            if (!radialGradient) {
+                return;
+            }
+
+            addColorStops(gradient, radialGradient);
+            this.ctx.fillStyle = radialGradient;
+
+            if (gradient.radius.x !== gradient.radius.y) {
+                // transforms for elliptical radial gradient
+                var midX = bounds.left + 0.5 * bounds.width;
+                var midY = bounds.top + 0.5 * bounds.height;
+                var f = gradient.radius.y / gradient.radius.x;
+                var invF = 1 / f;
+
+                this.transform(midX, midY, [1, 0, 0, f, 0, 0], function () {
+                    return _this3.ctx.fillRect(bounds.left, invF * (bounds.top - midY) + midY, bounds.width, bounds.height * invF);
+                });
+            } else {
+                this.ctx.fillRect(bounds.left, bounds.top, bounds.width, bounds.height);
+            }
         }
     }, {
         key: 'renderRepeat',
@@ -1550,23 +1845,23 @@ var CanvasRenderer = function () {
     }, {
         key: 'renderTextNode',
         value: function renderTextNode(textBounds, color, font, textDecoration, textShadows) {
-            var _this3 = this;
+            var _this4 = this;
 
-            this.ctx.font = [font.fontStyle, font.fontVariant, font.fontWeight, font.fontSize, font.fontFamily].join(' ').split(',')[0];
+            this.ctx.font = [font.fontStyle, font.fontVariant, font.fontWeight, font.fontSize, font.fontFamily].join(' ');
 
             textBounds.forEach(function (text) {
-                _this3.ctx.fillStyle = color.toString();
+                _this4.ctx.fillStyle = color.toString();
                 if (textShadows && text.text.trim().length) {
                     textShadows.slice(0).reverse().forEach(function (textShadow) {
-                        _this3.ctx.shadowColor = textShadow.color.toString();
-                        _this3.ctx.shadowOffsetX = textShadow.offsetX * _this3.options.scale;
-                        _this3.ctx.shadowOffsetY = textShadow.offsetY * _this3.options.scale;
-                        _this3.ctx.shadowBlur = textShadow.blur;
+                        _this4.ctx.shadowColor = textShadow.color.toString();
+                        _this4.ctx.shadowOffsetX = textShadow.offsetX * _this4.options.scale;
+                        _this4.ctx.shadowOffsetY = textShadow.offsetY * _this4.options.scale;
+                        _this4.ctx.shadowBlur = textShadow.blur;
 
-                        _this3.ctx.fillText(text.text, text.bounds.left, text.bounds.top + text.bounds.height);
+                        _this4.ctx.fillText(text.text, text.bounds.left, text.bounds.top + text.bounds.height);
                     });
                 } else {
-                    _this3.ctx.fillText(text.text, text.bounds.left, text.bounds.top + text.bounds.height);
+                    _this4.ctx.fillText(text.text, text.bounds.left, text.bounds.top + text.bounds.height);
                 }
 
                 if (textDecoration !== null) {
@@ -1577,20 +1872,20 @@ var CanvasRenderer = function () {
                                 // Draws a line at the baseline of the font
                                 // TODO As some browsers display the line as more than 1px if the font-size is big,
                                 // need to take that into account both in position and size
-                                var _options$fontMetrics$ = _this3.options.fontMetrics.getMetrics(font),
+                                var _options$fontMetrics$ = _this4.options.fontMetrics.getMetrics(font),
                                     baseline = _options$fontMetrics$.baseline;
 
-                                _this3.rectangle(text.bounds.left, Math.round(text.bounds.top + baseline), text.bounds.width, 1, textDecorationColor);
+                                _this4.rectangle(text.bounds.left, Math.round(text.bounds.top + baseline), text.bounds.width, 1, textDecorationColor);
                                 break;
                             case _textDecoration.TEXT_DECORATION_LINE.OVERLINE:
-                                _this3.rectangle(text.bounds.left, Math.round(text.bounds.top), text.bounds.width, 1, textDecorationColor);
+                                _this4.rectangle(text.bounds.left, Math.round(text.bounds.top), text.bounds.width, 1, textDecorationColor);
                                 break;
                             case _textDecoration.TEXT_DECORATION_LINE.LINE_THROUGH:
                                 // TODO try and find exact position for line-through
-                                var _options$fontMetrics$2 = _this3.options.fontMetrics.getMetrics(font),
+                                var _options$fontMetrics$2 = _this4.options.fontMetrics.getMetrics(font),
                                     middle = _options$fontMetrics$2.middle;
 
-                                _this3.rectangle(text.bounds.left, Math.ceil(text.bounds.top + middle), text.bounds.width, 1, textDecorationColor);
+                                _this4.rectangle(text.bounds.left, Math.ceil(text.bounds.top + middle), text.bounds.width, 1, textDecorationColor);
                                 break;
                         }
                     });
@@ -1636,7 +1931,7 @@ var CanvasRenderer = function () {
 exports.default = CanvasRenderer;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1651,9 +1946,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Logger = function () {
-    function Logger(id, start) {
+    function Logger(enabled, id, start) {
         _classCallCheck(this, Logger);
 
+        this.enabled = enabled;
         this.start = start ? start : Date.now();
         this.id = id;
     }
@@ -1661,7 +1957,7 @@ var Logger = function () {
     _createClass(Logger, [{
         key: 'child',
         value: function child(id) {
-            return new Logger(id, this.start);
+            return new Logger(this.enabled, id, this.start);
         }
 
         // eslint-disable-next-line flowtype/no-weak-types
@@ -1669,7 +1965,7 @@ var Logger = function () {
     }, {
         key: 'log',
         value: function log() {
-            if (window.console && window.console.log) {
+            if (this.enabled && window.console && window.console.log) {
                 for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                     args[_key] = arguments[_key];
                 }
@@ -1683,7 +1979,7 @@ var Logger = function () {
     }, {
         key: 'error',
         value: function error() {
-            if (window.console && window.console.error) {
+            if (this.enabled && window.console && window.console.error) {
                 for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
                     args[_key2] = arguments[_key2];
                 }
@@ -1697,221 +1993,6 @@ var Logger = function () {
 }();
 
 exports.default = Logger;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Color = __webpack_require__(0);
-
-var _Color2 = _interopRequireDefault(_Color);
-
-var _Util = __webpack_require__(4);
-
-var _background = __webpack_require__(5);
-
-var _border = __webpack_require__(9);
-
-var _borderRadius = __webpack_require__(28);
-
-var _display = __webpack_require__(29);
-
-var _float = __webpack_require__(30);
-
-var _font = __webpack_require__(31);
-
-var _letterSpacing = __webpack_require__(32);
-
-var _overflow = __webpack_require__(33);
-
-var _padding = __webpack_require__(14);
-
-var _position = __webpack_require__(15);
-
-var _textDecoration = __webpack_require__(8);
-
-var _textShadow = __webpack_require__(34);
-
-var _textTransform = __webpack_require__(16);
-
-var _transform = __webpack_require__(35);
-
-var _visibility = __webpack_require__(36);
-
-var _zIndex = __webpack_require__(37);
-
-var _Bounds = __webpack_require__(1);
-
-var _Input = __webpack_require__(17);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var INPUT_TAGS = ['INPUT', 'TEXTAREA', 'SELECT'];
-
-var NodeContainer = function () {
-    function NodeContainer(node, parent, resourceLoader, index) {
-        var _this = this;
-
-        _classCallCheck(this, NodeContainer);
-
-        this.parent = parent;
-        this.index = index;
-        this.childNodes = [];
-        var defaultView = node.ownerDocument.defaultView;
-        var scrollX = defaultView.pageXOffset;
-        var scrollY = defaultView.pageYOffset;
-        var style = defaultView.getComputedStyle(node, null);
-        var display = (0, _display.parseDisplay)(style.display);
-
-        var IS_INPUT = node.type === 'radio' || node.type === 'checkbox';
-
-        var position = (0, _position.parsePosition)(style.position);
-
-        this.style = {
-            background: IS_INPUT ? _Input.INPUT_BACKGROUND : (0, _background.parseBackground)(style, resourceLoader),
-            border: IS_INPUT ? _Input.INPUT_BORDERS : (0, _border.parseBorder)(style),
-            borderRadius: (node instanceof defaultView.HTMLInputElement || node instanceof HTMLInputElement) && IS_INPUT ? (0, _Input.getInputBorderRadius)(node) : (0, _borderRadius.parseBorderRadius)(style),
-            color: IS_INPUT ? _Input.INPUT_COLOR : new _Color2.default(style.color),
-            display: display,
-            float: (0, _float.parseCSSFloat)(style.float),
-            font: (0, _font.parseFont)(style),
-            letterSpacing: (0, _letterSpacing.parseLetterSpacing)(style.letterSpacing),
-            opacity: parseFloat(style.opacity),
-            overflow: INPUT_TAGS.indexOf(node.tagName) === -1 ? (0, _overflow.parseOverflow)(style.overflow) : _overflow.OVERFLOW.HIDDEN,
-            padding: (0, _padding.parsePadding)(style),
-            position: position,
-            textDecoration: (0, _textDecoration.parseTextDecoration)(style),
-            textShadow: (0, _textShadow.parseTextShadow)(style.textShadow),
-            textTransform: (0, _textTransform.parseTextTransform)(style.textTransform),
-            transform: (0, _transform.parseTransform)(style),
-            visibility: (0, _visibility.parseVisibility)(style.visibility),
-            zIndex: (0, _zIndex.parseZIndex)(position !== _position.POSITION.STATIC ? style.zIndex : 'auto')
-        };
-
-        if (this.isTransformed()) {
-            // getBoundingClientRect provides values post-transform, we want them without the transformation
-            node.style.transform = 'matrix(1,0,0,1,0,0)';
-        }
-
-        // TODO move bound retrieval for all nodes to a later stage?
-        if (node.tagName === 'IMG') {
-            node.addEventListener('load', function () {
-                _this.bounds = (0, _Bounds.parseBounds)(node, scrollX, scrollY);
-                _this.curvedBounds = (0, _Bounds.parseBoundCurves)(_this.bounds, _this.style.border, _this.style.borderRadius);
-            });
-        }
-        this.image = getImage(node, resourceLoader);
-        this.bounds = IS_INPUT ? (0, _Input.reformatInputBounds)((0, _Bounds.parseBounds)(node, scrollX, scrollY)) : (0, _Bounds.parseBounds)(node, scrollX, scrollY);
-        this.curvedBounds = (0, _Bounds.parseBoundCurves)(this.bounds, this.style.border, this.style.borderRadius);
-
-        if (true) {
-            this.name = '' + node.tagName.toLowerCase() + (node.id ? '#' + node.id : '') + node.className.toString().split(' ').map(function (s) {
-                return s.length ? '.' + s : '';
-            }).join('');
-        }
-    }
-
-    _createClass(NodeContainer, [{
-        key: 'getClipPaths',
-        value: function getClipPaths() {
-            var parentClips = this.parent ? this.parent.getClipPaths() : [];
-            var isClipped = this.style.overflow === _overflow.OVERFLOW.HIDDEN || this.style.overflow === _overflow.OVERFLOW.SCROLL;
-
-            return isClipped ? parentClips.concat([(0, _Bounds.calculatePaddingBoxPath)(this.curvedBounds)]) : parentClips;
-        }
-    }, {
-        key: 'isInFlow',
-        value: function isInFlow() {
-            return this.isRootElement() && !this.isFloating() && !this.isAbsolutelyPositioned();
-        }
-    }, {
-        key: 'isVisible',
-        value: function isVisible() {
-            return !(0, _Util.contains)(this.style.display, _display.DISPLAY.NONE) && this.style.opacity > 0 && this.style.visibility === _visibility.VISIBILITY.VISIBLE;
-        }
-    }, {
-        key: 'isAbsolutelyPositioned',
-        value: function isAbsolutelyPositioned() {
-            return this.style.position !== _position.POSITION.STATIC && this.style.position !== _position.POSITION.RELATIVE;
-        }
-    }, {
-        key: 'isPositioned',
-        value: function isPositioned() {
-            return this.style.position !== _position.POSITION.STATIC;
-        }
-    }, {
-        key: 'isFloating',
-        value: function isFloating() {
-            return this.style.float !== _float.FLOAT.NONE;
-        }
-    }, {
-        key: 'isRootElement',
-        value: function isRootElement() {
-            return this.parent === null;
-        }
-    }, {
-        key: 'isTransformed',
-        value: function isTransformed() {
-            return this.style.transform !== null;
-        }
-    }, {
-        key: 'isPositionedWithZIndex',
-        value: function isPositionedWithZIndex() {
-            return this.isPositioned() && !this.style.zIndex.auto;
-        }
-    }, {
-        key: 'isInlineLevel',
-        value: function isInlineLevel() {
-            return (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_BLOCK) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_FLEX) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_GRID) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_LIST_ITEM) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_TABLE);
-        }
-    }, {
-        key: 'isInlineBlockOrInlineTable',
-        value: function isInlineBlockOrInlineTable() {
-            return (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_BLOCK) || (0, _Util.contains)(this.style.display, _display.DISPLAY.INLINE_TABLE);
-        }
-    }]);
-
-    return NodeContainer;
-}();
-
-exports.default = NodeContainer;
-
-
-var getImage = function getImage(node, resourceLoader) {
-    if (node instanceof node.ownerDocument.defaultView.SVGSVGElement || node instanceof SVGSVGElement) {
-        var s = new XMLSerializer();
-        return resourceLoader.loadImage('data:image/svg+xml,' + encodeURIComponent(s.serializeToString(node)));
-    }
-    switch (node.tagName) {
-        case 'IMG':
-            // $FlowFixMe
-            var img = node;
-            return resourceLoader.loadImage(img.currentSrc || img.src);
-        case 'CANVAS':
-            // $FlowFixMe
-            var canvas = node;
-            return resourceLoader.loadCanvas(canvas);
-        case 'IFRAME':
-            var iframeKey = node.getAttribute('data-html2canvas-internal-iframe-key');
-            if (iframeKey) {
-                return iframeKey;
-            }
-            break;
-    }
-
-    return null;
-};
 
 /***/ }),
 /* 14 */
@@ -2021,19 +2102,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.reformatInputBounds = exports.inlineSelectElement = exports.inlineTextAreaElement = exports.inlineInputElement = exports.getInputBorderRadius = exports.INPUT_BACKGROUND = exports.INPUT_BORDERS = exports.INPUT_COLOR = undefined;
 
-var _TextContainer = __webpack_require__(10);
+var _TextContainer = __webpack_require__(11);
 
 var _TextContainer2 = _interopRequireDefault(_TextContainer);
 
-var _background = __webpack_require__(5);
+var _background = __webpack_require__(6);
 
-var _border = __webpack_require__(9);
+var _border = __webpack_require__(10);
 
 var _Circle = __webpack_require__(41);
 
 var _Circle2 = _interopRequireDefault(_Circle);
 
-var _Vector = __webpack_require__(6);
+var _Vector = __webpack_require__(7);
 
 var _Vector2 = _interopRequireDefault(_Vector);
 
@@ -2049,7 +2130,7 @@ var _Bounds = __webpack_require__(1);
 
 var _TextBounds = __webpack_require__(18);
 
-var _Util = __webpack_require__(4);
+var _Util = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2153,9 +2234,9 @@ var _punycode = __webpack_require__(38);
 
 var _Bounds = __webpack_require__(1);
 
-var _textDecoration = __webpack_require__(8);
+var _textDecoration = __webpack_require__(9);
 
-var _Feature = __webpack_require__(7);
+var _Feature = __webpack_require__(8);
 
 var _Feature2 = _interopRequireDefault(_Feature);
 
@@ -2365,7 +2446,7 @@ exports.FontMetrics = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Util = __webpack_require__(4);
+var _Util = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2456,7 +2537,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Proxy = undefined;
 
-var _Feature = __webpack_require__(7);
+var _Feature = __webpack_require__(8);
 
 var _Feature2 = _interopRequireDefault(_Feature);
 
@@ -2526,11 +2607,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _CanvasRenderer = __webpack_require__(11);
+var _CanvasRenderer = __webpack_require__(12);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
-var _Logger = __webpack_require__(12);
+var _Logger = __webpack_require__(13);
 
 var _Logger2 = _interopRequireDefault(_Logger);
 
@@ -2544,11 +2625,11 @@ var html2canvas = function html2canvas(element, conf) {
     // eslint-disable-next-line no-console
     if ((typeof console === 'undefined' ? 'undefined' : _typeof(console)) === 'object' && typeof console.log === 'function') {
         // eslint-disable-next-line no-console
-        console.log('html2canvas ' + "1.0.0-alpha.3");
+        console.log('html2canvas ' + "1.0.0-alpha.4");
     }
 
     var config = conf || {};
-    var logger = new _Logger2.default();
+    var logger = new _Logger2.default(typeof config.logging === 'boolean' ? config.logging : true);
 
     if (true && typeof config.onrendered === 'function') {
         logger.error('onrendered option is deprecated, html2canvas returns a Promise with the canvas as the value');
@@ -2574,7 +2655,9 @@ var html2canvas = function html2canvas(element, conf) {
     var defaultOptions = {
         async: true,
         allowTaint: false,
+        backgroundColor: '#ffffff',
         imageTimeout: 15000,
+        logging: true,
         proxy: null,
         removeContainer: true,
         foreignObjectRendering: false,
@@ -2619,7 +2702,7 @@ exports.renderElement = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _Logger = __webpack_require__(12);
+var _Logger = __webpack_require__(13);
 
 var _Logger2 = _interopRequireDefault(_Logger);
 
@@ -2633,7 +2716,7 @@ var _ForeignObjectRenderer = __webpack_require__(19);
 
 var _ForeignObjectRenderer2 = _interopRequireDefault(_ForeignObjectRenderer);
 
-var _Feature = __webpack_require__(7);
+var _Feature = __webpack_require__(8);
 
 var _Feature2 = _interopRequireDefault(_Feature);
 
@@ -2758,11 +2841,11 @@ var _StackingContext = __webpack_require__(25);
 
 var _StackingContext2 = _interopRequireDefault(_StackingContext);
 
-var _NodeContainer = __webpack_require__(13);
+var _NodeContainer = __webpack_require__(5);
 
 var _NodeContainer2 = _interopRequireDefault(_NodeContainer);
 
-var _TextContainer = __webpack_require__(10);
+var _TextContainer = __webpack_require__(11);
 
 var _TextContainer2 = _interopRequireDefault(_TextContainer);
 
@@ -2878,7 +2961,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _NodeContainer = __webpack_require__(13);
+var _NodeContainer = __webpack_require__(5);
 
 var _NodeContainer2 = _interopRequireDefault(_NodeContainer);
 
@@ -2951,9 +3034,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Path = __webpack_require__(3);
+var _Path = __webpack_require__(4);
 
-var _Vector = __webpack_require__(6);
+var _Vector = __webpack_require__(7);
 
 var _Vector2 = _interopRequireDefault(_Vector);
 
@@ -4096,7 +4179,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _Path = __webpack_require__(3);
+var _Path = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4143,13 +4226,13 @@ var _Font = __webpack_require__(20);
 
 var _Gradient = __webpack_require__(43);
 
-var _TextContainer = __webpack_require__(10);
+var _TextContainer = __webpack_require__(11);
 
 var _TextContainer2 = _interopRequireDefault(_TextContainer);
 
-var _background = __webpack_require__(5);
+var _background = __webpack_require__(6);
 
-var _border = __webpack_require__(9);
+var _border = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4256,12 +4339,8 @@ var Renderer = function () {
             container.style.background.backgroundImage.slice(0).reverse().forEach(function (backgroundImage) {
                 if (backgroundImage.source.method === 'url' && backgroundImage.source.args.length) {
                     _this3.renderBackgroundRepeat(container, backgroundImage);
-                } else {
-                    var _gradient = (0, _Gradient.parseGradient)(backgroundImage.source, container.bounds);
-                    if (_gradient) {
-                        var _bounds = container.bounds;
-                        _this3.target.renderLinearGradient(_bounds, _gradient);
-                    }
+                } else if (/gradient/i.test(backgroundImage.source.method)) {
+                    _this3.renderBackgroundGradient(container, backgroundImage);
                 }
             });
         }
@@ -4278,6 +4357,28 @@ var Renderer = function () {
                 var _offsetX = Math.round(backgroundPositioningArea.left + position.x);
                 var _offsetY = Math.round(backgroundPositioningArea.top + position.y);
                 this.target.renderRepeat(_path, image, backgroundImageSize, _offsetX, _offsetY);
+            }
+        }
+    }, {
+        key: 'renderBackgroundGradient',
+        value: function renderBackgroundGradient(container, background) {
+            var backgroundPositioningArea = (0, _background.calculateBackgroungPositioningArea)(container.style.background.backgroundOrigin, container.bounds, container.style.padding, container.style.border);
+            var backgroundImageSize = (0, _background.calculateGradientBackgroundSize)(background, backgroundPositioningArea);
+            var position = (0, _background.calculateBackgroundPosition)(background.position, backgroundImageSize, backgroundPositioningArea);
+            var gradientBounds = new _Bounds.Bounds(Math.round(backgroundPositioningArea.left + position.x), Math.round(backgroundPositioningArea.top + position.y), backgroundImageSize.width, backgroundImageSize.height);
+
+            var gradient = (0, _Gradient.parseGradient)(container, background.source, gradientBounds);
+            if (gradient) {
+                switch (gradient.type) {
+                    case _Gradient.GRADIENT_TYPE.LINEAR_GRADIENT:
+                        // $FlowFixMe
+                        this.target.renderLinearGradient(gradientBounds, gradient);
+                        break;
+                    case _Gradient.GRADIENT_TYPE.RADIAL_GRADIENT:
+                        // $FlowFixMe
+                        this.target.renderRadialGradient(gradientBounds, gradient);
+                        break;
+                }
             }
         }
     }, {
@@ -4362,7 +4463,7 @@ var Renderer = function () {
             var _this5 = this;
 
             if (this.options.backgroundColor) {
-                this.target.rectangle(0, 0, this.options.width, this.options.height, this.options.backgroundColor);
+                this.target.rectangle(this.options.x, this.options.y, this.options.width, this.options.height, this.options.backgroundColor);
             }
             this.renderStack(stack);
             var target = this.target.getTarget();
@@ -4446,9 +4547,13 @@ var sortByZIndex = function sortByZIndex(a, b) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.parseGradient = undefined;
+exports.transformWebkitRadialGradientArgs = exports.parseGradient = exports.RadialGradient = exports.LinearGradient = exports.RADIAL_GRADIENT_SHAPE = exports.GRADIENT_TYPE = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _NodeContainer = __webpack_require__(5);
+
+var _NodeContainer2 = _interopRequireDefault(_NodeContainer);
 
 var _Angle = __webpack_require__(44);
 
@@ -4460,41 +4565,73 @@ var _Length = __webpack_require__(2);
 
 var _Length2 = _interopRequireDefault(_Length);
 
+var _Util = __webpack_require__(3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var SIDE_OR_CORNER = /^(to )?(left|top|right|bottom)( (left|top|right|bottom))?$/i;
 var PERCENTAGE_ANGLES = /^([+-]?\d*\.?\d+)% ([+-]?\d*\.?\d+)%$/i;
 var ENDS_WITH_LENGTH = /(px)|%|( 0)$/i;
-var FROM_TO = /^(from|to)\((.+)\)$/i;
+var FROM_TO_COLORSTOP = /^(from|to|color-stop)\((?:([\d.]+)(%)?,\s*)?(.+?)\)$/i;
+var RADIAL_SHAPE_DEFINITION = /^\s*(circle|ellipse)?\s*((?:([\d.]+)(px|r?em|%)\s*(?:([\d.]+)(px|r?em|%))?)|closest-side|closest-corner|farthest-side|farthest-corner)?\s*(?:at\s*(?:(left|center|right)|([\d.]+)(px|r?em|%))\s+(?:(top|center|bottom)|([\d.]+)(px|r?em|%)))?(?:\s|$)/i;
 
-var parseGradient = exports.parseGradient = function parseGradient(_ref, bounds) {
+var GRADIENT_TYPE = exports.GRADIENT_TYPE = {
+    LINEAR_GRADIENT: 0,
+    RADIAL_GRADIENT: 1
+};
+
+var RADIAL_GRADIENT_SHAPE = exports.RADIAL_GRADIENT_SHAPE = {
+    CIRCLE: 0,
+    ELLIPSE: 1
+};
+
+var LENGTH_FOR_POSITION = {
+    left: new _Length2.default('0%'),
+    top: new _Length2.default('0%'),
+    center: new _Length2.default('50%'),
+    right: new _Length2.default('100%'),
+    bottom: new _Length2.default('100%')
+};
+
+var LinearGradient = exports.LinearGradient = function LinearGradient(colorStops, direction) {
+    _classCallCheck(this, LinearGradient);
+
+    this.type = GRADIENT_TYPE.LINEAR_GRADIENT;
+    this.colorStops = colorStops;
+    this.direction = direction;
+};
+
+var RadialGradient = exports.RadialGradient = function RadialGradient(colorStops, shape, center, radius) {
+    _classCallCheck(this, RadialGradient);
+
+    this.type = GRADIENT_TYPE.RADIAL_GRADIENT;
+    this.colorStops = colorStops;
+    this.shape = shape;
+    this.center = center;
+    this.radius = radius;
+};
+
+var parseGradient = exports.parseGradient = function parseGradient(container, _ref, bounds) {
     var args = _ref.args,
         method = _ref.method,
         prefix = _ref.prefix;
 
     if (method === 'linear-gradient') {
-        return parseLinearGradient(args, bounds);
+        return parseLinearGradient(args, bounds, !!prefix);
     } else if (method === 'gradient' && args[0] === 'linear') {
         // TODO handle correct angle
-        return parseLinearGradient(['to bottom'].concat(args.slice(3).map(function (color) {
-            return color.match(FROM_TO);
-        }).filter(function (v) {
-            return v !== null;
-        })
-        // $FlowFixMe
-        .map(function (v) {
-            return v[2];
-        })), bounds);
+        return parseLinearGradient(['to bottom'].concat(transformObsoleteColorStops(args.slice(3))), bounds, !!prefix);
+    } else if (method === 'radial-gradient') {
+        return parseRadialGradient(container, prefix === '-webkit-' ? transformWebkitRadialGradientArgs(args) : args, bounds);
+    } else if (method === 'gradient' && args[0] === 'radial') {
+        return parseRadialGradient(container, transformObsoleteColorStops(transformWebkitRadialGradientArgs(args.slice(1))), bounds);
     }
 };
 
-var parseLinearGradient = function parseLinearGradient(args, bounds) {
-    var angle = (0, _Angle.parseAngle)(args[0]);
-    var HAS_SIDE_OR_CORNER = SIDE_OR_CORNER.test(args[0]);
-    var HAS_DIRECTION = HAS_SIDE_OR_CORNER || angle !== null || PERCENTAGE_ANGLES.test(args[0]);
-    var direction = HAS_DIRECTION ? angle !== null ? calculateGradientDirection(angle, bounds) : HAS_SIDE_OR_CORNER ? parseSideOrCorner(args[0], bounds) : parsePercentageAngle(args[0], bounds) : calculateGradientDirection(Math.PI, bounds);
+var parseColorStops = function parseColorStops(args, firstColorStopIndex, lineLength) {
     var colorStops = [];
-    var firstColorStopIndex = HAS_DIRECTION ? 1 : 0;
 
     for (var i = firstColorStopIndex; i < args.length; i++) {
         var value = args[i];
@@ -4505,17 +4642,16 @@ var parseLinearGradient = function parseLinearGradient(args, bounds) {
         colorStops.push({ color: _color, stop: _stop });
     }
 
-    // TODO: Fix some inaccuracy with color stops with px values
-    var lineLength = Math.min(Math.sqrt(Math.pow(Math.abs(direction.x0) + Math.abs(direction.x1), 2) + Math.pow(Math.abs(direction.y0) + Math.abs(direction.y1), 2)), bounds.width * 2, bounds.height * 2);
-
     var absoluteValuedColorStops = colorStops.map(function (_ref2) {
         var color = _ref2.color,
             stop = _ref2.stop;
 
+        var absoluteStop = lineLength === 0 ? 0 : stop ? stop.getAbsoluteValue(lineLength) / lineLength : null;
+
         return {
             color: color,
             // $FlowFixMe
-            stop: stop ? stop.getAbsoluteValue(lineLength) / lineLength : null
+            stop: absoluteStop
         };
     });
 
@@ -4540,10 +4676,63 @@ var parseLinearGradient = function parseLinearGradient(args, bounds) {
         }
     }
 
-    return {
-        direction: direction,
-        colorStops: absoluteValuedColorStops
+    return absoluteValuedColorStops;
+};
+
+var parseLinearGradient = function parseLinearGradient(args, bounds, hasPrefix) {
+    var angle = (0, _Angle.parseAngle)(args[0]);
+    var HAS_SIDE_OR_CORNER = SIDE_OR_CORNER.test(args[0]);
+    var HAS_DIRECTION = HAS_SIDE_OR_CORNER || angle !== null || PERCENTAGE_ANGLES.test(args[0]);
+    var direction = HAS_DIRECTION ? angle !== null ? calculateGradientDirection(
+    // if there is a prefix, the 0° angle points due East (instead of North per W3C)
+    hasPrefix ? angle - Math.PI * 0.5 : angle, bounds) : HAS_SIDE_OR_CORNER ? parseSideOrCorner(args[0], bounds) : parsePercentageAngle(args[0], bounds) : calculateGradientDirection(Math.PI, bounds);
+    var firstColorStopIndex = HAS_DIRECTION ? 1 : 0;
+
+    // TODO: Fix some inaccuracy with color stops with px values
+    var lineLength = Math.min((0, _Util.distance)(Math.abs(direction.x0) + Math.abs(direction.x1), Math.abs(direction.y0) + Math.abs(direction.y1)), bounds.width * 2, bounds.height * 2);
+
+    return new LinearGradient(parseColorStops(args, firstColorStopIndex, lineLength), direction);
+};
+
+var parseRadialGradient = function parseRadialGradient(container, args, bounds) {
+    var m = args[0].match(RADIAL_SHAPE_DEFINITION);
+    var shape = m && (m[1] === 'circle' || // explicit shape specification
+    m[3] !== undefined && m[5] === undefined) // only one radius coordinate
+    ? RADIAL_GRADIENT_SHAPE.CIRCLE : RADIAL_GRADIENT_SHAPE.ELLIPSE;
+    var radius = {};
+    var center = {};
+
+    if (m) {
+        // Radius
+        if (m[3] !== undefined) {
+            radius.x = (0, _Length.calculateLengthFromValueWithUnit)(container, m[3], m[4]).getAbsoluteValue(bounds.width);
+        }
+
+        if (m[5] !== undefined) {
+            radius.y = (0, _Length.calculateLengthFromValueWithUnit)(container, m[5], m[6]).getAbsoluteValue(bounds.height);
+        }
+
+        // Position
+        if (m[7]) {
+            center.x = LENGTH_FOR_POSITION[m[7].toLowerCase()];
+        } else if (m[8] !== undefined) {
+            center.x = (0, _Length.calculateLengthFromValueWithUnit)(container, m[8], m[9]);
+        }
+
+        if (m[10]) {
+            center.y = LENGTH_FOR_POSITION[m[10].toLowerCase()];
+        } else if (m[11] !== undefined) {
+            center.y = (0, _Length.calculateLengthFromValueWithUnit)(container, m[11], m[12]);
+        }
+    }
+
+    var gradientCenter = {
+        x: center.x === undefined ? bounds.width / 2 : center.x.getAbsoluteValue(bounds.width),
+        y: center.y === undefined ? bounds.height / 2 : center.y.getAbsoluteValue(bounds.height)
     };
+    var gradientRadius = calculateRadius(m && m[2] || 'farthest-corner', shape, gradientCenter, radius, bounds);
+
+    return new RadialGradient(parseColorStops(args, m ? 1 : 0, Math.min(gradientRadius.x, gradientRadius.y)), shape, gradientCenter, gradientRadius);
 };
 
 var calculateGradientDirection = function calculateGradientDirection(radian, bounds) {
@@ -4563,7 +4752,7 @@ var calculateGradientDirection = function calculateGradientDirection(radian, bou
 };
 
 var parseTopRight = function parseTopRight(bounds) {
-    return Math.acos(bounds.width / 2 / (Math.sqrt(Math.pow(bounds.width, 2) + Math.pow(bounds.height, 2)) / 2));
+    return Math.acos(bounds.width / 2 / ((0, _Util.distance)(bounds.width, bounds.height) / 2));
 };
 
 var parseSideOrCorner = function parseSideOrCorner(side, bounds) {
@@ -4613,6 +4802,192 @@ var parsePercentageAngle = function parsePercentageAngle(angle, bounds) {
     var ratio = left / 100 * bounds.width / (top / 100 * bounds.height);
 
     return calculateGradientDirection(Math.atan(isNaN(ratio) ? 1 : ratio) + Math.PI / 2, bounds);
+};
+
+var findCorner = function findCorner(bounds, x, y, closest) {
+    var corners = [{ x: 0, y: 0 }, { x: 0, y: bounds.height }, { x: bounds.width, y: 0 }, { x: bounds.width, y: bounds.height }];
+
+    // $FlowFixMe
+    return corners.reduce(function (stat, corner) {
+        var d = (0, _Util.distance)(x - corner.x, y - corner.y);
+        if (closest ? d < stat.optimumDistance : d > stat.optimumDistance) {
+            return {
+                optimumCorner: corner,
+                optimumDistance: d
+            };
+        }
+
+        return stat;
+    }, {
+        optimumDistance: closest ? Infinity : -Infinity,
+        optimumCorner: null
+    }).optimumCorner;
+};
+
+var calculateRadius = function calculateRadius(extent, shape, center, radius, bounds) {
+    var x = center.x;
+    var y = center.y;
+    var rx = 0;
+    var ry = 0;
+
+    switch (extent) {
+        case 'closest-side':
+            // The ending shape is sized so that that it exactly meets the side of the gradient box closest to the gradient’s center.
+            // If the shape is an ellipse, it exactly meets the closest side in each dimension.
+            if (shape === RADIAL_GRADIENT_SHAPE.CIRCLE) {
+                rx = ry = Math.min(Math.abs(x), Math.abs(x - bounds.width), Math.abs(y), Math.abs(y - bounds.height));
+            } else if (shape === RADIAL_GRADIENT_SHAPE.ELLIPSE) {
+                rx = Math.min(Math.abs(x), Math.abs(x - bounds.width));
+                ry = Math.min(Math.abs(y), Math.abs(y - bounds.height));
+            }
+            break;
+
+        case 'closest-corner':
+            // The ending shape is sized so that that it passes through the corner of the gradient box closest to the gradient’s center.
+            // If the shape is an ellipse, the ending shape is given the same aspect-ratio it would have if closest-side were specified.
+            if (shape === RADIAL_GRADIENT_SHAPE.CIRCLE) {
+                rx = ry = Math.min((0, _Util.distance)(x, y), (0, _Util.distance)(x, y - bounds.height), (0, _Util.distance)(x - bounds.width, y), (0, _Util.distance)(x - bounds.width, y - bounds.height));
+            } else if (shape === RADIAL_GRADIENT_SHAPE.ELLIPSE) {
+                // Compute the ratio ry/rx (which is to be the same as for "closest-side")
+                var c = Math.min(Math.abs(y), Math.abs(y - bounds.height)) / Math.min(Math.abs(x), Math.abs(x - bounds.width));
+                var corner = findCorner(bounds, x, y, true);
+                rx = (0, _Util.distance)(corner.x - x, (corner.y - y) / c);
+                ry = c * rx;
+            }
+            break;
+
+        case 'farthest-side':
+            // Same as closest-side, except the ending shape is sized based on the farthest side(s)
+            if (shape === RADIAL_GRADIENT_SHAPE.CIRCLE) {
+                rx = ry = Math.max(Math.abs(x), Math.abs(x - bounds.width), Math.abs(y), Math.abs(y - bounds.height));
+            } else if (shape === RADIAL_GRADIENT_SHAPE.ELLIPSE) {
+                rx = Math.max(Math.abs(x), Math.abs(x - bounds.width));
+                ry = Math.max(Math.abs(y), Math.abs(y - bounds.height));
+            }
+            break;
+
+        case 'farthest-corner':
+            // Same as closest-corner, except the ending shape is sized based on the farthest corner.
+            // If the shape is an ellipse, the ending shape is given the same aspect ratio it would have if farthest-side were specified.
+            if (shape === RADIAL_GRADIENT_SHAPE.CIRCLE) {
+                rx = ry = Math.max((0, _Util.distance)(x, y), (0, _Util.distance)(x, y - bounds.height), (0, _Util.distance)(x - bounds.width, y), (0, _Util.distance)(x - bounds.width, y - bounds.height));
+            } else if (shape === RADIAL_GRADIENT_SHAPE.ELLIPSE) {
+                // Compute the ratio ry/rx (which is to be the same as for "farthest-side")
+                var _c = Math.max(Math.abs(y), Math.abs(y - bounds.height)) / Math.max(Math.abs(x), Math.abs(x - bounds.width));
+                var _corner = findCorner(bounds, x, y, false);
+                rx = (0, _Util.distance)(_corner.x - x, (_corner.y - y) / _c);
+                ry = _c * rx;
+            }
+            break;
+
+        default:
+            // pixel or percentage values
+            rx = radius.x || 0;
+            ry = radius.y !== undefined ? radius.y : rx;
+            break;
+    }
+
+    return {
+        x: rx,
+        y: ry
+    };
+};
+
+var transformWebkitRadialGradientArgs = exports.transformWebkitRadialGradientArgs = function transformWebkitRadialGradientArgs(args) {
+    var shape = '';
+    var radius = '';
+    var extent = '';
+    var position = '';
+    var idx = 0;
+
+    var POSITION = /^(left|center|right|\d+(?:px|r?em|%)?)(?:\s+(top|center|bottom|\d+(?:px|r?em|%)?))?$/i;
+    var SHAPE_AND_EXTENT = /^(circle|ellipse)?\s*(closest-side|closest-corner|farthest-side|farthest-corner|contain|cover)?$/i;
+    var RADIUS = /^\d+(px|r?em|%)?(?:\s+\d+(px|r?em|%)?)?$/i;
+
+    var matchStartPosition = args[idx].match(POSITION);
+    if (matchStartPosition) {
+        idx++;
+    }
+
+    var matchShapeExtent = args[idx].match(SHAPE_AND_EXTENT);
+    if (matchShapeExtent) {
+        shape = matchShapeExtent[1] || '';
+        extent = matchShapeExtent[2] || '';
+        if (extent === 'contain') {
+            extent = 'closest-side';
+        } else if (extent === 'cover') {
+            extent = 'farthest-corner';
+        }
+        idx++;
+    }
+
+    var matchStartRadius = args[idx].match(RADIUS);
+    if (matchStartRadius) {
+        idx++;
+    }
+
+    var matchEndPosition = args[idx].match(POSITION);
+    if (matchEndPosition) {
+        idx++;
+    }
+
+    var matchEndRadius = args[idx].match(RADIUS);
+    if (matchEndRadius) {
+        idx++;
+    }
+
+    var matchPosition = matchEndPosition || matchStartPosition;
+    if (matchPosition && matchPosition[1]) {
+        position = matchPosition[1] + (/^\d+$/.test(matchPosition[1]) ? 'px' : '');
+        if (matchPosition[2]) {
+            position += ' ' + matchPosition[2] + (/^\d+$/.test(matchPosition[2]) ? 'px' : '');
+        }
+    }
+
+    var matchRadius = matchEndRadius || matchStartRadius;
+    if (matchRadius) {
+        radius = matchRadius[0];
+        if (!matchRadius[1]) {
+            radius += 'px';
+        }
+    }
+
+    if (position && !shape && !radius && !extent) {
+        radius = position;
+        position = '';
+    }
+
+    if (position) {
+        position = 'at ' + position;
+    }
+
+    return [[shape, extent, radius, position].filter(function (s) {
+        return !!s;
+    }).join(' ')].concat(args.slice(idx));
+};
+
+var transformObsoleteColorStops = function transformObsoleteColorStops(args) {
+    return args.map(function (color) {
+        return color.match(FROM_TO_COLORSTOP);
+    })
+    // $FlowFixMe
+    .map(function (v, index) {
+        if (!v) {
+            return args[index];
+        }
+
+        switch (v[1]) {
+            case 'from':
+                return v[4] + ' 0%';
+            case 'to':
+                return v[4] + ' 100%';
+            case 'color-stop':
+                if (v[3] === '%') {
+                    return v[4] + ' ' + v[2];
+                }
+                return v[4] + ' ' + parseFloat(v[2]) * 100 + '%';
+        }
+    });
 };
 
 /***/ }),
@@ -4671,11 +5046,11 @@ var _ResourceLoader = __webpack_require__(46);
 
 var _ResourceLoader2 = _interopRequireDefault(_ResourceLoader);
 
-var _Util = __webpack_require__(4);
+var _Util = __webpack_require__(3);
 
-var _background = __webpack_require__(5);
+var _background = __webpack_require__(6);
 
-var _CanvasRenderer = __webpack_require__(11);
+var _CanvasRenderer = __webpack_require__(12);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
@@ -4824,6 +5199,7 @@ var DocumentCloner = exports.DocumentCloner = function () {
                         backgroundColor: '#ffffff',
                         canvas: null,
                         imageTimeout: _this3.options.imageTimeout,
+                        logging: _this3.options.logging,
                         proxy: _this3.options.proxy,
                         removeContainer: _this3.options.removeContainer,
                         scale: _this3.options.scale,
@@ -4975,7 +5351,13 @@ var cloneCanvasContents = function cloneCanvasContents(canvas, clonedCanvas) {
         if (clonedCanvas) {
             clonedCanvas.width = canvas.width;
             clonedCanvas.height = canvas.height;
-            clonedCanvas.getContext('2d').putImageData(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height), 0, 0);
+            var ctx = canvas.getContext('2d');
+            var clonedCtx = clonedCanvas.getContext('2d');
+            if (ctx) {
+                clonedCtx.putImageData(ctx.getImageData(0, 0, canvas.width, canvas.height), 0, 0);
+            } else {
+                clonedCtx.drawImage(canvas, 0, 0);
+            }
         }
     } catch (e) {}
 };
@@ -5164,7 +5546,7 @@ exports.ResourceStore = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Feature = __webpack_require__(7);
+var _Feature = __webpack_require__(8);
 
 var _Feature2 = _interopRequireDefault(_Feature);
 
@@ -5195,12 +5577,8 @@ var ResourceLoader = function () {
                 return src;
             }
 
-            if (isSVG(src)) {
-                if (this.options.allowTaint === true || _Feature2.default.SUPPORT_SVG_DRAWING) {
-                    return this.addImage(src, src, false);
-                }
-            } else {
-                if (this.options.allowTaint === true || isInlineBase64Image(src) || this.isSameOrigin(src)) {
+            if (!isSVG(src) || _Feature2.default.SUPPORT_SVG_DRAWING) {
+                if (this.options.allowTaint === true || isInlineImage(src) || this.isSameOrigin(src)) {
                     return this.addImage(src, src, false);
                 } else if (!this.isSameOrigin(src)) {
                     if (typeof this.options.proxy === 'string') {
