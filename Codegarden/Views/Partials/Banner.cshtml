@@ -1,0 +1,52 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{ 
+<<<<<<< HEAD
+
+    int id = 0;
+
+    try
+    {
+        id = int.Parse(Model.Content.GetPropertyValue("heroPicker").ToString());
+    }
+    catch
+    {
+
+    }
+=======
+    //int id = int.Parse(Model.Content.GetPropertyValue("heroPicker").ToString());
+>>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
+}
+
+<div class="row page-banner">
+    <div class="center">
+<<<<<<< HEAD
+
+        @{
+            try
+            {
+                <img src="@Umbraco.Media(@id).Url" alt="">
+            }
+            catch
+            {
+
+            }
+        }
+=======
+        @*<img src="@Umbraco.Media(@id).Url" alt="">*@
+>>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
+        <div class="overlay">
+
+            @{
+                try
+                {
+                    <h1>@Model.Content.GetPropertyValue("pageTitle")</h1>
+                }
+                catch
+                {
+                    
+                }
+            }
+        </div>
+    </div>
+</div>

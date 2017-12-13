@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    
+}
+<div class="row breadcrumbs">
+    <div class="container">
+        
+        @if (CurrentPage.Ancestors().Any())
+        {
+            foreach (var page in CurrentPage.Ancestors().OrderBy("Level"))
+            {
+                <a href="@page.Url">@page.Name</a> <span>//</span>
+            }
+            <span class="yellow">@CurrentPage.Name</span>
+        }
+    </div>
+</div>

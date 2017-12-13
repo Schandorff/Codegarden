@@ -1,0 +1,169 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "SiteMaster.cshtml";
+
+    var page = Model.Content;
+
+    var speakerQuery = Model.Content.Site().Descendants<Speaker>();
+    var workShopQuery = Model.Content.Site().Descendants<Workshop>();
+
+}
+<div class="row">
+    <div id="test" class="fullscreenVid">
+        <div class="vidOverlay"></div>
+        <div class="vidContainer">
+            @try
+            {
+                <video src="@page.HeroPicker.Url" autoplay loop></video>
+            }
+            catch
+            {
+                <video src="#" autoplay loop></video>
+            }
+            
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="column">
+            <div class="col-md-4">
+                <div class="information">
+                    <h1>@page.EventDateHeadline</h1>
+                    <p>@page.EventPresentation</p>
+                    
+                    <a href="@page.BuyTicketLink" class="btn-primary" title="@page.BuyTicketLinkText">@page.BuyTicketLinkText</a>
+                </div>
+            </div>
+            <div class="col-md-6 overlap">
+                <div class="selling-points">
+                    <h3>@page.WhatYouGetHeadline</h3>
+                    <ul>
+                        @foreach (var item in page.WhatYouGetList)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                    <a href="@page.WhatYouGetLink" class="link-primary">@page.WhatYouGetLinkText</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row coloured">
+    <div class="container">
+        <div class="speakers-container">
+            <div class="center">
+                <h1 class="yellow">
+                    @page.SpeakersHeadline</h1>
+
+                    <p>@page.SpeakersIntroText
+                        <span class="smaller">@page.SpeakersOneLine</span>
+                    </p>
+                    <div class="speakers">
+                        @foreach (var speaker in speakerQuery)
+                        {
+                            <div class="speaker col-md-3">
+                                @try
+                                {
+                                    <img src="@speaker.SpeakerPicture" alt="@speaker.SpeakerName">
+                                }
+                                catch
+                                {
+                                    <img src="#" alt="#">
+                                }
+                                
+                                <a href="@speaker.Url">
+                                    <div class="overlay">
+                                        <h3>@speaker.SpeakerName</h3>
+                                        <p>@speaker.SpeakerDescription</p>
+                                       
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                      
+                    </div>
+                    <a href="" class="btn-secondary">SEE SPEAKERS FOR CODEGARDEN 2018</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row banner">
+    <div class="special-speaker">
+            @*banner masterclas image*@             
+            @try
+                        {
+                            <img src="@page.MasterclassBanner.Url" alt=""/>                    
+                        }
+                        catch                  
+                        {
+                            <img src="~/media/1002/cg-placeholder.svg" alt = ""/>
+                        }
+             
+        
+        <div class="overlay">
+            <div class="speaker">
+                <h3>@page.MasterclassHeadline</h3>
+                <p>@page.MasterclassIntroText</p>
+                <a href="@page.LinkToExclusiveSpeaker" class="link-primary">@page.ExclusiveSpeakerLinkText</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="column">
+            <div class="col-md-6 overlap">
+                <div class="themes">
+                    <h3>@page.ThemesHeadline</h3>
+                    @foreach (var theme in page.ThemesSelector)
+                    {
+                        <div class="item">
+                            <a href="#" class="collapse">@theme.GetPropertyValue("themeTitle")</a>
+                            <div class="collapsed">
+                                <p>@theme.GetPropertyValue("themeDescription")</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="themes-info">
+                    <h1 class="yellow">@page.ThemesPresentHeadline</h1>
+                    @page.ThemesPresentationDescription
+                    <a href="@page.ScheduleLink" class="btn-primary" title="@page.ScheduleLinkText">@page.ScheduleLinkText</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="workshops-container">
+            <div class="center">
+                <h1 class="yellow">@page.WorkshopHeadline</h1>
+                @page.WorkshopsMainDescription
+                <div class="workshops">
+                    @{ 
+                        int i = 1;
+                        string colClass = "col-md-4";
+                    }
+                    @foreach (var workshop in workShopQuery)
+                    {
+                        colClass = (i == 2) ? colClass = "col-md-4 yellow" : colClass = "col-md-4";
+
+                        <div class="@colClass">
+                            <span>Workshop</span>
+                            <h3>@workshop.WorkshopHeadline</h3>
+                            @workshop.WorkshopDescription
+                            <a href="/workshops/#@workshop.WorkshopHeadline.Replace(" ", string.Empty)" class="link-primary">More information and signup</a>
+                        </div>
+                        i++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

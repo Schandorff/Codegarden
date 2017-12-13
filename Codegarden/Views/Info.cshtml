@@ -1,0 +1,84 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Info>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "SiteMaster.cshtml";
+    var page = Model.Content;
+    var aboutPictureQuery = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("aboutPictures");
+}
+
+<div class="row page-banner">
+    <div class="center">
+        <img src="../media/page-banner.jpg" alt="">
+        <div class="overlay">
+            <h1>Codegarden 2019 @page.Name</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row breadcrumbs">
+    <div class="container">
+        <a href="">HOME</a> // <span class="yellow">INFORMATION</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container noPadding">
+        <div class="map">
+            <div class="col-md-4">
+                <h1>
+                    @page.MapHeadline
+                </h1>
+                <p>
+                    @page.MapDescription
+                </p>
+            </div>
+            <div class="col-md-7">
+                <div class="map-container">
+
+                    @Html.Raw(Model.Content.GetPropertyValue("MapHolder"))
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row coloured">
+    <div class="container">
+        <div class="center">
+            <div class="headquarters">
+                <div class="col-md-6">
+                    <h1>@page.AboutHeadline</h1>
+                    <p>
+                        @page.AboutDescription
+                    </p>
+                </div>
+                <div class="col-md-6">                                        
+                    @try
+                    {
+                        <img src="@page.AboutPicture4.Url" alt="">
+                        <img src="@page.AboutPicture1.Url" alt="">
+                        <img src="@page.AboutPicture2.Url" alt="">
+                        <img src="@page.AboutPicture3.Url" alt="">
+                     }
+                    catch
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            <img src="/media/1002/CG-placeholder.svg" alt="" />
+                        }
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+
+        @Html.Raw(Model.Content.GetPropertyValue("ContactFormHolder"))
+
+    </div>
+</div>
+

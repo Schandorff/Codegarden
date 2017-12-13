@@ -1,7 +1,20 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ClientDependency.Core.Mvc
 @{
-	Layout = null;
-}
+    Layout = null;
 
-@* the fun starts here *@
+    Html.RequiresCss("~/css/style.css");
+    Html.RequiresJs("~/js/html2canvas.js");
+    Html.RequiresJs("~/js/script.js");
+}
+    @Html.Partial("Header")
+
+    @Html.Partial("Nav")
+
+    @RenderBody()
+
+    @Html.Partial("Footer")
+  
+
+
 
