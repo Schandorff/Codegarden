@@ -22,7 +22,11 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Masterclass</summary>
 	[PublishedContentModel("masterclass")]
+<<<<<<< HEAD
 	public partial class Masterclass : PublishedContentModel, IMetaBase
+=======
+	public partial class Masterclass : PublishedContentModel
+>>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "masterclass";
@@ -98,6 +102,7 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<IPublishedContent>("masterClassSpeakerPicture"); }
 		}
+<<<<<<< HEAD
 
 		///<summary>
 		/// Meta Description: This is the page description
@@ -134,5 +139,7 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetUmbracoNaviHide(this); }
 		}
+=======
+>>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
 	}
 }

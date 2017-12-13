@@ -51,7 +51,6 @@ $(document).ready(function () {
         e.preventDefault();
         var speakerID = $(this).data('id');
         $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerID, function (result) {
-            console.log(result.Picture)
             $("#speakerName").html(result.Name);
             $("#speakerTitle").html(result.Title);
             $("#speakerFacebook").attr("href", result.Facebook);
@@ -121,6 +120,11 @@ $(document).ready(function () {
         var height = $('#schedulePrint').height();
 
         html2canvas(document.getElementById("schedulePrint"), { logging: false }).then(function (canvas) {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> eccdeab0fd0f30c4044731c1e0a69a89e149ee78
 
             var image = canvas.toDataURL("image/jpeg").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
@@ -153,8 +157,8 @@ $(document).ready(function () {
         if (thisObj.hasClass("checked")) {
             removeSession(sessionTitle);
         } else {
-           checkSiblings();
-           addSession();
+            checkSiblings();
+            addSession();
         }
 
         //Check if any siblings are checked
@@ -231,17 +235,17 @@ $(document).ready(function () {
         thisObj.toggleClass("active");
     }
 
-    $('#open').click(function ( e ) {
+    $('#open').click(function (e) {
         e.preventDefault();
         openPersonal();
     });
 
-    $('#close').click(function ( e ) {
+    $('#close').click(function (e) {
         e.preventDefault();
         closePersonal($(this));
     });
 
-    $('.showFilter').click(function( e ){
+    $('.showFilter').click(function (e) {
         e.preventDefault();
         $(this).toggleClass("clicked");
         $('.filter-container').toggleClass("active");
@@ -250,12 +254,12 @@ $(document).ready(function () {
     function activateFilter(thisObj) {
         thisObj.toggleClass("active");
     }
-    $(".filter-card label").click(function( e ) {
+    $(".filter-card label").click(function (e) {
         activateFilter($(this));
     });
 
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > 100 ){
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 100) {
             $('header').addClass('scroll');
         } else {
             $('header').removeClass('scroll');
