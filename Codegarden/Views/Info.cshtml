@@ -6,14 +6,7 @@
     var aboutPictureQuery = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("aboutPictures");
 }
 
-<div class="row page-banner">
-    <div class="center">
-        <img src="../media/page-banner.jpg" alt="">
-        <div class="overlay">
-            <h1>Codegarden 2019 @page.Name</h1>
-        </div>
-    </div>
-</div>
+@Html.Partial("Banner")
 
 <div class="row breadcrumbs">
     <div class="container">
