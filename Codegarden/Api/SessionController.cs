@@ -22,13 +22,19 @@ namespace CodeGarden.Api
                 s.Title = (session.Properties["sessionTitle"].Value != null) ? session.Properties["sessionTitle"].Value.ToString() : "Title";
                 s.DescriptionHeadline = (session.Properties["sessionDescriptionHeadline"].Value != null) ? session.Properties["sessionDescriptionHeadline"].Value.ToString() : "SessionDescHeadline";
                 s.Description = (session.Properties["sessionDescription"].Value != null) ? session.Properties["sessionDescription"].Value.ToString() : "Description";
-                s.Venue = (session.Properties["sessionVenue"].Value != null) ? session.Properties["sessionVenue"].Value.ToString() : "Venue";
-                s.Date = (session.Properties["sessionDate"].Value != null) ? session.Properties["sessionDate"].Value.ToString() : "Date";
-                s.StartTime = (session.Properties["sessionStartTime"].Value != null) ? session.Properties["sessionStartTime"].Value.ToString() : "Starttime";
-                s.EndTime = (session.Properties["sessionEndTime"].Value != null) ? session.Properties["sessionEndTime"].ToString() : "Endtime";
+                var venue = (session.Properties["sessionVenue"].Value != null) ? session.Properties["sessionVenue"].Value.ToString() : "Venue";
+                s.Venue = Umbraco.GetPreValueAsString(int.Parse(venue));
+
+                var date = (session.Properties["sessionDate"].Value != null) ? session.Properties["sessionDate"].Value.ToString() : "Date";
+                s.Date = Umbraco.GetPreValueAsString(int.Parse(date));
+
+                var startTimeID = (session.Properties["sessionStartTime"].Value != null) ? session.Properties["sessionStartTime"].Value.ToString() : "Starttime";
+                s.StartTime = Umbraco.GetPreValueAsString(int.Parse(startTimeID));
+
+                var endTimeID = (session.Properties["sessionEndTime"].Value != null) ? session.Properties["sessionEndTime"].Value.ToString() : "endtime";
+                s.EndTime = Umbraco.GetPreValueAsString(int.Parse(endTimeID));
                 s.Presentation = (session.Properties["sessionPresentation"].Value != null) ? session.Properties["sessionPresentation"].Value.ToString() : "Presentation";
                 s.Video = (session.Properties["sessionVideo"].Value != null) ? session.Properties["sessionVideo"].Value.ToString() : "Video";
-                //s.Speakers = (session.Properties["sessionSpeakers"].Value != null) ? session.Properties["sessionSpeakers"].Value.ToString() : "speaker";
 
                 s.Speakers = this.getSpeaker(session.Properties["sessionSpeakers"].Value.ToString());
 
@@ -57,7 +63,17 @@ namespace CodeGarden.Api
                 var s = new Speaker();
                 s.Id = sessionSpeaker.Id;
                 s.Name = sessionSpeaker.Name;
+                try
+                {
+                    s.Picture = this.getImg(sessionSpeaker.Properties["speakerPicture"].Value.ToString());
+                }
+                catch
+                {
+                    s.Picture = "/media/1002/cg-placeholder.svg";
+                };
+
                 
+
 
                 speakers.Add(s);
             }
@@ -65,6 +81,16 @@ namespace CodeGarden.Api
             return speakers;
         }
 
+        private string getImg(string guidString)
+        {
+            var ms = Services.MediaService;
+
+            var imgGuid = Guid.Parse(guidString.Substring(12));
+
+            var img = ms.GetById(imgGuid);
+
+            return Umbraco.Media(img.Id).Url;
+        }
 
         //The session object
         public class Session
@@ -96,6 +122,8 @@ namespace CodeGarden.Api
             public int Id { get; set; }
 
             public string Name { get; set; }
+
+            public string Picture { get; set; }
         }
 
 
