@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Speakers</summary>
 	[PublishedContentModel("speakers")]
-	public partial class Speakers : PublishedContentModel
+	public partial class Speakers : PublishedContentModel, IHeroMedia, IMetaBase
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "speakers";
@@ -43,6 +43,69 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Speakers, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Hero picker: Choose video or image for header
+		///</summary>
+		[ImplementPropertyType("heroPicker")]
+		public IPublishedContent HeroPicker
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetHeroPicker(this); }
+		}
+
+		///<summary>
+		/// Is video: Click this if a video was chosen
+		///</summary>
+		[ImplementPropertyType("isVideo")]
+		public bool IsVideo
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetIsVideo(this); }
+		}
+
+		///<summary>
+		/// Page title: Page title for banner heading
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Meta Description: This is the page description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords: This is the page keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// Meta Ttitle: This is the page title
+		///</summary>
+		[ImplementPropertyType("metaTtitle")]
+		public string MetaTtitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTtitle(this); }
+		}
+
+		///<summary>
+		/// Hide in navigation?: Should this page be hidden from the navigation?
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetUmbracoNaviHide(this); }
 		}
 	}
 }

@@ -5,7 +5,7 @@
 
     var page = Model.Content;
 
-    var speakerQuery = Model.Content.Site().Descendants<Speaker>();
+    var speakerQuery = Model.Content.Site().Descendants<Speaker>().Take(3);
     var workShopQuery = Model.Content.Site().Descendants<Workshop>();
 
 }

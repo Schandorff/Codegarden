@@ -29,6 +29,9 @@ namespace Umbraco.Web.PublishedContentModels
 
 		/// <summary>Is video</summary>
 		bool IsVideo { get; }
+
+		/// <summary>Page title</summary>
+		string PageTitle { get; }
 	}
 
 	/// <summary>Hero media</summary>
@@ -79,5 +82,17 @@ namespace Umbraco.Web.PublishedContentModels
 
 		/// <summary>Static getter for Is video</summary>
 		public static bool GetIsVideo(IHeroMedia that) { return that.GetPropertyValue<bool>("isVideo"); }
+
+		///<summary>
+		/// Page title: Page title for banner heading
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return GetPageTitle(this); }
+		}
+
+		/// <summary>Static getter for Page title</summary>
+		public static string GetPageTitle(IHeroMedia that) { return that.GetPropertyValue<string>("pageTitle"); }
 	}
 }

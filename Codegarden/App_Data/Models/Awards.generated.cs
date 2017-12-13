@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Awards</summary>
 	[PublishedContentModel("awards")]
-	public partial class Awards : PublishedContentModel, IMetaBase
+	public partial class Awards : PublishedContentModel, IHeroMedia, IMetaBase
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "awards";
@@ -100,6 +100,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// RenderJoin: Should Join Competition be shown?
+		///</summary>
+		[ImplementPropertyType("renderJoin")]
+		public bool RenderJoin
+		{
+			get { return this.GetPropertyValue<bool>("renderJoin"); }
+		}
+
+		///<summary>
 		/// Rules Headline: This is the headline for the rules section
 		///</summary>
 		[ImplementPropertyType("rulesHeadline")]
@@ -142,6 +151,33 @@ namespace Umbraco.Web.PublishedContentModels
 		public string VoteHeadline
 		{
 			get { return this.GetPropertyValue<string>("voteHeadline"); }
+		}
+
+		///<summary>
+		/// Hero picker: Choose video or image for header
+		///</summary>
+		[ImplementPropertyType("heroPicker")]
+		public IPublishedContent HeroPicker
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetHeroPicker(this); }
+		}
+
+		///<summary>
+		/// Is video: Click this if a video was chosen
+		///</summary>
+		[ImplementPropertyType("isVideo")]
+		public bool IsVideo
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetIsVideo(this); }
+		}
+
+		///<summary>
+		/// Page title: Page title for banner heading
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetPageTitle(this); }
 		}
 
 		///<summary>

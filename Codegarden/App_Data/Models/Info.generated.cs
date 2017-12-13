@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Info</summary>
 	[PublishedContentModel("info")]
-	public partial class Info : PublishedContentModel, IMetaBase
+	public partial class Info : PublishedContentModel, IHeroMedia, IMetaBase
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "info";
@@ -160,6 +160,33 @@ namespace Umbraco.Web.PublishedContentModels
 		public IHtmlString MapHolder
 		{
 			get { return this.GetPropertyValue<IHtmlString>("mapHolder"); }
+		}
+
+		///<summary>
+		/// Hero picker: Choose video or image for header
+		///</summary>
+		[ImplementPropertyType("heroPicker")]
+		public IPublishedContent HeroPicker
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetHeroPicker(this); }
+		}
+
+		///<summary>
+		/// Is video: Click this if a video was chosen
+		///</summary>
+		[ImplementPropertyType("isVideo")]
+		public bool IsVideo
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetIsVideo(this); }
+		}
+
+		///<summary>
+		/// Page title: Page title for banner heading
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetPageTitle(this); }
 		}
 
 		///<summary>
