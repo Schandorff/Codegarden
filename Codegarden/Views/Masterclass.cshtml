@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Masterclass>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "SiteMaster.cshtml";
+    var page = Model.Content;
+}
+
+@Html.Partial("Banner")
+@Html.Partial("Breadcrumbs")
+
+<div class="row">
+    <div class="container noPadding">
+        <div class="workshop">
+            <div class="col-md-3">
+                <div class="speakerInfo">
+                    <div class="speakerImg">
+                        @try
+                        {
+                            <img src="@page.MasterClassSpeakerPicture.Url" alt="masterclass speaker picture" />
+                        }
+                        catch
+                        {
+                            <img src="~/media/1002/cg-placeholder.svg" alt="" />
+                        }
+                    </div>
+                       
+                            <h4 class="yellow">@page.MasterClassSpeakerName</h4>
+                    <div class="workshopInfo Center">
+                        <a>@page.MasterClassInformation</a>
+                        <a class="btn-secondary" href="#">@page.MasterClassBuyText</a>
+                    </div>
+                    </div>
+            </div>
+
+            <div class="col-md-6">
+                <h2>@page.MasterClassDescriptionHeadline</h2>
+                <div class="masterclassDescription">@page.MasterClassDescription</div>                        
+            </div>
+        </div>
+    </div>
+</div>

@@ -51,6 +51,7 @@ $(document).ready(function () {
         e.preventDefault();
         var speakerID = $(this).data('id');
         $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerID, function (result) {
+<<<<<<< HEAD
             console.log(result.Picture)
             $("#speakerName").html(result.Name);
             $("#speakerTitle").html(result.Title);
@@ -60,6 +61,17 @@ $(document).ready(function () {
             $("#speakerDescriptionHeadline").html(result.DescriptionHeadline);
             $("#speakerDescription").html(result.Description);
             $("#speakerPicture").attr("src", result.Picture);
+=======
+            //console.log(result.Picture)
+                $("#speakerName").html(result.Name);
+                $("#speakerTitle").html(result.Title);
+                $("#speakerFacebook").attr("href", result.Facebook);
+                $("#speakerLinkedin").attr("href", result.LinkedIn);
+                $("#speakerTwitter").attr("href", result.Twitter);
+                $("#speakerDescriptionHeadline").html(result.DescriptionHeadline);
+                $("#speakerDescription").html(result.Description);
+                $("#speakerPicture").attr("src", result.Picture);
+>>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
         });
         showSpeaker($(this));
     });
