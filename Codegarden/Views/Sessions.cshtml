@@ -39,57 +39,36 @@
             @{
 
                 List<string> dates = new List<string>();
-
                 foreach (var session in AllSessions)
                 {
                     dates.Add(session.SessionDate);
                 }
-
                 dates = new HashSet<string>(dates).ToList();
-
                 foreach (var date in dates)
                 {
-
                     var filterSessions = Model.Content.Site().Descendants<Session>()
                                             .Where(x => x.SessionDate == date);
-
                     List<string> times = new List<string>();
-
                     foreach (var singleTime in filterSessions)
                     {
                         times.Add(singleTime.SessionStartTime);
                     }
-
                     times = new HashSet<string>(times).ToList();
-
                     <div class="day">
-
-
                         @{
-
                             DateTime formattedDate = DateTime.ParseExact(date, "dd.MM.yyyy", null);
-
                         }
-
                         <h3>@formattedDate.ToString("dddd d. MMM yyyy")</h3>
-
                         @{
                             foreach (var time in times)
                             {
-
                                 <div class="schedule-row">
-
                                     <div class="schedule-time">@time</div>
-
                                     @{
-
                                         var sessions = Model.Content.Site().Descendants<Session>()
                                             .Where(x => x.SessionStartTime == time)
                                             .OrderBy(x => x.SessionVenue)
                                             .ToArray();
-
-
-
                                         if (sessions.Any(x => x.SessionVenue[0] == '1'))
                                         {
                                             foreach (var session in sessions)
@@ -103,7 +82,6 @@
 
                                                             @foreach (var speaker in session.SessionSpeakers)
                                                             {
-
                                                                 <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
                                                             }
 
@@ -219,10 +197,10 @@
                                         }
                                     }
                                 </div>
-                                        }
+                            }
                         }
                     </div>
-                                        }
+                }
 
             }
 
