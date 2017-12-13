@@ -1,4 +1,4 @@
-Skip to content This repository Search Pull requests Issues Marketplace Explore @npes Sign out Unwatch 4 Unstar 3 Fork 1 Schandorff/Codegarden Code Issues 16 Pull requests 0 Boards Reports Projects 0 Wiki Insights Branch: views Find file Copy pathCodegarden/Codegarden/css/style.css 8382848 27 minutes ago @Gripping Gripping style sheet updated 2 contributors @Gripping @Schandorff RawBlameHistory 1053 lines (1009 sloc) 34.6 KB @charset "UTF-8";
+﻿Skip to content This repository Search Pull requests Issues Marketplace Explore @npes Sign out Unwatch 4 Unstar 3 Fork 1 Schandorff/Codegarden Code Issues 16 Pull requests 0 Boards Reports Projects 0 Wiki Insights Branch: views Find file Copy pathCodegarden/Codegarden/css/style.css 8382848 27 minutes ago @Gripping Gripping style sheet updated 2 contributors @Gripping @Schandorff RawBlameHistory 1053 lines (1009 sloc) 34.6 KB @charset "UTF-8";
 /* DESC: Group 4 Codegarden exam */
 * {
     margin: 0;
@@ -342,26 +342,6 @@ h6 {
         justify-content: space-between;
     }
 
-<<<<<<< HEAD
-.row .container .schedule {
-  padding-bottom: 75px;
-  float: left;
-  width: 100%; }
-  .row .container .schedule .link-primary {
-    font-size: 1.125rem;
-    float: right;
-    margin-bottom: 20px; }
-  .row .container .schedule .day {
-    float: left;
-    width: 100%;
-    margin-bottom: 20px; }
-    .row .container .schedule .day h3 {
-      margin-bottom: 10px; }
-    .row .container .schedule .day .schedule-row {
-      display: flex;
-      margin-bottom: 15px; }
-      .row .container .schedule .day .schedule-row .schedule-time {
-=======
         .row .container .competition .column .competitionForm div .select2-container {
             text-align: left;
             width: calc(100% / 2.4) !important;
@@ -410,7 +390,6 @@ h6 {
 }
 
     .row .container .map .col-md-4 {
->>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -437,26 +416,6 @@ h6 {
             color: #fff;
             text-transform: uppercase;
             text-decoration: none;
-<<<<<<< HEAD
-            display: block; }
-          .row .container .schedule .day .schedule-row .schedule-card .desc .speaker {
-            margin-left: 5px; }
-            .row .container .schedule .day .schedule-row .schedule-card .desc .speaker a {
-              color: #737476;
-              opacity: 0.6;
-              display: inline-block;
-              font-size: 0.875rem;
-              text-decoration: none; }
-        .row .container .schedule .day .schedule-row .schedule-card .actions {
-          width: 40px;
-          height: 85px;
-          background-color: #F6F6F6;
-          display: flex;
-          flex-direction: column;
-          justify-content: center; }
-          .row .container .schedule .day .schedule-row .schedule-card .actions span {
-            height: 50%;
-=======
             letter-spacing: 1px;
             font-size: 0.875rem;
             transition: all 0.3s ease-in-out;
@@ -582,6 +541,8 @@ h6 {
 
 .row .container .schedule {
     padding-bottom: 75px;
+    float: left;
+    width: 100%;
 }
 
     .row .container .schedule .link-primary {
@@ -601,7 +562,6 @@ h6 {
         }
 
         .row .container .schedule .day .schedule-row {
->>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
             display: flex;
             margin-bottom: 15px;
         }
@@ -610,201 +570,6 @@ h6 {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-<<<<<<< HEAD
-                width: 100%;
-                height: 100%; }
-                .row .container .schedule .day .schedule-row .schedule-card .actions span.check a img {
-                  height: 12px; }
-                  .row .container .schedule .day .schedule-row .schedule-card .actions span.check a img:nth-last-of-type(1) {
-                    display: none; }
-              .row .container .schedule .day .schedule-row .schedule-card .actions span.check.checked {
-                background-color: #FFC80A; }
-                .row .container .schedule .day .schedule-row .schedule-card .actions span.check.checked a img {
-                  display: none; }
-                  .row .container .schedule .day .schedule-row .schedule-card .actions span.check.checked a img:nth-last-of-type(1) {
-                    display: block; }
-            .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext {
-              display: none;
-              width: 150px;
-              position: absolute;
-              right: -215px;
-              background-color: #FFC80A;
-              height: auto;
-              padding: 20px;
-              z-index: 9;
-              color: #fff; }
-              .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext:before {
-                content: "";
-                position: absolute;
-                top: 50%;
-                left: -20px;
-                z-index: 1;
-                height: 28px;
-                width: 30px;
-                transform: translateY(-50%);
-                background: linear-gradient(-45deg, #FFC80A 17px, transparent 17px, transparent 21px, transparent 21px), linear-gradient(225deg, #FFC80A 17px, transparent 17px, transparent 21px, transparent 21px);
-                background-position: left 0px, right bottom;
-                background-size: 100% 50%;
-                background-repeat: no-repeat; }
-          .row .container .schedule .day .schedule-row .schedule-card .actions .spacer {
-            width: 100%;
-            height: 1px;
-            background-color: #dddddd; }
-        .row .container .schedule .day .schedule-row .schedule-card.inactive {
-          box-shadow: none; }
-    .row .container .schedule .day:nth-of-type(2) .schedule-row:nth-of-type(1) .schedule-card:nth-of-type(2) .actions .tooltiptext {
-      display: block; }
-    .row .container .schedule .day:nth-last-of-type(1) {
-      margin-bottom: 50px; }
-  .row .container .schedule .schedule-desc {
-    display: flex;
-    margin-bottom: 40px;
-    width: 100%; }
-    .row .container .schedule .schedule-desc .schedule-time {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bolder; }
-      .row .container .schedule .schedule-desc .schedule-time p {
-        font-weight: 600; }
-    .row .container .schedule .schedule-desc .schedule-card {
-      margin-left: 10px;
-      display: flex;
-      justify-content: center; }
-      .row .container .schedule .schedule-desc .schedule-card p {
-        font-weight: 600; }
-  .row .container .schedule .btn-secondary {
-    margin: 0 auto;
-    visibility: hidden;
-    opacity: 0; }
-    .row .container .schedule .btn-secondary.active {
-      visibility: visible;
-      opacity: 1; }
-
-.personal-container {
-  width: 100%;
-  height: auto;
-  position: fixed;
-  bottom: 0px;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  align-items: center; }
-  .personal-container .personal-topbar {
-    height: 50px;
-    background-color: #3B3B3B;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; }
-    .personal-container .personal-topbar .container {
-      display: flex;
-      justify-content: space-between; }
-      .personal-container .personal-topbar .container p {
-        font-size: 1.125rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #fff; }
-      .personal-container .personal-topbar .container a {
-        text-decoration: none;
-        color: #fff;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 0.875rem;
-        display: flex;
-        align-items: center; }
-        .personal-container .personal-topbar .container a:after {
-          content: '▲';
-          color: #fff;
-          font-size: 0.625rem;
-          margin-left: 5px; }
-      .personal-container .personal-topbar .container #close {
-        display: none; }
-        .personal-container .personal-topbar .container #close:after {
-          content: '▼';
-          color: #fff;
-          font-size: 0.625rem;
-          margin-left: 5px; }
-  .personal-container .personal-schedule {
-    background-color: #fff;
-    height: calc(450px - 50px);
-    overflow-y: auto;
-    width: 100%;
-    box-sizing: border-box;
-    padding-top: 15px;
-    position: relative; }
-    .personal-container .personal-schedule #pdfBackground {
-      width: auto;
-      height: 100vh;
-      position: fixed;
-      bottom: -100vh;
-      left: 0; }
-    .personal-container .personal-schedule .btn-secondary {
-      margin: 0 auto;
-      margin-bottom: 15px; }
-    .personal-container .personal-schedule .sessionCenter {
-      background-color: #fff;
-      max-width: 740px;
-      overflow: hidden;
-      overflow-y: auto;
-      margin: 0 auto; }
-      .personal-container .personal-schedule .sessionCenter h3 {
-        width: 100%;
-        display: block;
-        float: left; }
-    .personal-container .personal-schedule .personal-row {
-      display: block;
-      width: 100%;
-      max-width: 350px;
-      float: left;
-      margin-right: 3%;
-      margin-bottom: 3%; }
-      .personal-container .personal-schedule .personal-row:nth-of-type(2n) {
-        margin-right: 0px; }
-      .personal-container .personal-schedule .personal-row:nth-last-of-type(1) {
-        margin-bottom: 0px; }
-      .personal-container .personal-schedule .personal-row:nth-last-of-type(2) {
-        margin-bottom: 0px; }
-      .personal-container .personal-schedule .personal-row .personal-card {
-        display: flex;
-        width: 100%; }
-        .personal-container .personal-schedule .personal-row .personal-card .personal-time {
-          width: 85px;
-          height: 85px;
-          background-color: #3B3B3B;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #fff;
-          font-weight: bold;
-          border-right: 1px solid #e6e6e6; }
-        .personal-container .personal-schedule .personal-row .personal-card .personal-session {
-          text-align: left;
-          height: 85px;
-          box-sizing: border-box;
-          padding: 20px;
-          background-color: #3B3B3B;
-          display: flex;
-          align-items: center;
-          width: calc(100% - 85px); }
-          .personal-container .personal-schedule .personal-row .personal-card .personal-session p {
-            width: 100%;
-            color: #fff;
-            font-weight: bold; }
-  .personal-container.active {
-    visibility: visible;
-    opacity: 1;
-    margin-bottom: -400px; }
-    .personal-container.active.clicked {
-      margin-bottom: 0px !important; }
-      .personal-container.active.clicked #open {
-        display: none; }
-      .personal-container.active.clicked #close {
-        display: block; }
-=======
                 font-weight: bolder;
                 color: #fff;
                 background-color: #3B3B3B;
@@ -830,13 +595,17 @@ h6 {
                         display: block;
                     }
 
-                    .row .container .schedule .day .schedule-row .schedule-card .desc .speaker a {
-                        color: #737476;
-                        opacity: 0.6;
-                        display: inline-block;
-                        font-size: 0.875rem;
-                        text-decoration: none;
+                    .row .container .schedule .day .schedule-row .schedule-card .desc .speaker {
+                        margin-left: 5px;
                     }
+
+                        .row .container .schedule .day .schedule-row .schedule-card .desc .speaker a {
+                            color: #737476;
+                            opacity: 0.6;
+                            display: inline-block;
+                            font-size: 0.875rem;
+                            text-decoration: none;
+                        }
 
                 .row .container .schedule .day .schedule-row .schedule-card .actions {
                     width: 40px;
@@ -904,7 +673,7 @@ h6 {
                             background-color: #FFC80A;
                             height: auto;
                             padding: 20px;
-                            z-index: 100;
+                            z-index: 9;
                             color: #fff;
                         }
 
@@ -914,7 +683,7 @@ h6 {
                                 top: 50%;
                                 left: -20px;
                                 z-index: 1;
-                                height: 30px;
+                                height: 28px;
                                 width: 30px;
                                 transform: translateY(-50%);
                                 background: linear-gradient(-45deg, #FFC80A 17px, transparent 17px, transparent 21px, transparent 21px), linear-gradient(225deg, #FFC80A 17px, transparent 17px, transparent 21px, transparent 21px);
@@ -938,7 +707,7 @@ h6 {
         }
 
         .row .container .schedule .day:nth-last-of-type(1) {
-            margin-bottom: 0px;
+            margin-bottom: 50px;
         }
 
     .row .container .schedule .schedule-desc {
@@ -967,7 +736,190 @@ h6 {
             .row .container .schedule .schedule-desc .schedule-card p {
                 font-weight: 600;
             }
->>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
+
+    .row .container .schedule .btn-secondary {
+        margin: 0 auto;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+        .row .container .schedule .btn-secondary.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+.personal-container {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    align-items: center;
+}
+
+    .personal-container .personal-topbar {
+        height: 50px;
+        background-color: #3B3B3B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+        .personal-container .personal-topbar .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .personal-container .personal-topbar .container p {
+                font-size: 1.125rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #fff;
+            }
+
+            .personal-container .personal-topbar .container a {
+                text-decoration: none;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 0.875rem;
+                display: flex;
+                align-items: center;
+            }
+
+                .personal-container .personal-topbar .container a:after {
+                    content: '▲';
+                    color: #fff;
+                    font-size: 0.625rem;
+                    margin-left: 5px;
+                }
+
+            .personal-container .personal-topbar .container #close {
+                display: none;
+            }
+
+                .personal-container .personal-topbar .container #close:after {
+                    content: '▼';
+                    color: #fff;
+                    font-size: 0.625rem;
+                    margin-left: 5px;
+                }
+
+    .personal-container .personal-schedule {
+        background-color: #fff;
+        height: calc(450px - 50px);
+        overflow-y: auto;
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 15px;
+        position: relative;
+    }
+
+        .personal-container .personal-schedule #pdfBackground {
+            width: auto;
+            height: 100vh;
+            position: fixed;
+            bottom: -100vh;
+            left: 0;
+        }
+
+        .personal-container .personal-schedule .btn-secondary {
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+
+        .personal-container .personal-schedule .sessionCenter {
+            background-color: #fff;
+            max-width: 740px;
+            overflow: hidden;
+            overflow-y: auto;
+            margin: 0 auto;
+        }
+
+            .personal-container .personal-schedule .sessionCenter h3 {
+                width: 100%;
+                display: block;
+                float: left;
+            }
+
+        .personal-container .personal-schedule .personal-row {
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            float: left;
+            margin-right: 3%;
+            margin-bottom: 3%;
+        }
+
+            .personal-container .personal-schedule .personal-row:nth-of-type(2n) {
+                margin-right: 0px;
+            }
+
+            .personal-container .personal-schedule .personal-row:nth-last-of-type(1) {
+                margin-bottom: 0px;
+            }
+
+            .personal-container .personal-schedule .personal-row:nth-last-of-type(2) {
+                margin-bottom: 0px;
+            }
+
+            .personal-container .personal-schedule .personal-row .personal-card {
+                display: flex;
+                width: 100%;
+            }
+
+                .personal-container .personal-schedule .personal-row .personal-card .personal-time {
+                    width: 85px;
+                    height: 85px;
+                    background-color: #3B3B3B;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    font-weight: bold;
+                    border-right: 1px solid #e6e6e6;
+                }
+
+                .personal-container .personal-schedule .personal-row .personal-card .personal-session {
+                    text-align: left;
+                    height: 85px;
+                    box-sizing: border-box;
+                    padding: 20px;
+                    background-color: #3B3B3B;
+                    display: flex;
+                    align-items: center;
+                    width: calc(100% - 85px);
+                }
+
+                    .personal-container .personal-schedule .personal-row .personal-card .personal-session p {
+                        width: 100%;
+                        color: #fff;
+                        font-weight: bold;
+                    }
+
+    .personal-container.active {
+        visibility: visible;
+        opacity: 1;
+        margin-bottom: -400px;
+    }
+
+        .personal-container.active.clicked {
+            margin-bottom: 0px !important;
+        }
+
+            .personal-container.active.clicked #open {
+                display: none;
+            }
+
+            .personal-container.active.clicked #close {
+                display: block;
+            }
 
 .row .container .speakers {
     width: 100%;
@@ -1599,23 +1551,15 @@ header.scroll {
             }
 
 .row.breadcrumbs .container {
-<<<<<<< HEAD
-  padding: 25px 0 25px 0;
-  font-weight: bold;
-  text-transform: uppercase; }
-  .row.breadcrumbs .container a {
-    text-decoration: none;
-    color: #3B3B3B; }
-=======
     padding: 25px 0 25px 0;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
     .row.breadcrumbs .container a {
         text-decoration: none;
         color: #3B3B3B;
     }
->>>>>>> 9b7ed583f0a525a79693d2aa1607db2b0589c91a
 
 /* MODALS */
 .speaker-profile {
