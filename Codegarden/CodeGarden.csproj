@@ -254,6 +254,7 @@
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="css\style.css" />
+    <Content Include="js\html2canvas.js" />
     <Content Include="js\script.js" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
@@ -284,7 +285,6 @@
     <Content Include="css\scss\_sessions.scss" />
     <Content Include="css\scss\_speakers.scss" />
     <Content Include="css\scss\_workshops.scss" />
-    <Content Include="css\style.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />

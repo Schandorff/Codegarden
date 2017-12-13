@@ -51,6 +51,7 @@ $(document).ready(function () {
         e.preventDefault();
         var speakerID = $(this).data('id');
         $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerID, function (result) {
+            console.log(result.Picture)
             $("#speakerName").html(result.Name);
             $("#speakerTitle").html(result.Title);
             $("#speakerFacebook").attr("href", result.Facebook);
@@ -121,8 +122,6 @@ $(document).ready(function () {
 
         html2canvas(document.getElementById("schedulePrint"), { logging: false }).then(function (canvas) {
 
-
-
             var image = canvas.toDataURL("image/jpeg").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
             var width = $("#schedulePrint").width() / 6;
@@ -149,69 +148,51 @@ $(document).ready(function () {
         var session = thisObj.parents(".schedule-card");
         var time = session.parent().find(".schedule-time").html();
         var sessionTitle = session.find(".session").html();
-
         //Check if checked already
         if (thisObj.hasClass("checked")) {
             removeSession(sessionTitle);
         } else {
-            checkSiblings();
-            addSession();
+           checkSiblings();
+           addSession();
         }
-
         //Check if any siblings are checked
         function checkSiblings() {
             session.parents(".schedule-row").find(".checked").toggleClass("checked");
         }
-
         //Remove session
         function removeSession(title) {
             var getRemoveTitle = title;
-
             $(".personal-row").each(function () {
                 p = $(this).find("p");
-
                 if (getRemoveTitle == p.html()) {
                     $(this).remove();
                 }
             });
         }
-
         //Add session
         function addSession() {
-
             var sessions = [];
-
             thisObj.toggleClass("checked");
-
             $(".schedule-card").each(function (e) {
                 if ($(this).find(".check").hasClass("checked")) {
-
                     sessionTime = $(this).parent().find(".schedule-time").html();
                     sessionTitle = $(this).find(".session").html();
                     sessionDay = $(this).parents(".day").find("h3").html();
                     sessionObj = {};
-
                     sessionObj.Time = sessionTime;
                     sessionObj.Title = sessionTitle;
                     sessionObj.Day = sessionDay;
-
                     sessions.push(sessionObj);
                 }
             });
-
             thisObj.toggleClass("checked");
-
             $(".sessionCenter").html("");
-
             sessions.forEach(function (sessionItem) {
                 var sessionHtml = "<div class='personal-row'><div class='personal-card'><div class='personal-time'>" + sessionItem.Time + "</div><div class='personal-session'><p>" + sessionItem.Title + "</p></div></div></div>";
-
                 if ($(".sessionCenter").find("h3").last().html() != sessionItem.Day) {
                     $(".sessionCenter").append("<h3 class='day'>" + sessionItem.Day + "</h3>");
                 }
-
                 $(".sessionCenter").append(sessionHtml);
-
             });
         }
     }
@@ -232,17 +213,17 @@ $(document).ready(function () {
         thisObj.toggleClass("active");
     }
 
-    $('#open').click(function (e) {
+    $('#open').click(function ( e ) {
         e.preventDefault();
         openPersonal();
     });
 
-    $('#close').click(function (e) {
+    $('#close').click(function ( e ) {
         e.preventDefault();
         closePersonal($(this));
     });
 
-    $('.showFilter').click(function (e) {
+    $('.showFilter').click(function( e ){
         e.preventDefault();
         $(this).toggleClass("clicked");
         $('.filter-container').toggleClass("active");
@@ -251,12 +232,12 @@ $(document).ready(function () {
     function activateFilter(thisObj) {
         thisObj.toggleClass("active");
     }
-    $(".filter-card label").click(function (e) {
+    $(".filter-card label").click(function( e ) {
         activateFilter($(this));
     });
 
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 100 ){
             $('header').addClass('scroll');
         } else {
             $('header').removeClass('scroll');
