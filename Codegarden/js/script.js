@@ -339,6 +339,7 @@ $(document).ready(function () {
     function singleSession(thisObj) {
         var sessionId = thisObj.data('id');
         $.getJSON("/Umbraco/Api/Session/GetSession?sID=" + sessionId, function (result) {
+            console.log(result);
             sessionHtml = "<div class='topbar'></div><div class='session-content'><div class='left'></div><div class='right'></dib></div>";
             modalAndBg(thisObj);
             $(".modal").append("<div class='single-session'></div>");
@@ -357,15 +358,51 @@ $(document).ready(function () {
     function singleSpeaker(thisObj) {
         var speakerId = thisObj.data('id');
         $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerId, function (result) {
+            console.log(result);
             speakerHtml = "";
             modalAndBg(thisObj);
             $(".modal").append("<div class='speaker-profile'></div>");
 
-            console.log(result);
-
+            $(".speaker-profile").append("<img");
             
         });
     }
+
+
+    //<div class="speaker-profile">
+
+    //    @try
+    //            {
+    //        <img id="speakerPicture" class="profile-picture" src="" alt="" />
+    //    }
+    //    catch
+    //            {
+    //        <img id="speakerPicture" class="profile-picture" src="~/media/1002/cg-placeholder.svg" alt="" />
+    //    }
+
+    //    <h2 id="speakerName"></h2>
+
+    //    <p id="speakerTitle" class="title"></p>
+    //    <span class="social-links">
+    //        <a id="speakerFacebook" href="" target="_blank"><img src="~/media/SocialMediaIcons/yellow-facebook.svg" alt=""></a>
+    //            <a id="speakerLinkedin" href="" target="_blank"><img src="~/media/SocialMediaIcons/yellow-linkedin.svg" alt=""></a>
+    //                <a id="speakerTwitter" href="" target="_blank"><img src="~/media/SocialMediaIcons/yellow-twitter.svg" alt=""></a>
+    //        </span>
+
+    //                @*foreach (var session in sessionQuery)
+    //        {
+    //                    <div class="session">
+    //                        <span>@session.SessionDescriptionHeadline</span>
+    //                        <p>@session.SessionDescription</p>
+    //                    </div>
+    //                }*@
+
+    //        <div class="info">
+    //                    <span id="speakerDescriptionHeadline"></span>
+    //                    <p id="speakerDescription"></p>
+    //                </div>
+    //                @*}*@
+    //</div>
 
     $(".session").click(function (e) {
         e.preventDefault();
