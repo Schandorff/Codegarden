@@ -16,8 +16,6 @@
 @import "sessions";
 @import "speakers";
 @import "workshops";
-@import "masterclass";
-
 
 .fullscreenVid {
     width: 100%;
@@ -727,6 +725,55 @@ header {
 
 }
 
+.single-session {
+    width: 100%;
+    height: auto;
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+
+    .topbar {
+        height: 45px;
+        margin-right: 2.1%;
+        margin-left: 2.1%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid lighten($charcoal, 20%);
+        margin-bottom: 15px;
+
+        h3 {
+            color: $charcoal;
+        }
+    }
+
+    .session-content {
+        display: flex;
+        justify-content: space-around;
+
+        .left {
+            @extend .col-md-8;
+            min-height: 100px;
+            box-sizing: border-box;
+            padding-right: 15px;
+            padding-bottom: 15px;
+
+            h3 {
+                color: $font-c;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: $f-n;
+            }
+        }
+
+        .right {
+            @extend .col-md-3;
+            min-height: 100px;
+        }
+    }
+}
+
 .modal {
     z-index: 101;
     width: 50%;
@@ -741,7 +788,7 @@ header {
     visibility: hidden;
     transition: all 0.3s ease-in-out;
 
-    .close {
+    .modal-close {
 
         width: 30px;
         height: 30px;
@@ -761,6 +808,7 @@ header {
             }
             &:nth-of-type(2) {
                 transform: rotate(-45deg);
+                margin-top: -1px;
             }
         }
     }

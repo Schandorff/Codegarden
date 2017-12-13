@@ -42,45 +42,6 @@ $(document).ready(function () {
         expandCollapse($(this));
     });
 
-    function showSpeaker(thisObj) {
-        $('.modal').toggleClass("show");
-        $('.modal-bg').toggleClass("show");
-    }
-
-    $('.getSpeaker').click(function (e) {
-        e.preventDefault();
-        var speakerID = $(this).data('id');
-        $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerID, function (result) {
-            $("#speakerName").html(result.Name);
-            $("#speakerTitle").html(result.Title);
-            $("#speakerFacebook").attr("href", result.Facebook);
-            $("#speakerLinkedin").attr("href", result.LinkedIn);
-            $("#speakerTwitter").attr("href", result.Twitter);
-            $("#speakerDescriptionHeadline").html(result.DescriptionHeadline);
-            $("#speakerDescription").html(result.Description);
-            $("#speakerPicture").attr("src", result.Picture);
-        });
-        showSpeaker($(this));
-    });
-
-    $('.modal .close').click(function (e) {
-        e.preventDefault();
-        showSpeaker($(this));
-        $("#speakerPicture").attr("src", "");
-        $("#speakerName").html("");
-        $("#speakerTitle").html("");
-        $("#speakerFacebook").attr("href", "");
-        $("#speakerLinkedin").attr("href", "");
-        $("#speakerTwitter").attr("href", "");
-        $("#speakerDescriptionHeadline").html("");
-        $("#speakerDescription").html("");
-    });
-
-    $('.modal-bg').click(function (e) {
-        e.preventDefault();
-        showSpeaker($(this));
-    });
-
     function createPersonal() {
         if (!$(".actions span").hasClass("check")) {
 
@@ -102,31 +63,20 @@ $(document).ready(function () {
     });
 
     function downloadPersonalSchedule() {
-        var element;
 
         var doc = new jsPDF();
 
         html2canvas(document.getElementById("pdfBackground"), { logging: false }).then(function (canvas) {
-            var image = canvas.toDataURL("image/jpeg").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+            var image = canvas.toDataURL("image/jpeg").replace("image/png", "image/octet-stream");
 
             var width = doc.internal.pageSize.width;
             var height = doc.internal.pageSize.height;
             doc.addImage(image, 'JPEG', 0, 0, width, height);
         });
 
-        var scrollWidth = $('#schedulePrint').prop('scrollWidth'); //document.getElementById("primary").style.width;
-        var scrollHeight = $('#schedulePrint').prop('scrollHeight'); //document.getElementById("primary").style.height;
-        var width = $('#schedulePrint').width();
-        var height = $('#schedulePrint').height();
-
         html2canvas(document.getElementById("schedulePrint"), { logging: false }).then(function (canvas) {
-<<<<<<< HEAD
-=======
 
-
->>>>>>> eccdeab0fd0f30c4044731c1e0a69a89e149ee78
-
-            var image = canvas.toDataURL("image/jpeg").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+            var image = canvas.toDataURL("image/jpeg").replace("image/png", "image/octet-stream");
 
             var width = $("#schedulePrint").width() / 6;
             var height = $("#schedulePrint").height() / 5;
@@ -265,5 +215,84 @@ $(document).ready(function () {
             $('header').removeClass('scroll');
         };
     });
+
+    //Session popup
+    function singleSession(thisObj) {
+        var sessionId = thisObj.data('id');
+        $.getJSON("/Umbraco/Api/Session/GetSession?sID=" + sessionId, function (result) {
+            sessionHtml = "<div class='topbar'></div><div class='session-content'><div class='left'></div><div class='right'></dib></div>";
+            modalAndBg(thisObj);
+            $(".modal").append("<div class='single-session'></div>");
+            $(".single-session").append(sessionHtml);
+
+            $(".topbar").append("<h3>" + result.Title + "</h3><span>" + result.Date + "</span>");
+            $(".left").append("<h3>" + result.DescriptionHeadline + "</h3>" + result.Description);
+
+            result.Speakers.forEach(function (speaker) {
+                $(".right").append("<a class='getSpeaker' href='' data-id='" + speaker.Id + "'><img src='' alt='" + speaker.Name + "'>" + speaker.Name + "</a>");
+            });
+        });
+    }
+
+    //speaker popup
+    function singleSpeaker(thisObj) {
+        var speakerId = thisObj.data('id');
+        $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerId, function (result) {
+            speakerHtml = "";
+            modalAndBg(thisObj);
+            $(".modal").append("<div class='speaker-profile'></div>");
+
+            console.log(result);
+
+            
+        });
+    }
+
+    $(".session").click(function (e) {
+        e.preventDefault();
+        singleSession($(this));
+    });
+
+    $(".speaker a").click(function (e) {
+        e.preventDefault();
+    });
+
+    //Add Modal & background
+    function modalAndBg() {
+        html = "<div class='modal'><a class='modal-close' href='' title='Close'><div></div><div></div></a></div><div class='modal-bg'></div>";
+        $(document.body).append(html);
+        showModal();
+    }
+
+    function showModal() {
+        if ($(document.body).find('.modal').hasClass("show")) {
+            $('.modal').toggleClass("show");
+            $('.modal-bg').toggleClass("show");
+            setTimeout(function () {
+                $('.modal').remove();
+                $('.modal-bg').remove();
+            }, 500);
+        } else {
+            $('.modal').toggleClass("show");
+            $('.modal-bg').toggleClass("show");
+        }
+    }
+
+    $(document.body).on("click", ".modal-bg", function (e) {
+        e.preventDefault();
+        showModal();
+    });
+
+    $(document.body).on("click", ".modal-close", function (e) {
+        e.preventDefault();
+        showModal();
+    });
+
+    $(document.body).on("click", ".getSpeaker", function (e) {
+        e.preventDefault();
+        singleSpeaker($(this));
+    });
+
+    
 
 });
