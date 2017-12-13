@@ -51,7 +51,7 @@ $(document).ready(function(){
         e.preventDefault();
         var speakerID = $(this).data('id');
         $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerID, function (result) {
-            console.log(result.Picture)
+            //console.log(result.Picture)
                 $("#speakerName").html(result.Name);
                 $("#speakerTitle").html(result.Title);
                 $("#speakerFacebook").attr("href", result.Facebook);

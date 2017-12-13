@@ -10,21 +10,31 @@
 
 <div class="row">
     <div class="container noPadding">
-        <div class="masterclassDescription">
+        <div class="workshop">
             <div class="col-md-3">
-                @try
-            {
-                    <img class="masterclassSpeakerImg" src="@page.MasterClassSpeakerPicture.Url" alt="masterclass speaker picture" />
-                }
-                catch
-                {
-                    <img class="masterclassSpeakerImg" src="~/media/1002/cg-placeholder.svg" alt="" />
-                }
+                <div class="speakerInfo">
+                    <div class="speakerImg">
+                        @try
+                        {
+                            <img src="@page.MasterClassSpeakerPicture.Url" alt="masterclass speaker picture" />
+                        }
+                        catch
+                        {
+                            <img src="~/media/1002/cg-placeholder.svg" alt="" />
+                        }
+                    </div>
+                       
+                            <h4 class="yellow">@page.MasterClassSpeakerName</h4>
+                    <div class="workshopInfo Center">
+                        <a>@page.MasterClassInformation</a>
+                        <a class="btn-secondary" href="#">@page.MasterClassBuyText</a>
+                    </div>
+                    </div>
             </div>
 
             <div class="col-md-6">
                 <h2>@page.MasterClassDescriptionHeadline</h2>
-                <div class="masterclassDescription">@page.MasterClassDescription</div>
+                <div class="masterclassDescription">@page.MasterClassDescription</div>                        
             </div>
         </div>
     </div>
