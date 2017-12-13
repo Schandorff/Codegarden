@@ -148,7 +148,6 @@ $(document).ready(function () {
         var session = thisObj.parents(".schedule-card");
         var time = session.parent().find(".schedule-time").html();
         var sessionTitle = session.find(".session").html();
-
         //Check if checked already
         if (thisObj.hasClass("checked")) {
             removeSession(sessionTitle);
@@ -156,61 +155,44 @@ $(document).ready(function () {
            checkSiblings();
            addSession();
         }
-
         //Check if any siblings are checked
         function checkSiblings() {
             session.parents(".schedule-row").find(".checked").toggleClass("checked");
         }
-
         //Remove session
         function removeSession(title) {
             var getRemoveTitle = title;
-
             $(".personal-row").each(function () {
                 p = $(this).find("p");
-
                 if (getRemoveTitle == p.html()) {
                     $(this).remove();
                 }
             });
         }
-
         //Add session
         function addSession() {
-
             var sessions = [];
-
             thisObj.toggleClass("checked");
-
             $(".schedule-card").each(function (e) {
                 if ($(this).find(".check").hasClass("checked")) {
-
                     sessionTime = $(this).parent().find(".schedule-time").html();
                     sessionTitle = $(this).find(".session").html();
                     sessionDay = $(this).parents(".day").find("h3").html();
                     sessionObj = {};
-
                     sessionObj.Time = sessionTime;
                     sessionObj.Title = sessionTitle;
                     sessionObj.Day = sessionDay;
-
                     sessions.push(sessionObj);
                 }
             });
-
             thisObj.toggleClass("checked");
-
             $(".sessionCenter").html("");
-
             sessions.forEach(function (sessionItem) {
                 var sessionHtml = "<div class='personal-row'><div class='personal-card'><div class='personal-time'>" + sessionItem.Time + "</div><div class='personal-session'><p>" + sessionItem.Title + "</p></div></div></div>";
-
                 if ($(".sessionCenter").find("h3").last().html() != sessionItem.Day) {
                     $(".sessionCenter").append("<h3 class='day'>" + sessionItem.Day + "</h3>");
                 }
-
                 $(".sessionCenter").append(sessionHtml);
-
             });
         }
     }

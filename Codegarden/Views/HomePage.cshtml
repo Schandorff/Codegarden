@@ -5,7 +5,7 @@
 
     var page = Model.Content;
 
-    var speakerQuery = Model.Content.Site().Descendants<Speaker>();
+    var speakerQuery = Model.Content.Site().Descendants<Speaker>().Take(3);
     var workShopQuery = Model.Content.Site().Descendants<Workshop>();
 
 }
@@ -92,7 +92,16 @@
 </div>
 <div class="row banner">
     <div class="special-speaker">
-        <img src="media/banner.jpg" alt="">
+        @*banner masterclas image*@             
+        @try
+        {
+            <img src="@page.MasterclassBanner.Url" alt=""/>                    
+        }
+        catch                  
+        {
+            <img src="~/media/1002/cg-placeholder.svg" alt = ""/>
+        }
+        
         <div class="overlay">
             <div class="speaker">
                 <h3>@page.MasterclassHeadline</h3>

@@ -254,6 +254,7 @@
     <Content Include="config\imageprocessor\cache.config" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="css\style.css" />
+    <Content Include="js\html2canvas.js" />
     <Content Include="js\script.js" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
@@ -318,6 +319,7 @@
     <Content Include="Views\MacroPartials\ContactForm.cshtml" />
     <Content Include="Views\MacroPartials\ContactForm2.cshtml" />
     <Content Include="Views\MacroPartials\Map.cshtml" />
+    <Content Include="Views\Masterclass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

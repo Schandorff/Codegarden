@@ -122,6 +122,71 @@ h6 {
   height: 100%;
   background-color: rgba(59, 59, 59, 0.65); }
 
+/* FORM ELEMENTS */
+fieldset {
+  border: none; }
+
+input[type="email"],
+input[type="text"] {
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: rgba(246, 246, 246, 0.35);
+  border: 1px solid rgba(149, 152, 154, 0.3);
+  border-radius: 2px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  color: #95989A;
+  font-weight: bold; }
+
+select {
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: rgba(246, 246, 246, 0.35);
+  border: 1px solid rgba(149, 152, 154, 0.3);
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #95989A;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+input::placeholder {
+  color: #95989A;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+textarea {
+  background-color: rgba(246, 246, 246, 0.35);
+  border: 1px solid rgba(149, 152, 154, 0.3);
+  resize: none;
+  outline: none;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  height: 200px;
+  color: #95989A;
+  font-weight: bold; }
+
+textarea::placeholder {
+  color: #95989A;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+input[type=submit] {
+  width: auto;
+  height: 35px;
+  border: none;
+  color: #fff;
+  background-color: #39D18C;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 35px; }
+
 .row .container .headquarters {
   width: 90%;
   display: flex; }
