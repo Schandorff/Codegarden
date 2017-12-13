@@ -63,7 +63,17 @@ namespace CodeGarden.Api
                 var s = new Speaker();
                 s.Id = sessionSpeaker.Id;
                 s.Name = sessionSpeaker.Name;
+                try
+                {
+                    s.Picture = this.getImg(sessionSpeaker.Properties["speakerPicture"].Value.ToString());
+                }
+                catch
+                {
+                    s.Picture = "/media/1002/cg-placeholder.svg";
+                };
+
                 
+
 
                 speakers.Add(s);
             }
@@ -71,6 +81,16 @@ namespace CodeGarden.Api
             return speakers;
         }
 
+        private string getImg(string guidString)
+        {
+            var ms = Services.MediaService;
+
+            var imgGuid = Guid.Parse(guidString.Substring(12));
+
+            var img = ms.GetById(imgGuid);
+
+            return Umbraco.Media(img.Id).Url;
+        }
 
         //The session object
         public class Session
@@ -102,6 +122,8 @@ namespace CodeGarden.Api
             public int Id { get; set; }
 
             public string Name { get; set; }
+
+            public string Picture { get; set; }
         }
 
 
