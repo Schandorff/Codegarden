@@ -78,18 +78,30 @@
                                                     <div class="schedule-card">
                                                         <span class="desc">
 
-                                                            <a href="" class="session">@session.SessionTitle</a>
+                                                            <a href="@session.Url" class="session" data-id="@session.Id">@session.SessionTitle</a>
 
                                                             @foreach (var speaker in session.SessionSpeakers)
                                                             {
-                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                                <span class="speaker"><a href="@speaker.Url" data-id="@speaker.GetPropertyValue("ID")">@speaker.GetPropertyValue("speakerName")</a></span>
                                                             }
 
                                                         </span>
                                                         <div class="actions">
-                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
-                                                            <span class="spacer"></span>
-                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                            @{
+                                                                try
+                                                                {
+                                                                    <span class="presentation"><a href="@session.SessionPresentation" target="_blank"><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href="@session.SessionVideo" target="_blank"><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                                catch
+                                                                {
+                                                                    <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                            }
+                                                            
                                                         </div>
                                                     </div>
                                                 }
@@ -109,19 +121,30 @@
                                                     <div class="schedule-card">
                                                         <span class="desc">
 
-                                                            <a href="" class="session">@session.SessionTitle</a>
+                                                            <a href="@session.Url" class="session" data-id="@session.Id">@session.SessionTitle</a>
 
                                                             @foreach (var speaker in session.SessionSpeakers)
                                                             {
-
-                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                                <span class="speaker"><a href="@speaker.Url" data-id="@speaker.GetPropertyValue("ID")">@speaker.GetPropertyValue("speakerName")</a></span>
                                                             }
 
                                                         </span>
                                                         <div class="actions">
-                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
-                                                            <span class="spacer"></span>
-                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                            @{
+                                                                try
+                                                                {
+                                                                    <span class="presentation"><a href="@session.SessionPresentation" target="_blank"><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href="@session.SessionVideo" target="_blank"><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                                catch
+                                                                {
+                                                                    <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                            }
+                                                            
                                                         </div>
                                                     </div>
                                                 }
@@ -141,19 +164,30 @@
                                                     <div class="schedule-card">
                                                         <span class="desc">
 
-                                                            <a href="" class="session">@session.SessionTitle</a>
+                                                            <a href="@session.Url" class="session" data-id="@session.Id">@session.SessionTitle</a>
 
                                                             @foreach (var speaker in session.SessionSpeakers)
                                                             {
-
-                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                                <span class="speaker"><a href="@speaker.Url" data-id="@speaker.GetPropertyValue("ID")">@speaker.GetPropertyValue("speakerName")</a></span>
                                                             }
 
                                                         </span>
                                                         <div class="actions">
-                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
-                                                            <span class="spacer"></span>
-                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                            @{
+                                                                try
+                                                                {
+                                                                    <span class="presentation"><a href="@session.SessionPresentation" target="_blank"><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href="@session.SessionVideo" target="_blank"><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                                catch
+                                                                {
+                                                                    <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                            }
+                                                            
                                                         </div>
                                                     </div>
                                                 }
@@ -173,19 +207,30 @@
                                                     <div class="schedule-card">
                                                         <span class="desc">
 
-                                                            <a href="" class="session">@session.SessionTitle</a>
+                                                            <a href="@session.Url" class="session" data-id="@session.Id">@session.SessionTitle</a>
 
                                                             @foreach (var speaker in session.SessionSpeakers)
                                                             {
-
-                                                                <span class="speaker"><a href="@speaker.Url">@speaker.GetPropertyValue("speakerName")</a></span>
+                                                                <span class="speaker"><a href="@speaker.Url" data-id="@speaker.GetPropertyValue("ID")">@speaker.GetPropertyValue("speakerName")</a></span>
                                                             }
 
                                                         </span>
                                                         <div class="actions">
-                                                            <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
-                                                            <span class="spacer"></span>
-                                                            <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                            @{
+                                                                try
+                                                                {
+                                                                    <span class="presentation"><a href="@session.SessionPresentation" target="_blank"><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href="@session.SessionVideo" target="_blank"><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                                catch
+                                                                {
+                                                                    <span class="presentation"><a href=""><img src="/Media/ScheduleIcons/presentation.svg" alt=""></a></span>
+                                                                    <span class="spacer"></span>
+                                                                    <span class="video"><a href=""><img src="/Media/ScheduleIcons/video.svg" alt=""></a></span>
+                                                                }
+                                                            }
+                                                            
                                                         </div>
                                                     </div>
                                                 }
