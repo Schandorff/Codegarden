@@ -22,18 +22,34 @@ $(document).ready(function () {
         });
         item.toggleClass("active");
 
-        if (item.hasClass("active")) {
-            item.find(".collapsed").animate({
-                "max-height": 200
-            }, 300, function () {
-                // Animation complete.
-            });
+        if ($(window).width() >= 767) {
+            if (item.hasClass("active")) {
+                item.find(".collapsed").animate({
+                    "max-height": 200
+                }, 300, function () {
+                    // Animation complete.
+                });
+            } else {
+                item.find(".collapsed").animate({
+                    "max-height": 0
+                }, 250, function () {
+                    // Animation complete.
+                });
+            }
         } else {
-            item.find(".collapsed").animate({
-                "max-height": 0
-            }, 250, function () {
-                // Animation complete.
-            });
+            if (item.hasClass("active")) {
+                item.find(".collapsed").animate({
+                    "max-height": 310
+                }, 300, function () {
+                    // Animation complete.
+                });
+            } else {
+                item.find(".collapsed").animate({
+                    "max-height": 0
+                }, 250, function () {
+                    // Animation complete.
+                });
+            }
         }
 
     }
@@ -81,7 +97,7 @@ $(document).ready(function () {
             var width = $("#schedulePrint").width() / 6;
             var height = $("#schedulePrint").height() / 5;
             doc.addImage(image, 'JPEG', 43, 55, width, height);
-            doc.save('sample-file.pdf');
+            doc.save('Codegarden-Personal-Schedule.pdf');
         });
     }
 

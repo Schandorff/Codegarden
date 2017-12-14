@@ -118,7 +118,7 @@
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                   return function() {   
-                    infowindow.setContent(item.properties.placering + '<a href="https://www.google.com/maps/?q=' + lat + ',' + lng + '" target="_blank">Navigate to</a>');
+                    infowindow.setContent('<h3>' + item.properties.placering + '</h3><a class="mapLink" href="https://www.google.com/maps/search/?api=1&query=' + item.properties.placering.replace(/ /g, '+') + '" target="_blank">Navigate to</a>');
                     infowindow.open(map, marker);
                   }
                 })(marker, i));
@@ -208,7 +208,7 @@
               console.log(item);
               google.maps.event.addListener(marker, 'click', (function(marker, i) {
                   return function () {
-                    infowindow.setContent(item.properties.placering + '<a href="https://www.google.com/maps/?q='+ lat +','+ lng +'" target="_blank">Navigate to</a>');
+                    infowindow.setContent('<h3>'+item.properties.placering + '</h3><a class="mapLink" href="https://www.google.com/maps/search/?api=1&query=' + item.properties.placering.replace(/ /g, '+') + '" target="_blank">Navigate to</a>');
                     infowindow.open(map, marker);
                 }
               })(marker, i));

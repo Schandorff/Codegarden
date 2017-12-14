@@ -22,11 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Masterclass</summary>
 	[PublishedContentModel("masterclass")]
-<<<<<<< HEAD
-	public partial class Masterclass : PublishedContentModel, IMetaBase
-=======
 	public partial class Masterclass : PublishedContentModel, IHeroMedia, IMetaBase
->>>>>>> fa7bb202e13ae44c9a960d8b7607274373f4d0f1
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "masterclass";
@@ -104,8 +100,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-<<<<<<< HEAD
-=======
 		/// Hero picker: Choose video or image for header
 		///</summary>
 		[ImplementPropertyType("heroPicker")]
@@ -133,7 +127,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
->>>>>>> fa7bb202e13ae44c9a960d8b7607274373f4d0f1
 		/// Meta Description: This is the page description
 		///</summary>
 		[ImplementPropertyType("metaDescription")]
@@ -154,17 +147,10 @@ namespace Umbraco.Web.PublishedContentModels
 		///<summary>
 		/// Meta Ttitle: This is the page title
 		///</summary>
-<<<<<<< HEAD
-		[ImplementPropertyType("metaTtitle")]
-		public string MetaTtitle
-		{
-			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTtitle(this); }
-=======
 		[ImplementPropertyType("metaTitle")]
 		public string MetaTitle
 		{
 			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTitle(this); }
->>>>>>> fa7bb202e13ae44c9a960d8b7607274373f4d0f1
 		}
 
 		///<summary>

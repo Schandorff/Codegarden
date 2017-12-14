@@ -94,7 +94,7 @@ h6 {
   position: relative;
   margin-top: -125px; }
 
-.btn-primary, .btn-secondary {
+.btn-primary, .btn-secondary, .row .container .map .map-container .mapLink {
   background-color: #39D18C;
   text-decoration: none;
   width: 350px;
@@ -450,6 +450,16 @@ input[type=submit] {
     .row .container .map .map-container #map {
       width: 100%;
       height: 450px; }
+    .row .container .map .map-container .mapLink {
+      display: block;
+      padding-right: 20px;
+      padding-left: 20px;
+      width: 100px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px; }
 
 .row .container .schedule {
   padding-bottom: 75px;
@@ -785,7 +795,9 @@ input[type=submit] {
     text-transform: uppercase; }
     .container .workshop .workshopInfo .btn-secondary {
       width: 130px;
-      height: 40px; }
+      height: 40px;
+      padding-left: 20px;
+      padding-right: 20px; }
 
 .coloured .workshop {
   justify-content: flex-end; }
@@ -886,7 +898,7 @@ header {
     width: 350px;
     background-color: rgba(59, 59, 59, 0.8);
     opacity: 0;
-    visibility: 0;
+    visibility: hidden;
     transition: all 0.3s ease-in-out; }
     header nav ul {
       list-style: none;
@@ -929,7 +941,7 @@ header {
   padding-bottom: 35px; }
 .row .container .column .information p {
   padding-bottom: 35px; }
-.row .container .column .information .btn-primary, .row .container .column .information .btn-secondary {
+.row .container .column .information .btn-primary, .row .container .column .information .btn-secondary, .row .container .column .information .map .map-container .mapLink, .row .container .map .map-container .column .information .mapLink {
   margin-top: 20px; }
 .row .container .column .selling-points, .row .container .competition .column .competitionForm, .row .container .column .col-md-6 .themes {
   background-color: #fff;
@@ -1299,5 +1311,268 @@ header {
   .modal-bg.show {
     opacity: 1;
     visibility: visible; }
+
+@media only screen and (min-width: 320px) and (max-width: 1199px) {
+  .row:nth-of-type(1) {
+    display: none; }
+  .row h1 {
+    text-align: center; }
+  .row .column {
+    flex-direction: column; }
+  .row .overlap {
+    margin-top: 0px; }
+  .row.breadcrumbs .container {
+    padding-left: 15px;
+    padding-right: 15px; }
+  .row .container {
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    box-sizing: border-box;
+    padding-right: 15px;
+    padding-left: 15px; }
+    .row .container .column .selling-points, .row .container .competition .column .competitionForm, .row .container .column .col-md-6 .themes {
+      padding: 25px; }
+      .row .container .column .selling-points h3, .row .container .competition .column .competitionForm h3, .row .container .column .col-md-6 .themes h3 {
+        width: 100%;
+        text-align: center; }
+        .row .container .column .selling-points h3:after, .row .container .competition .column .competitionForm h3:after, .row .container .column .col-md-6 .themes h3:after {
+          width: 25%;
+          margin: 0 auto;
+          margin-top: 10px;
+          transform: translateX(0px); }
+      .row .container .column .selling-points .item .collapsed p, .row .container .competition .column .competitionForm .item .collapsed p, .row .container .column .col-md-6 .themes .item .collapsed p {
+        padding: 15px; }
+    .row .container .column .col-md-5 .themes-info p, .row .container .column .contact .center form div input .themes-info p, .row .container .contact .center form div .column input .themes-info p, .row .container .competition .column .competitionForm div input .themes-info p {
+      width: 100%; }
+    .row .container .center p {
+      width: 100%; }
+    .row .container .workshops-container .center .workshops {
+      flex-direction: column; }
+      .row .container .workshops-container .center .workshops .col-md-4 {
+        padding: 0px;
+        box-sizing: border-box;
+        padding: 20px; }
+        .row .container .workshops-container .center .workshops .col-md-4 p {
+          padding-bottom: 60px;
+          font-size: 1rem; }
+        .row .container .workshops-container .center .workshops .col-md-4 .link-primary {
+          left: 20px; }
+    .row .container .awards {
+      padding-top: 15px; }
+      .row .container .awards .center .awards-categories {
+        flex-flow: column wrap; }
+        .row .container .awards .center .awards-categories .category-card {
+          width: 100%;
+          margin: 0px !important;
+          margin-bottom: 25px !important; }
+      .row .container .awards .center .vote {
+        flex-direction: column; }
+        .row .container .awards .center .vote span {
+          width: 100%;
+          text-align: center; }
+        .row .container .awards .center .vote form {
+          margin-top: 15px;
+          width: 100%; }
+    .row .container .competition .column .col-md-7 .competitionForm input[type=text] {
+      width: 45%;
+      padding-left: 10px; }
+      .row .container .competition .column .col-md-7 .competitionForm input[type=text]:placeholder {
+        font-size: 0.875rem; }
+    .row .container .competition .column .col-md-7 .competitionForm .select2-container {
+      width: 45% !important; }
+      .row .container .competition .column .col-md-7 .competitionForm .select2-container .select2-selection {
+        padding-left: 10px; }
+        .row .container .competition .column .col-md-7 .competitionForm .select2-container .select2-selection .select2-selection__rendered {
+          font-size: 0.875rem; }
+    .row .container .schedule .schedule-desc {
+      display: none; }
+    .row .container .schedule .day .schedule-row {
+      display: flex;
+      flex-direction: column; }
+      .row .container .schedule .day .schedule-row .schedule-card {
+        margin-left: 0px; }
+        .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext {
+          left: -220px; }
+          .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext:before {
+            display: none; }
+          .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            z-index: 1;
+            height: 28px;
+            width: 30px;
+            transform: translateY(-50%) rotate(180deg);
+            background: linear-gradient(-45deg, #FFC80A 17px, transparent 17px, transparent 21px, transparent 21px), linear-gradient(225deg, #FFC80A 17px, transparent 17px, transparent 21px, transparent 21px);
+            background-position: left 0px, right bottom;
+            background-size: 100% 50%;
+            background-repeat: no-repeat; }
+        .row .container .schedule .day .schedule-row .schedule-card.inactive {
+          display: none; }
+    .row .container .map {
+      flex-direction: column; }
+    .row .container .headquarters {
+      width: 100%;
+      flex-direction: column; }
+      .row .container .headquarters .col-md-6:nth-of-type(2) img {
+        height: 132px; }
+    .row .container .contact .center .contactForm {
+      width: 100%; }
+      .row .container .contact .center .contactForm div {
+        justify-content: space-between; }
+        .row .container .contact .center .contactForm div input[type=text] {
+          width: 45%; }
+      .row .container .contact .center .contactForm textarea {
+        width: 100%; }
+    .row .container .speakerInfo {
+      flex-direction: row;
+      justify-content: space-around; }
+    .row .container #UmbracoCloud,
+    .row .container #UCommerce {
+      flex-direction: column-reverse; }
+  .row .speaker-container .speakers .speaker .getSpeaker {
+    position: absolute; }
+  .row .special-speaker {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px; }
+    .row .special-speaker img {
+      display: none; }
+    .row .special-speaker .overlay {
+      position: relative;
+      height: auto;
+      background-color: transparent; }
+      .row .special-speaker .overlay .speaker {
+        width: 100%;
+        margin-right: 0px;
+        margin-top: 0px; }
+        .row .special-speaker .overlay .speaker h3 {
+          color: #FFC80A;
+          font-size: 1.25rem; }
+        .row .special-speaker .overlay .speaker p {
+          color: #737476; }
+        .row .special-speaker .overlay .speaker .link-primary {
+          font-size: 1rem;
+          margin-top: 10px; }
+
+  .single-session .session-content {
+    flex-direction: column-reverse; }
+    .single-session .session-content .left {
+      padding-left: 15px; }
+    .single-session .session-content .right {
+      display: flex;
+      flex-direction: row; }
+
+  .col-md-1, .row .container .schedule .day .schedule-row .schedule-time, .row .container .schedule .schedule-desc .schedule-time,
+  .col-md-2,
+  .col-md-3,
+  .row .container .schedule .day .schedule-row .schedule-card,
+  .row .container .schedule .schedule-desc .schedule-card,
+  .single-session .session-content .right,
+  .col-md-4,
+  .col-md-5,
+  .row .container .contact .center form div input,
+  .row .container .competition .column .competitionForm div input,
+  .col-md-6,
+  .col-md-7,
+  .col-md-8,
+  .single-session .session-content .left,
+  .col-md-9 {
+    width: 100%;
+    margin-bottom: 25px; }
+
+  .btn-primary, .btn-secondary, .row .container .map .map-container .mapLink {
+    width: 100%; }
+
+  header {
+    position: relative;
+    height: 175px;
+    background-color: #3B3B3B; }
+    header .container {
+      justify-content: center; }
+      header .container .nav-holder {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        height: 60px;
+        align-items: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-sizing: border-box;
+        z-index: 500; }
+        header .container .nav-holder .hamburger-nav {
+          z-index: 10; }
+          header .container .nav-holder .hamburger-nav p {
+            display: none; }
+          header .container .nav-holder .hamburger-nav.open {
+            margin-right: 0px; }
+    header.scroll .container .nav-holder {
+      background-color: #3B3B3B; }
+    header nav {
+      width: 100%; }
+
+  .modal {
+    width: calc(100% - 30px); }
+
+  .personal-container .personal-topbar .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box; }
+  .personal-container .personal-schedule .personal-row {
+    margin-bottom: 15px !important; } }
+@media only screen and (min-width: 767px) and (max-width: 1199px) {
+  .btn-primary, .btn-secondary, .row .container .map .map-container .mapLink {
+    width: 350px;
+    margin: 0 auto; }
+
+  .col-md-3, .row .container .schedule .day .schedule-row .schedule-card, .row .container .schedule .schedule-desc .schedule-card, .single-session .session-content .right {
+    width: calc(100% / 4); }
+
+  .row .container {
+    padding-left: 5%;
+    padding-right: 5%; }
+    .row .container .speakers-container .center .speakers {
+      flex-flow: row nowrap; }
+    .row .container .awards .center .awards-categories {
+      flex-flow: row wrap;
+      width: 100%; }
+      .row .container .awards .center .awards-categories .category-card {
+        width: calc( 100% / 2 - 20px);
+        padding: 15px 30px 15px 30px; }
+        .row .container .awards .center .awards-categories .category-card:nth-of-type(1) {
+          margin-right: 20px !important; }
+    .row .container .schedule .day .schedule-row {
+      display: flex;
+      flex-direction: column;
+      flex-flow: row wrap; }
+      .row .container .schedule .day .schedule-row .schedule-card {
+        margin-right: 20px; }
+        .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext {
+          left: 60px; }
+          .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext:before {
+            display: block; }
+          .row .container .schedule .day .schedule-row .schedule-card .actions span.tooltiptext:after {
+            display: none; }
+    .row .container .center .headquarters .col-md-6:nth-of-type(1) {
+      text-align: center;
+      align-items: center; }
+    .row .container .center .headquarters .col-md-6:nth-of-type(2) img {
+      height: 155px; }
+    .row .container .workshop {
+      flex-flow: row nowrap; }
+      .row .container .workshop .col-md-3, .row .container .workshop .schedule .day .schedule-row .schedule-card, .row .container .schedule .day .schedule-row .workshop .schedule-card, .row .container .workshop .schedule .schedule-desc .schedule-card, .row .container .schedule .schedule-desc .workshop .schedule-card, .row .container .workshop .single-session .session-content .right, .single-session .session-content .row .container .workshop .right {
+        padding-right: 20px; }
+        .row .container .workshop .col-md-3 .speakerInfo, .row .container .workshop .schedule .day .schedule-row .schedule-card .speakerInfo, .row .container .schedule .day .schedule-row .workshop .schedule-card .speakerInfo, .row .container .workshop .schedule .schedule-desc .schedule-card .speakerInfo, .row .container .schedule .schedule-desc .workshop .schedule-card .speakerInfo, .row .container .workshop .single-session .session-content .right .speakerInfo, .single-session .session-content .row .container .workshop .right .speakerInfo {
+          flex-direction: column; }
+    .row .container #UmbracoCloud,
+    .row .container #UCommerce {
+      flex-direction: row; } }
 
 /*# sourceMappingURL=style.css.map */
