@@ -226,11 +226,13 @@ $(document).ready(function () {
             $(".modal").append("<div class='single-session'></div>");
             $(".single-session").append(sessionHtml);
 
+            console.log(Date.parse(result.Date));
+
             $(".topbar").append("<h3>" + result.Title + "</h3><span>" + result.Date + "</span>");
             $(".left").append("<h3>" + result.DescriptionHeadline + "</h3>" + result.Description);
 
             result.Speakers.forEach(function (speaker) {
-                $(".right").append("<a class='getSpeaker' href='' data-id='" + speaker.Id + "'><img src='' alt='" + speaker.Name + "'>" + speaker.Name + "</a>");
+                $(".right").append("<a class='getSpeaker' href='' data-id='" + speaker.Id + "'><img src='"+ speaker.Picture +"' alt='" + speaker.Name + "'>" + speaker.Name + "</a>");
             });
         });
     }
@@ -239,8 +241,6 @@ $(document).ready(function () {
     function singleSpeaker(thisObj) {
         var speakerId = thisObj.data('id');
         $.getJSON("/Umbraco/Api/Speaker/GetSpeaker?sID=" + speakerId, function (result) {
-            console.log(result);
-            speakerHtml = "";
             modalAndBg(thisObj);
             $(".modal").append("<div class='speaker-profile'></div>");
 

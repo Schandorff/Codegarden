@@ -314,12 +314,18 @@
     <Content Include="Views\Sessions.cshtml" />
     <Content Include="Views\Speaker.cshtml" />
     <Content Include="Views\Speakers.cshtml" />
+    <Content Include="Views\Awards.cshtml" />
     <Content Include="Views\Partials\Banner.cshtml" />
     <Content Include="Views\Partials\Breadcrumbs.cshtml" />
     <Content Include="Views\MacroPartials\ContactForm.cshtml" />
     <Content Include="Views\MacroPartials\ContactForm2.cshtml" />
     <Content Include="Views\MacroPartials\Map.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Masterclass.cshtml" />
+=======
+    <Content Include="Views\MacroPartials\FormVote.cshtml" />
+    <Content Include="Views\MacroPartials\CompetitionForm.cshtml" />
+>>>>>>> 46ebc59a00ef2cf8c57609d02039135bfa6a45f8
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

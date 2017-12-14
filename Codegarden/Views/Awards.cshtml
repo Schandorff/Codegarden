@@ -1,0 +1,167 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Awards>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{
+    Layout = "SiteMaster.cshtml";
+
+    var page = Model.Content;
+
+    var awardsQuary = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("awardPicker");
+    
+}
+    
+
+
+<div class="row breadcrumbs">
+    <div class="container">
+        <a href="">HOME</a> // <span class="yellow">AWARDS</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container noPadding">
+        <div class="awards">
+            <div class="center">
+                <h1 class="yellow">
+                @page.AwardsHeadline
+                </h1>
+                <p>
+                @page.AwardsDescription
+                </p>
+                        
+                <div class="awards-categories">
+
+                    @{
+
+                        foreach (var award in awardsQuary)
+                        {
+
+                            var mediaId = award.GetPropertyValue("awardIcon");
+
+                            var icon = Umbraco.Media(mediaId.ToString());
+
+                            var file = icon.UmbracoFile;
+
+
+                            <div class="category-card">
+                                
+                                <img src="@file" alt="meme" />
+
+                                <h3>
+                                    @award.GetPropertyValue("awardTitle")
+                                </h3>
+
+                                <p>
+                                    @award.GetPropertyValue("awardDescription")
+                                </p>
+
+                                <br />
+
+                                <i>
+                                    @award.GetPropertyValue("winningCompany")
+                                </i>
+
+                                <br />
+
+                                <b>
+                                    <a href="http://@award.GetPropertyValue("winningSolution")" alt="@award.GetPropertyValue("awardTitle") winning site from @award.GetPropertyValue("winningCompany")">
+                                        @award.GetPropertyValue("winningSolution")
+                                    </a>                                    
+                                </b>
+                            </div>
+                        }
+                    }
+
+                </div>
+                    <div class="vote">
+                        <span>
+                            <p class="title">
+                                @page.VoteHeadline
+                            </p>
+                            <p>
+                                @page.VoteDescription
+                            </p>
+                        </span>
+                        @*@page.VoteForm*@
+                        
+                        @if (page.RenderJoin == true)
+                        {
+                            @Html.Raw(page.GetPropertyValue("VoteForm"))
+                        }
+                        else
+                        {
+                            <p>
+                                The vote is has subseeded
+                            </p>
+                        }
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container">
+        <div class="competition">
+            <div class="column">
+                <div class="col-md-4">
+                    <div class="information">
+                        <h1>
+                            @page.RulesHeadline
+                        </h1>
+                        @{
+                            if (Model.Content.GetPropertyValue<string[]>("rulesList").Length > 0)
+                            {
+                                <ul>
+                                    <p class="title">Rules</p>
+                                    @foreach (var item in Model.Content.GetPropertyValue<string[]>("rulesList"))
+                                    {
+                                        <li>@item</li>
+                                    }
+                                </ul>
+                            }
+                        }
+                        @{
+                            if (Model.Content.GetPropertyValue<string[]>("datesList").Length > 0)
+                            {
+                                <ul>
+                                    <p class="title">Rules</p>
+                                    @foreach (var item in Model.Content.GetPropertyValue<string[]>("datesList"))
+                                    {
+                                        <li>@item</li>
+                                    }
+                                </ul>
+                            }
+                        }
+                        @{
+                            if (Model.Content.GetPropertyValue<string[]>("notesList").Length > 0)
+                            {
+                                <ul>
+                                    <p class="title">Rules</p>
+                                    @foreach (var item in Model.Content.GetPropertyValue<string[]>("notesList"))
+                                    {
+                                        <li>@item</li>
+                                    }
+                                </ul>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="col-md-7">
+                        
+                    @if (page.RenderJoin == true)
+                    {
+                        @Html.Raw(page.GetPropertyValue("JoinCompetition"))
+                    }
+                    else
+                    {
+                        <p>
+                            The competition is now closed for new entries
+                        </p>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

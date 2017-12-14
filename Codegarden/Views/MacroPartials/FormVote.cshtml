@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+
+var vote = Request["choice"] ?? string.Empty;
+
+}
+
+
+
+<form class="" action="index.html" method="post">
+    <input type="text" name="" value="" placeholder="Vote">
+    <input type="submit" name="" value="vote">
+</form>

@@ -127,6 +127,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// showMacro: Should the macro be shown?
+		///</summary>
+		[ImplementPropertyType("showMacro")]
+		public string ShowMacro
+		{
+			get { return this.GetPropertyValue<string>("showMacro"); }
+		}
+
+		///<summary>
 		/// Vote Description: This is the description for voting
 		///</summary>
 		[ImplementPropertyType("voteDescription")]
