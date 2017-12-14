@@ -1,20 +1,36 @@
 ﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using System.Net.Mail
 
 @{
     var contactQuery = Model.Content.Site().Descendant<Info>();
 }
 
-<div class="contact">
+@if (IsPost)
+{
+    string body = "This is a message from the codegarden contactform\n";
+    body += "Email: " + Request["EMAIL"] + "\n" + "Name: " + Request["NAME"] + "\n" + "Message: " + Request["MESSAGE"];
+
+    SmtpClient client = new SmtpClient();
+    client.Send("npesdk@gmail.com", "npesdk@gmail.com", "Hello from Codegarden", body);
+
     <div class="center">
-        <h1 class="yellow">@contactQuery.ContactHeadline</h1>
-        <p>@contactQuery.ContactDescription</p>
-        <form class="contactForm" action="" method="post">
-            <div>
-                <input type="text" name="" placeholder="NAME" value="">
-                <input type="text" name="" placeholder="EMAIL" value="">
-            </div>
-            <textarea name="" placeholder="MESSAGE"></textarea>
-            <input type="submit" name="" value="Contact us">
-        </form>
+        <h2 class="yellow">Thank you for your response</h2>
     </div>
-</div>
+}
+else
+{
+    <div class="contact">
+        <div class="center">
+            <h1 class="yellow">@contactQuery.ContactHeadline</h1>
+            <p>@contactQuery.ContactDescription</p>
+            <form class="contactForm" action="" method="post">
+                <div>
+                    <input type="text" id="NAME"name="NAME" placeholder="NAME" value="">
+                    <input type="text" id="EMAIL" name="EMAIL" placeholder="EMAIL" value="">
+                </div>
+                <textarea id="MESSAGE" name="MESSAGE" placeholder="MESSAGE"></textarea>
+                <input type="submit" name="" value="Contact us">
+            </form>
+        </div>
+    </div>
+}
