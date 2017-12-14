@@ -171,13 +171,13 @@ textarea {
   box-sizing: border-box;
   border-radius: 2px;
   height: 200px;
-  color: #95989A;
-  font-weight: bold; }
+  color: #95989A; }
 
 textarea::placeholder {
   color: #95989A;
   font-weight: bold;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-weight: bold; }
 
 input[type=submit] {
   width: auto;
