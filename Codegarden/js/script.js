@@ -295,6 +295,20 @@ $(document).ready(function () {
         singleSpeaker($(this));
     });
 
-    
+    //Select2 js
+    function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var $state = $(
+            '<span>' + state.text + '</span>'
+        );
+        return $state;
+    };
+
+    $(".select").select2({
+        templateSelection: formatState,
+        minimumResultsForSearch: -1
+    });
 
 });
