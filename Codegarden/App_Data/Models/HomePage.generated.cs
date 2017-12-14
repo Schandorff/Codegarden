@@ -100,6 +100,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Masterclass banner: Pick a banner image for the masterclass
+		///</summary>
+		[ImplementPropertyType("masterclassBanner")]
+		public IPublishedContent MasterclassBanner
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("masterclassBanner"); }
+		}
+
+		///<summary>
 		/// Masterclass headline: Enter a headline for the masterclass section
 		///</summary>
 		[ImplementPropertyType("masterclassHeadline")]

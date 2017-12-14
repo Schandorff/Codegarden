@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+
+@{
+    var awardsQuary = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("awardPicker");
+}
+
+
+                    <form class="competitionForm" action="" method="post">
+                        <h1>Codegarden 2017 competition</h1>
+                        <p>Now you have all the details, what are you waiting for? Come and show us your best stuff and be in to win an Umbraco Award to bring back and show off to your clients and colleagues. And of course, being an Umbraco Award you can expect the award itself to be something unique and cool that you will want to show off….</p>
+
+                        <div>
+                            <input type="text" name="" value="" placeholder="Name">
+                            <input type="text" name="" value="" placeholder="Email">
+
+                        </div>
+                        <div>
+
+                            <input type="text" name="" value="" placeholder="Company name">
+                            <select class="select" name="">
+                                <option value="">Category</option>
+                                @{
+                                    foreach (var award in awardsQuary)
+                                    {
+                                        <option value="">
+                                            @award.GetPropertyValue("awardTitle")
+                                        </option>
+                                    }
+                                }
+                            </select>
+
+                        </div>
+                        <div>
+
+                            <input type="text" name="" value="" placeholder="Solution url">
+                            <input type="text" name="" value="" placeholder="Solution name">
+
+                        </div>
+                        <textarea placeholder="Message"></textarea>
+
+                        <input type="submit" name="" value="Join the competition">
+
+                    </form>

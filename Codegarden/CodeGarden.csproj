@@ -303,15 +303,14 @@
     <Content Include="Views\Sessions.cshtml" />
     <Content Include="Views\Speaker.cshtml" />
     <Content Include="Views\Speakers.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Awards.cshtml" />
-=======
     <Content Include="Views\Partials\Banner.cshtml" />
     <Content Include="Views\Partials\Breadcrumbs.cshtml" />
     <Content Include="Views\MacroPartials\ContactForm.cshtml" />
     <Content Include="Views\MacroPartials\ContactForm2.cshtml" />
     <Content Include="Views\MacroPartials\Map.cshtml" />
->>>>>>> 51af3c20795d2caebf911c751934933f4a802c64
+    <Content Include="Views\MacroPartials\FormVote.cshtml" />
+    <Content Include="Views\MacroPartials\CompetitionForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

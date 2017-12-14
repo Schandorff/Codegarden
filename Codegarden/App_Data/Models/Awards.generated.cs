@@ -100,6 +100,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// RenderJoin: Should Join Competition be shown?
+		///</summary>
+		[ImplementPropertyType("renderJoin")]
+		public bool RenderJoin
+		{
+			get { return this.GetPropertyValue<bool>("renderJoin"); }
+		}
+
+		///<summary>
 		/// Rules Headline: This is the headline for the rules section
 		///</summary>
 		[ImplementPropertyType("rulesHeadline")]
@@ -115,6 +124,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public IEnumerable<string> RulesList
 		{
 			get { return this.GetPropertyValue<IEnumerable<string>>("rulesList"); }
+		}
+
+		///<summary>
+		/// showMacro: Should the macro be shown?
+		///</summary>
+		[ImplementPropertyType("showMacro")]
+		public string ShowMacro
+		{
+			get { return this.GetPropertyValue<string>("showMacro"); }
 		}
 
 		///<summary>
