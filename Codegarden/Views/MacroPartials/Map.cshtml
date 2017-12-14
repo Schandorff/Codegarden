@@ -117,8 +117,8 @@
                 markers.push(marker);
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                  return function() {
-                    infowindow.setContent(item.properties.name);
+                  return function() {   
+                    infowindow.setContent(item.properties.placering + '<a href="https://www.google.com/maps/?q=' + lat + ',' + lng + '" target="_blank">Navigate to</a>');
                     infowindow.open(map, marker);
                   }
                 })(marker, i));
@@ -205,11 +205,11 @@
               });
 
               markers.push(marker);
-
+              console.log(item);
               google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
-                  infowindow.setContent("test");
-                  infowindow.open(map, marker);
+                  return function () {
+                    infowindow.setContent(item.properties.placering + '<a href="https://www.google.com/maps/?q='+ lat +','+ lng +'" target="_blank">Navigate to</a>');
+                    infowindow.open(map, marker);
                 }
               })(marker, i));
             });

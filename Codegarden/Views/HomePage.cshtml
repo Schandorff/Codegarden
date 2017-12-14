@@ -31,7 +31,7 @@
             <div class="col-md-4">
                 <div class="information">
                     <h1>@page.EventDateHeadline</h1>
-                    <p>@page.EventPresentation</p>
+                    @page.EventPresentation
                     
                     <a href="@page.BuyTicketLink" class="btn-primary" title="@page.BuyTicketLinkText">@page.BuyTicketLinkText</a>
                 </div>
@@ -67,17 +67,17 @@
                             <div class="speaker col-md-3">
                                 @try
                                 {
-                                    <img src="@speaker.SpeakerPicture" alt="@speaker.SpeakerName">
+                                    <img src="@speaker.SpeakerPicture.Url" alt="@speaker.SpeakerName">
                                 }
                                 catch
                                 {
-                                    <img src="#" alt="#">
+                                    <img src="~/media/1002/cg-placeholder.svg" alt="#">
                                 }
                                 
-                                <a href="@speaker.Url">
+                                <a href="@speaker.Url" data-id="@speaker.Id" class="getSpeaker">
                                     <div class="overlay">
                                         <h3>@speaker.SpeakerName</h3>
-                                        <p>@speaker.SpeakerDescription</p>
+                                        <p>@speaker.SpeakerTitle</p>
                                        
                                     </div>
                                 </a>
@@ -85,7 +85,7 @@
                         }
                       
                     </div>
-                    <a href="" class="btn-secondary">SEE SPEAKERS FOR CODEGARDEN 2018</a>
+                    <a href="/speakers/" class="btn-secondary">SEE SPEAKERS FOR CODEGARDEN 2018</a>
             </div>
         </div>
     </div>

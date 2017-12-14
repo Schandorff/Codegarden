@@ -2,7 +2,7 @@
     "features": [
         {
           "properties": {
-              "name": "Umbraco venue",
+              "placering": "Umbraco venue",
               "lat": 55.4096646,
               "lon": 10.3811261,
               "type": "umbraco"
@@ -10,7 +10,7 @@
         },
         {
           "properties": {
-              "name": "Hotel",
+              "placering": "Hotel",
               "lat": 55.40126,
               "lon": 10.38903,
               "type": "umbraco"

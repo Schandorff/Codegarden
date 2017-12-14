@@ -2,15 +2,7 @@
     "features": [
         {
           "properties": {
-            "name": "Restaurant Den Gamle",
-            "lat": 55.3993462,
-            "lon": 10.3805229,
-            "type": "restaurant"
-          }
-        },
-        {
-          "properties": {
-            "name": "Burger Anarchy",
+            "placering": "Burger Anarchy",
             "lat": 55.39775,
             "lon": 10.38853,
             "type": "restaurant"
@@ -18,7 +10,7 @@
         },
         {
           "properties": {
-            "name": "Pasfall ApS",
+            "placering": "Pasfall ApS",
             "lat": 55.39541,
             "lon": 10.38162,
             "type": "restaurant"
@@ -26,7 +18,7 @@
         },
         {
           "properties": {
-            "name": "The Smagløse Café",
+            "placering": "Den Smagløse Café",
             "lat": 55.39747,
             "lon": 10.37957,
             "type": "restaurant"
@@ -34,7 +26,7 @@
         },
         {
           "properties": {
-            "name": "Seaweed",
+            "placering": "Seaweed",
             "lat": 55.39557,
             "lon": 10.38088,
             "type": "restaurant"
@@ -42,7 +34,7 @@
         },
         {
           "properties": {
-            "name": "Amy's Bar & Winehouse",
+            "placering": "Amy's Bar & Winehouse",
             "lat": 55.39647,
             "lon": 10.38548,
             "type": "restaurant"
@@ -50,7 +42,7 @@
         },
         {
           "properties": {
-            "name": "Snik Snak",
+            "placering": "Snik Snak",
             "lat": 55.39681,
             "lon": 10.38519,
             "type": "bar"
@@ -58,7 +50,7 @@
         },
         {
           "properties": {
-            "name": "Café Kræz",
+            "placering": "Café Kræz",
             "lat": 55.39631,
             "lon": 10.38604,
             "type": "bar"
@@ -66,7 +58,7 @@
         },
         {
           "properties": {
-            "name": "Privaten",
+            "placering": "Privaten",
             "lat": 55.3963,
             "lon": 10.38592,
             "type": "bar"
@@ -74,7 +66,7 @@
         },
         {
           "properties": {
-            "name": "Venchi",
+            "placering": "Venchi",
             "lat": 55.39467,
             "lon": 10.38076,
             "type": "restaurant"
@@ -82,7 +74,7 @@
         },
         {
           "properties": {
-            "name": "Old Irish Pub",
+            "placering": "Old Irish Pub",
             "lat": 55.39544,
             "lon": 10.38358,
             "type": "restaurant"
@@ -90,7 +82,7 @@
         },
         {
           "properties": {
-            "name": "Christian Firtal",
+            "placering": "Christian Firtal",
             "lat": 55.39569,
             "lon": 10.38353,
             "type": "bar"
@@ -98,7 +90,7 @@
         },
         {
           "properties": {
-            "name": "Restaurant Goma",
+            "placering": "Goma",
             "lat": 55.3982,
             "lon": 10.37985,
             "type": "restaurant"
@@ -106,7 +98,7 @@
         },
         {
           "properties": {
-            "name": "Mamma's pizzeria",
+            "placering": "Mamma's pizzeria",
             "lat": 55.38899,
             "lon": 10.39656,
             "type": "bar"
@@ -114,7 +106,7 @@
         },
         {
           "properties": {
-            "name": "Hotel Windsor, Milling Hotels",
+            "placering": "Hotel Windsor, Milling Hotels",
             "lat": 55.39828,
             "lon": 10.38288,
             "type": "hotel"
@@ -122,7 +114,7 @@
         },
         {
           "properties": {
-            "name": "Hotel Ansgar, Milling Hotels",
+            "placering": "Hotel Ansgar, Milling Hotels",
             "lat": 55.39976,
             "lon": 10.3817,
             "type": "hotel"
@@ -130,7 +122,7 @@
         },
         {
           "properties": {
-            "name": "Hotel Plaza, Milling Hotels",
+            "placering": "Hotel Plaza, Milling Hotels",
             "lat": 55.40009,
             "lon": 10.38276,
             "type": "hotel"
@@ -138,7 +130,7 @@
         },
         {
           "properties": {
-            "name": "Ryan's Of Odense",
+            "placering": "Ryan's Of Odense",
             "lat": 55.39742,
             "lon": 10.38877,
             "type": "bar"
@@ -146,7 +138,7 @@
         },
         {
           "properties": {
-            "name": "Nelle's Coffee & Wine",
+            "placering": "Nelle's Coffee & Wine",
             "lat": 55.39557,
             "lon": 10.37972,
             "type": "bar"
@@ -154,7 +146,7 @@
         },
         {
           "properties": {
-            "name": "Kong Volmer",
+            "placering": "Kong Volmer",
             "lat": 55.39557,
             "lon": 10.37972,
             "type": "restaurant"
@@ -162,7 +154,7 @@
         },
         {
           "properties": {
-            "name": "Dunkbar",
+            "placering": "Dunkbar",
             "lat": 55.39791,
             "lon": 10.38487,
             "type": "restaurant"

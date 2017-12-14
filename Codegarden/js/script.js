@@ -220,15 +220,19 @@ $(document).ready(function () {
     function singleSession(thisObj) {
         var sessionId = thisObj.data('id');
         $.getJSON("/Umbraco/Api/Session/GetSession?sID=" + sessionId, function (result) {
-            console.log(result);
             sessionHtml = "<div class='topbar'></div><div class='session-content'><div class='left'></div><div class='right'></dib></div>";
             modalAndBg(thisObj);
             $(".modal").append("<div class='single-session'></div>");
             $(".single-session").append(sessionHtml);
 
-            console.log(Date.parse(result.Date));
+            var d = new Date(result.Date);
+            var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            var date = days[d.getDay()] + " " + d.getDate() + ". " + month[d.getMonth()] + " " + d.getFullYear();
 
-            $(".topbar").append("<h3>" + result.Title + "</h3><span>" + result.Date + "</span>");
+            var dateTime = date + " at " + result.StartTime;
+
+            $(".topbar").append("<h3>" + result.Title + "</h3><span>" + dateTime + "</span>");
             $(".left").append("<h3>" + result.DescriptionHeadline + "</h3>" + result.Description);
 
             result.Speakers.forEach(function (speaker) {
@@ -253,10 +257,6 @@ $(document).ready(function () {
     $(".session").click(function (e) {
         e.preventDefault();
         singleSession($(this));
-    });
-
-    $(".speaker a").click(function (e) {
-        e.preventDefault();
     });
 
     //Add Modal & background

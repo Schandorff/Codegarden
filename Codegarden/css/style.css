@@ -982,7 +982,9 @@ header {
   .row .container .speakers-container .center .speakers .speaker {
     position: relative;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16); }
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 100%;
+    overflow: hidden; }
     .row .container .speakers-container .center .speakers .speaker img {
       width: 100%;
       display: block; }
@@ -1016,14 +1018,6 @@ header {
     .row .container .speakers-container .center .speakers .speaker:hover .overlay {
       visibility: visible;
       opacity: 1; }
-    .row .container .speakers-container .center .speakers .speaker:nth-of-type(1) {
-      border-radius: 100%;
-      overflow: hidden; }
-      .row .container .speakers-container .center .speakers .speaker:nth-of-type(1):hover {
-        border-radius: 0; }
-    .row .container .speakers-container .center .speakers .speaker:nth-of-type(2) {
-      border-radius: 100%;
-      overflow: hidden; }
 
 .row.banner {
   position: relative; }
@@ -1241,6 +1235,20 @@ header {
         font-size: 1rem; }
     .single-session .session-content .right {
       min-height: 100px; }
+      .single-session .session-content .right .getSpeaker {
+        display: block;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-decoration: none;
+        color: #FFC80A; }
+        .single-session .session-content .right .getSpeaker img {
+          width: 70%;
+          display: block;
+          border-radius: 100%;
+          margin-bottom: 10px; }
 
 .modal {
   z-index: 101;

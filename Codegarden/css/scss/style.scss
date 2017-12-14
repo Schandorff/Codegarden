@@ -323,6 +323,8 @@ header {
                         position: relative;
                         transition:  all 0.3s ease-in-out;
                         box-shadow: $shadow;
+                        border-radius: 100%;
+                        overflow: hidden;
 
                         img {
                             width: 100%;
@@ -370,20 +372,6 @@ header {
                                 visibility: visible;
                                 opacity: 1;
                             }
-                        }
-
-                        &:nth-of-type(1) {
-                            border-radius: 100%;
-                            overflow: hidden;
-
-                            &:hover {
-                                border-radius: 0;
-                            }
-                        }
-
-                        &:nth-of-type(2) {
-                            border-radius: 100%;
-                            overflow: hidden;
                         }
                     }
                 }
@@ -774,6 +762,24 @@ header {
         .right {
             @extend .col-md-3;
             min-height: 100px;
+
+            .getSpeaker {
+                display: block;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                text-decoration: none;
+                color: $yellow;
+
+                img {
+                    width: 70%;
+                    display: block;
+                    border-radius: 100%;
+                    margin-bottom: 10px;
+                }
+            }
         }
     }
 }
