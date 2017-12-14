@@ -20,16 +20,16 @@ using Umbraco.ModelsBuilder.Umbraco;
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Awards</summary>
-	[PublishedContentModel("awards")]
-	public partial class Awards : PublishedContentModel, IHeroMedia, IMetaBase
+	/// <summary>Masterclass</summary>
+	[PublishedContentModel("masterclass")]
+	public partial class Masterclass : PublishedContentModel, IHeroMedia, IMetaBase
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "awards";
+		public new const string ModelTypeAlias = "masterclass";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public Awards(IPublishedContent content)
+		public Masterclass(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -40,117 +40,63 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Awards, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Masterclass, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 
 		///<summary>
-		/// Award picker: This picks the awards
+		/// MasterClassBuyText: Text for the masterclass buy ticket button
 		///</summary>
-		[ImplementPropertyType("awardPicker")]
-		public IEnumerable<IPublishedContent> AwardPicker
+		[ImplementPropertyType("masterClassBuyText")]
+		public string MasterClassBuyText
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("awardPicker"); }
+			get { return this.GetPropertyValue<string>("masterClassBuyText"); }
 		}
 
 		///<summary>
-		/// Awards Description: This is the description
+		/// Masterclass description: Write a masterclass content description
 		///</summary>
-		[ImplementPropertyType("awardsDescription")]
-		public string AwardsDescription
+		[ImplementPropertyType("masterClassDescription")]
+		public IHtmlString MasterClassDescription
 		{
-			get { return this.GetPropertyValue<string>("awardsDescription"); }
+			get { return this.GetPropertyValue<IHtmlString>("masterClassDescription"); }
 		}
 
 		///<summary>
-		/// Awards Headline: This is the headline
+		/// Masterclass description headline: Write a headline for the masterclass description
 		///</summary>
-		[ImplementPropertyType("awardsHeadline")]
-		public string AwardsHeadline
+		[ImplementPropertyType("masterClassDescriptionHeadline")]
+		public string MasterClassDescriptionHeadline
 		{
-			get { return this.GetPropertyValue<string>("awardsHeadline"); }
+			get { return this.GetPropertyValue<string>("masterClassDescriptionHeadline"); }
 		}
 
 		///<summary>
-		/// DatesList: This is the list of dates
+		/// Masterclass information: Enter information about venue, date, time etc.
 		///</summary>
-		[ImplementPropertyType("datesList")]
-		public IEnumerable<string> DatesList
+		[ImplementPropertyType("masterClassInformation")]
+		public IHtmlString MasterClassInformation
 		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("datesList"); }
+			get { return this.GetPropertyValue<IHtmlString>("masterClassInformation"); }
 		}
 
 		///<summary>
-		/// Join Competition: This is where the macro for the signup form is placed
+		/// Masterclass speaker name: Name of the masterclass speaker
 		///</summary>
-		[ImplementPropertyType("joinCompetition")]
-		public IHtmlString JoinCompetition
+		[ImplementPropertyType("masterClassSpeakerName")]
+		public string MasterClassSpeakerName
 		{
-			get { return this.GetPropertyValue<IHtmlString>("joinCompetition"); }
+			get { return this.GetPropertyValue<string>("masterClassSpeakerName"); }
 		}
 
 		///<summary>
-		/// NotesList: This is a list of notes
+		/// Masterclass speaker picture: Insert a picture of the masterclass speaker
 		///</summary>
-		[ImplementPropertyType("notesList")]
-		public IEnumerable<string> NotesList
+		[ImplementPropertyType("masterClassSpeakerPicture")]
+		public IPublishedContent MasterClassSpeakerPicture
 		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("notesList"); }
-		}
-
-		///<summary>
-		/// RenderJoin: Should Join Competition be shown?
-		///</summary>
-		[ImplementPropertyType("renderJoin")]
-		public bool RenderJoin
-		{
-			get { return this.GetPropertyValue<bool>("renderJoin"); }
-		}
-
-		///<summary>
-		/// Rules Headline: This is the headline for the rules section
-		///</summary>
-		[ImplementPropertyType("rulesHeadline")]
-		public string RulesHeadline
-		{
-			get { return this.GetPropertyValue<string>("rulesHeadline"); }
-		}
-
-		///<summary>
-		/// RulesList: This is the list of rules
-		///</summary>
-		[ImplementPropertyType("rulesList")]
-		public IEnumerable<string> RulesList
-		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("rulesList"); }
-		}
-
-		///<summary>
-		/// Vote Description: This is the description for voting
-		///</summary>
-		[ImplementPropertyType("voteDescription")]
-		public string VoteDescription
-		{
-			get { return this.GetPropertyValue<string>("voteDescription"); }
-		}
-
-		///<summary>
-		/// Vote Form: This is a form for voting
-		///</summary>
-		[ImplementPropertyType("voteForm")]
-		public IHtmlString VoteForm
-		{
-			get { return this.GetPropertyValue<IHtmlString>("voteForm"); }
-		}
-
-		///<summary>
-		/// Vote Headline: This is the headline for the voting area
-		///</summary>
-		[ImplementPropertyType("voteHeadline")]
-		public string VoteHeadline
-		{
-			get { return this.GetPropertyValue<string>("voteHeadline"); }
+			get { return this.GetPropertyValue<IPublishedContent>("masterClassSpeakerPicture"); }
 		}
 
 		///<summary>

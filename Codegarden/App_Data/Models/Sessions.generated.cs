@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Sessions</summary>
 	[PublishedContentModel("sessions")]
-	public partial class Sessions : PublishedContentModel
+	public partial class Sessions : PublishedContentModel, IHeroMedia
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "sessions";
@@ -43,6 +43,33 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Sessions, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Hero picker: Choose video or image for header
+		///</summary>
+		[ImplementPropertyType("heroPicker")]
+		public IPublishedContent HeroPicker
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetHeroPicker(this); }
+		}
+
+		///<summary>
+		/// Is video: Click this if a video was chosen
+		///</summary>
+		[ImplementPropertyType("isVideo")]
+		public bool IsVideo
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetIsVideo(this); }
+		}
+
+		///<summary>
+		/// Page title: Page title for banner heading
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetPageTitle(this); }
 		}
 	}
 }

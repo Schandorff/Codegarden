@@ -280,6 +280,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Page title: Page title for banner heading
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.HeroMedia.GetPageTitle(this); }
+		}
+
+		///<summary>
 		/// Meta Description: This is the page description
 		///</summary>
 		[ImplementPropertyType("metaDescription")]
@@ -300,10 +309,10 @@ namespace Umbraco.Web.PublishedContentModels
 		///<summary>
 		/// Meta Ttitle: This is the page title
 		///</summary>
-		[ImplementPropertyType("metaTtitle")]
-		public string MetaTtitle
+		[ImplementPropertyType("metaTitle")]
+		public string MetaTitle
 		{
-			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTtitle(this); }
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTitle(this); }
 		}
 
 		///<summary>
