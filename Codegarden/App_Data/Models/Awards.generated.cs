@@ -127,15 +127,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// showMacro: Should the macro be shown?
-		///</summary>
-		[ImplementPropertyType("showMacro")]
-		public string ShowMacro
-		{
-			get { return this.GetPropertyValue<string>("showMacro"); }
-		}
-
-		///<summary>
 		/// Vote Description: This is the description for voting
 		///</summary>
 		[ImplementPropertyType("voteDescription")]
@@ -210,10 +201,10 @@ namespace Umbraco.Web.PublishedContentModels
 		///<summary>
 		/// Meta Ttitle: This is the page title
 		///</summary>
-		[ImplementPropertyType("metaTtitle")]
-		public string MetaTtitle
+		[ImplementPropertyType("metaTitle")]
+		public string MetaTitle
 		{
-			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTtitle(this); }
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTitle(this); }
 		}
 
 		///<summary>

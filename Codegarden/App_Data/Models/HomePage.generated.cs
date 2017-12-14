@@ -309,10 +309,10 @@ namespace Umbraco.Web.PublishedContentModels
 		///<summary>
 		/// Meta Ttitle: This is the page title
 		///</summary>
-		[ImplementPropertyType("metaTtitle")]
-		public string MetaTtitle
+		[ImplementPropertyType("metaTitle")]
+		public string MetaTitle
 		{
-			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTtitle(this); }
+			get { return Umbraco.Web.PublishedContentModels.MetaBase.GetMetaTitle(this); }
 		}
 
 		///<summary>

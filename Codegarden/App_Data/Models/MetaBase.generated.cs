@@ -31,7 +31,7 @@ namespace Umbraco.Web.PublishedContentModels
 		string MetaKeywords { get; }
 
 		/// <summary>Meta Ttitle</summary>
-		string MetaTtitle { get; }
+		string MetaTitle { get; }
 
 		/// <summary>Hide in navigation?</summary>
 		bool UmbracoNaviHide { get; }
@@ -89,14 +89,14 @@ namespace Umbraco.Web.PublishedContentModels
 		///<summary>
 		/// Meta Ttitle: This is the page title
 		///</summary>
-		[ImplementPropertyType("metaTtitle")]
-		public string MetaTtitle
+		[ImplementPropertyType("metaTitle")]
+		public string MetaTitle
 		{
-			get { return GetMetaTtitle(this); }
+			get { return GetMetaTitle(this); }
 		}
 
 		/// <summary>Static getter for Meta Ttitle</summary>
-		public static string GetMetaTtitle(IMetaBase that) { return that.GetPropertyValue<string>("metaTtitle"); }
+		public static string GetMetaTitle(IMetaBase that) { return that.GetPropertyValue<string>("metaTitle"); }
 
 		///<summary>
 		/// Hide in navigation?: Should this page be hidden from the navigation?

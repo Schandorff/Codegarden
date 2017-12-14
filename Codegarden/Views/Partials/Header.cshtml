@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Codegarden 2019</title>
+    <title>@Model.Content.GetPropertyValue("MetaTitle")</title>
+    <meta name="description" content="@Model.Content.GetPropertyValue("MetaDescription")">
+    <meta name="keywords" content="@Model.Content.GetPropertyValue("MetaKeywords")">
     @Html.RenderCssHere()
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
